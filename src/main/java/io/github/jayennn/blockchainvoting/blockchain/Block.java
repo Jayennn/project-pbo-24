@@ -1,5 +1,6 @@
 package io.github.jayennn.blockchainvoting.blockchain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.jayennn.blockchainvoting.utils.StringUtil;
 
 import java.io.Serializable;
@@ -8,10 +9,19 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 public class Block implements Serializable {
-    private int index;
-    private long timestamp;
+    @JsonProperty("index")
+    private final int index;
+
+    @JsonProperty("timestamp")
+    private final long timestamp;
+
+    @JsonProperty("hash")
     private String hash;
+
+    @JsonProperty("previousHash")
     private String previousHash;
+
+    @JsonProperty("data")
     private Transaction data;
     private Boolean valid;
 

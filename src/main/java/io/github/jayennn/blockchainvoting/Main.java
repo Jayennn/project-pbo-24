@@ -2,6 +2,7 @@ package io.github.jayennn.blockchainvoting;
 
 import io.github.jayennn.blockchainvoting.blockchain.Blockchain;
 import io.github.jayennn.blockchainvoting.blockchain.Transaction;
+import io.github.jayennn.blockchainvoting.utils.JsonFileWriter;
 
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ public class Main {
         blockchain.addBlock(new Transaction("voter3", candidate1, null, null));
 
         System.out.println("\nBlockchain contents:");
+
         blockchain.getChain().forEach(block -> {
             System.out.printf(
                     "Block %d: %s -> %s (Tx: %s)%n",
@@ -26,6 +28,8 @@ public class Main {
                     block.getData().getTransactionId()
             );
         });
+
+        JsonFileWriter.JsonWritter(blockchain);
 
     }
 }

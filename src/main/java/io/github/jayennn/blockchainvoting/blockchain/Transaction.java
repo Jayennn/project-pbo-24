@@ -1,5 +1,7 @@
 package io.github.jayennn.blockchainvoting.blockchain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -8,10 +10,17 @@ import java.util.Base64;
 import java.util.UUID;
 
 public class Transaction {
-    private final String voterId;
-    private final UUID candidateId;
-    private final String transactionId;
-    private final byte[] signature;
+    @JsonProperty("voterId")
+    private String voterId;
+
+    @JsonProperty("candidateId")
+    private UUID candidateId;
+
+    @JsonProperty("transactionId")
+    private String transactionId;
+
+    @JsonProperty("signature")
+    private byte[] signature;
 
     public Transaction(String voterId, UUID candidateId, String transactionId, byte[] signature) {
         this.voterId = voterId;

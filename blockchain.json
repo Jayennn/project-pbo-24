@@ -1,0 +1,48 @@
+{
+  "valid" : false,
+  "chain" : [ {
+    "index" : 0,
+    "timestamp" : 1747070263915,
+    "hash" : "350edc325a16f034de01fdc8605098a751def3eabb6662535960fd0627cc6028",
+    "previousHash" : "0",
+    "data" : {
+      "voterId" : "0",
+      "candidateId" : null,
+      "transactionId" : "phNKszRMOl23yhEZ1LlKOHdyz+DtJy0RIFLRUvjc5QM=",
+      "signature" : null
+    }
+  }, {
+    "index" : 1,
+    "timestamp" : 1747070263919,
+    "hash" : "a670cf39b983ee6fb42e769877d50d4f3c681981dedaa3ba436f601389498d3f",
+    "previousHash" : "350edc325a16f034de01fdc8605098a751def3eabb6662535960fd0627cc6028",
+    "data" : {
+      "voterId" : "voter1",
+      "candidateId" : "7b91a2c7-d8d0-4235-b17c-58b208884fe9",
+      "transactionId" : "Ow46qWYpoYK5gTNrs/7oTHCFVdjOP8cJINuPK4w20DI=",
+      "signature" : null
+    }
+  }, {
+    "index" : 2,
+    "timestamp" : 1747070263920,
+    "hash" : "b5d31be2247a394dead716561fb04e154e3070b55f39d2209c214abc18072fa3",
+    "previousHash" : "a670cf39b983ee6fb42e769877d50d4f3c681981dedaa3ba436f601389498d3f",
+    "data" : {
+      "voterId" : "voter2",
+      "candidateId" : "333a6839-d884-411a-a86b-9f73d338207f",
+      "transactionId" : "crH1sESBG2BcweURjDwCi09/qaXyajKGfPZttOQPiq0=",
+      "signature" : null
+    }
+  }, {
+    "index" : 3,
+    "timestamp" : 1747070263920,
+    "hash" : "d9afc0e135c17035c8afbf934befd4842a390b717d60e620b97864c5a4f0fbd5",
+    "previousHash" : "b5d31be2247a394dead716561fb04e154e3070b55f39d2209c214abc18072fa3",
+    "data" : {
+      "voterId" : "voter3",
+      "candidateId" : "7b91a2c7-d8d0-4235-b17c-58b208884fe9",
+      "transactionId" : "463Z2pNUZJKMdHYJveJNbLCWlLI0eLhGRpY3KCOhDJM=",
+      "signature" : null
+    }
+  } ]
+}
