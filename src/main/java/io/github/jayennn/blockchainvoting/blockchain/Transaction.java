@@ -66,5 +66,13 @@ public class Transaction {
         return signature;
     }
 
-
+    @Override
+    public String toString() {
+        return "Transaction { " +
+                "voterId='" + voterId + '\'' +
+                ", candidateId=" + candidateId +
+                ", transactionId='" + transactionId + '\'' +
+                ", signature=" + (signature != null ? "Exists" : "None") +
+                ", }";
+    }
 }

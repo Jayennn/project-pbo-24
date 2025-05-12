@@ -2,6 +2,7 @@ package io.github.jayennn.blockchainvoting;
 
 import io.github.jayennn.blockchainvoting.blockchain.Blockchain;
 import io.github.jayennn.blockchainvoting.blockchain.Transaction;
+import io.github.jayennn.blockchainvoting.blockchain.TransactionMap;
 import io.github.jayennn.blockchainvoting.crypto.KeyGeneratorUtil;
 import io.github.jayennn.blockchainvoting.utils.JsonFileWriter;
 
@@ -16,6 +17,7 @@ import static io.github.jayennn.blockchainvoting.crypto.KeyGeneratorUtil.generat
 public class Main {
     public static void main(String[] args) throws Exception {
         Blockchain blockchain = new Blockchain();
+        TransactionMap transactionMap = new TransactionMap();
 
         UUID candidate1 = UUID.randomUUID();
         UUID candidate2 = UUID.randomUUID();
@@ -33,6 +35,10 @@ public class Main {
 
         Transaction transaction3 = new Transaction("voter3", candidate1);
         transaction3.generateSignature(privateKey);
+
+        transactionMap.addTransaction(transaction1);
+        transactionMap.addTransaction(transaction2);
+        transactionMap.addTransaction(transaction3);
 
 
         blockchain.addBlock(transaction1, publicKey);
