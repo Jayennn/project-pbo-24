@@ -36,4 +36,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
-/src/main/resources/flyway.properties
+/src/main/resources/config.properties
