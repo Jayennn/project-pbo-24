@@ -43,7 +43,7 @@ public class login {
         loginButton.setBounds(150, 155, 100, 30);
         panel.add(loginButton);
 
-        JLabel erorJLabel = new JLabel("username atau password salah");
+        JLabel erorJLabel = new JLabel("Username atau Password salah");
         erorJLabel.setBackground(Color.RED);
         erorJLabel.setBounds(50, 220, 300, 25);
         erorJLabel.setHorizontalAlignment(SwingConstants.CENTER); 
