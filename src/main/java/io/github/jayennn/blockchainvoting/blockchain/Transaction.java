@@ -1,11 +1,11 @@
 package io.github.jayennn.blockchainvoting.blockchain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.jayennn.blockchainvoting.crypto.SignatureUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.util.Base64;
 import java.util.UUID;
 
@@ -22,10 +22,9 @@ public class Transaction {
     @JsonProperty("signature")
     private byte[] signature;
 
-    public Transaction(String voterId, UUID candidateId, String transactionId, byte[] signature) {
+    public Transaction(String voterId, UUID candidateId) {
         this.voterId = voterId;
         this.candidateId = candidateId;
-        this.signature = signature;
         this.transactionId = calculateTransactionId();
     }
 
@@ -41,6 +40,24 @@ public class Transaction {
         return null;
     }
 
+    public void generateSignature(PrivateKey privateKey) {
+        String data = voterId + candidateId + transactionId;
+        this.signature = SignatureUtil.sign(data, privateKey);
+    }
+
+    public boolean verifySignature(PublicKey publicKey) {
+        String data = voterId + candidateId+ transactionId;
+        return SignatureUtil.verify(data, signature, publicKey);
+    }
+
+    public String getVoterId() {
+        return voterId;
+    }
+
+    public String getCandidateId() {
+        return candidateId.toString();
+    }
+
     public String getTransactionId() {
         return transactionId;
     }
@@ -48,4 +65,6 @@ public class Transaction {
     public byte[] getSignature() {
         return signature;
     }
+
+
 }
