@@ -56,16 +56,16 @@
            <artifactId>mysql-connector-j</artifactId>
            <version>9.3.0</version>
        </dependency>
-       <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
-       <dependency>
-           <groupId>org.mariadb.jdbc</groupId>
-           <artifactId>mariadb-java-client</artifactId>
-           <version>3.4.1</version>
-       </dependency>
        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
        <dependency>
            <groupId>org.flywaydb</groupId>
            <artifactId>flyway-core</artifactId>
+           <version>9.22.3</version>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql -->
+       <dependency>
+           <groupId>org.flywaydb</groupId>
+           <artifactId>flyway-mysql</artifactId>
            <version>9.22.3</version>
        </dependency>
        <dependency>
