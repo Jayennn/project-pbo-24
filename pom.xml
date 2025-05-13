@@ -28,7 +28,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>io.github.jayennn.blockchainvoting.Main</mainClass>
+                            <mainClass>io.github.jayennn.BlockchainVoting.blockchainvoting.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

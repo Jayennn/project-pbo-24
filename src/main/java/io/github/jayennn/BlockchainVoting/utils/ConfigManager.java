@@ -1,4 +1,4 @@
-package io.github.jayennn.utils;
+package io.github.jayennn.BlockchainVoting.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

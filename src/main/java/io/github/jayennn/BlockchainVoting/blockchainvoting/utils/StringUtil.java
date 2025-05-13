@@ -1,4 +1,4 @@
-package io.github.jayennn.blockchainvoting.utils;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

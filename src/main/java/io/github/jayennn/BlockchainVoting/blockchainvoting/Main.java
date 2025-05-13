@@ -1,17 +1,15 @@
-package io.github.jayennn.blockchainvoting;
+package io.github.jayennn.BlockchainVoting.blockchainvoting;
 
-import io.github.jayennn.blockchainvoting.blockchain.Blockchain;
-import io.github.jayennn.blockchainvoting.blockchain.Transaction;
-import io.github.jayennn.blockchainvoting.crypto.KeyGeneratorUtil;
-import io.github.jayennn.blockchainvoting.utils.JsonFileWriter;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.Blockchain;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.Transaction;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.utils.JsonFileWriter;
 
 import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.UUID;
 
-import static io.github.jayennn.blockchainvoting.crypto.KeyGeneratorUtil.generateKeyPair;
+import static io.github.jayennn.BlockchainVoting.blockchainvoting.crypto.KeyGeneratorUtil.generateKeyPair;
 
 public class Main {
     public static void main(String[] args) throws Exception {

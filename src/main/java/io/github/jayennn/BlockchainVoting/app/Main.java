@@ -1,4 +1,4 @@
-package io.github.jayennn.BlockchainVoting;
+package io.github.jayennn.BlockchainVoting.app;
 
 
 public class Main {
