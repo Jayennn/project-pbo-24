@@ -1,6 +1,7 @@
 package io.github.jayennn.blockchainvoting;
 
 import io.github.jayennn.blockchainvoting.blockchain.Blockchain;
+import io.github.jayennn.blockchainvoting.blockchain.KeyPairHolder;
 import io.github.jayennn.blockchainvoting.blockchain.Transaction;
 import io.github.jayennn.blockchainvoting.blockchain.TransactionMap;
 import io.github.jayennn.blockchainvoting.crypto.KeyGeneratorUtil;
@@ -22,9 +23,9 @@ public class Main {
         UUID candidate1 = UUID.randomUUID();
         UUID candidate2 = UUID.randomUUID();
 
-        KeyPair keyPairGenerator = generateKeyPair();
-        PrivateKey privateKey = keyPairGenerator.getPrivate();
-        PublicKey publicKey = keyPairGenerator.getPublic();
+        KeyPairHolder keyPairGenerator = generateKeyPair();
+        PrivateKey privateKey = keyPairGenerator.getPrivateKey();
+        PublicKey publicKey = keyPairGenerator.getPublicKey();
 
 
         Transaction transaction1 = new Transaction("voter1", candidate1);
