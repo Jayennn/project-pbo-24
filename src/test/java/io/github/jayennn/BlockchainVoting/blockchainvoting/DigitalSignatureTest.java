@@ -1,6 +1,6 @@
-package io.github.jayennn.blockchainvoting;
+package io.github.jayennn.BlockchainVoting.blockchainvoting;
 
-import io.github.jayennn.blockchainvoting.blockchain.Transaction;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.Transaction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

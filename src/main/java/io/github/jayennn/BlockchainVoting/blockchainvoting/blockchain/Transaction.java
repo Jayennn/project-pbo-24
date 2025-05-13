@@ -1,9 +1,8 @@
-package io.github.jayennn.blockchainvoting.blockchain;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.jayennn.blockchainvoting.crypto.SignatureUtil;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.crypto.SignatureUtil;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.Base64;

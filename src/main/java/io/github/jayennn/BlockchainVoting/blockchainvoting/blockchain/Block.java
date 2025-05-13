@@ -1,11 +1,9 @@
-package io.github.jayennn.blockchainvoting.blockchain;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.jayennn.blockchainvoting.utils.StringUtil;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.utils.StringUtil;
 
 import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 public class Block implements Serializable {
