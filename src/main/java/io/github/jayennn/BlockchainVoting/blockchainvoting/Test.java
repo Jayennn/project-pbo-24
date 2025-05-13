@@ -1,6 +1,6 @@
-package io.github.jayennn.blockchainvoting;
+package io.github.jayennn.BlockchainVoting.blockchainvoting;
 
-import io.github.jayennn.blockchainvoting.blockchain.TransactionMap;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.TransactionMap;
 
 public class Test {
     public static void main(String[] args) {

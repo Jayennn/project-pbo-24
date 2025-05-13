@@ -1,8 +1,8 @@
-package io.github.jayennn.blockchainvoting.entity;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.entity;
 
-import io.github.jayennn.blockchainvoting.blockchain.KeyPairHolder;
-import io.github.jayennn.blockchainvoting.crypto.KeyGeneratorUtil;
-import io.github.jayennn.blockchainvoting.enums.Gender;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.KeyPairHolder;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.crypto.KeyGeneratorUtil;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.enums.;
 
 import java.security.KeyPair;
 import java.security.PrivateKey;

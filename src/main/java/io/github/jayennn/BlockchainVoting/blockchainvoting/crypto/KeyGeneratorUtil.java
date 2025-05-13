@@ -1,6 +1,6 @@
 package io.github.jayennn.BlockchainVoting.blockchainvoting.crypto;
 
-import io.github.jayennn.blockchainvoting.blockchain.KeyPairHolder;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.KeyPairHolder;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
