@@ -1,4 +1,4 @@
-package io.github.jayennn.blockchainvoting.blockchain;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;

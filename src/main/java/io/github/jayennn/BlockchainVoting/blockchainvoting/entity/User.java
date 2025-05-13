@@ -1,6 +1,6 @@
 package io.github.jayennn.BlockchainVoting.blockchainvoting.entity;
 
-import io.github.jayennn.blockchainvoting.enums.Role;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.enums.Role;
 
 public abstract class User {
     private final String userId;

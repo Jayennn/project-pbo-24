@@ -2,7 +2,7 @@ package io.github.jayennn.BlockchainVoting.blockchainvoting.entity;
 
 import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.KeyPairHolder;
 import io.github.jayennn.BlockchainVoting.blockchainvoting.crypto.KeyGeneratorUtil;
-import io.github.jayennn.BlockchainVoting.blockchainvoting.enums.;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.enums.Gender;
 
 import java.security.KeyPair;
 import java.security.PrivateKey;
@@ -16,7 +16,7 @@ public class Voter {
     private String studentId;
     private String dateOfBirth;
     private Gender gender;
-    private KeyPairHolder keyPair;
+    private KeyPair keyPair;
 
     public Voter(String id, String name, String studentId) throws Exception {
         this.voterId = id;
@@ -27,11 +27,11 @@ public class Voter {
     }
 
     public PublicKey getVoterPublicKey() {
-        return keyPair.getPublicKey();
+        return keyPair.getPublic();
     }
 
     public PrivateKey getVoterPrivateKey() {
-        return keyPair.getPrivateKey();
+        return keyPair.getPrivate();
     }
 
     public static void main(String[] args) throws Exception {

@@ -1,7 +1,5 @@
 package io.github.jayennn.BlockchainVoting.blockchainvoting.crypto;
 
-import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.KeyPairHolder;
-
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.SecureRandom;
@@ -13,7 +11,7 @@ import java.security.SecureRandom;
 
 public class KeyGeneratorUtil {
 
-    public static KeyPairHolder generateKeyPair() throws Exception {
+    public static KeyPair generateKeyPair() throws Exception {
         try {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
 
@@ -21,7 +19,7 @@ public class KeyGeneratorUtil {
             keyGen.initialize(2048, secureRandom);
 
             KeyPair keyPair = keyGen.generateKeyPair();
-            return new KeyPairHolder(keyPair.getPublic(), keyPair.getPrivate());
+            return keyPair;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

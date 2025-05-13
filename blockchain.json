@@ -1,47 +1,32 @@
 {
-  "chain" : [ {
-    "index" : 0,
-    "timestamp" : 1747093598631,
-    "hash" : "0e646878b74eaf713769e4d5c7b8e618a1fa6ad02bc911cb664849934d10e69a",
-    "previousHash" : "0",
-    "data" : {
-      "voterId" : "genesis",
-      "candidateId" : "a913f151-d3d3-4d0f-8ae6-c89221e7713a",
-      "transactionId" : "yUHrdWdc8dAh+mIBIF0ahd4+ixwNJ5tFK/ZcGvj0wnc=",
-      "signature" : null
+  "chain": [
+    {
+      "transactionId": "ccYfk2n10J8mgXKgOEKtVN7Zs50FUMy8Ii2syn35lSA=",
+      "index": 0,
+      "timestamp": 1747131929775,
+      "hash": "121f49a9fa1358dde32221d6ccd3b29d9e08659faea283b08b0b0397854bcd7f",
+      "previousHash": "0",
+      "transaction": {
+        "voterId": "genesis",
+        "candidateId": "06c84af1-7d28-4da3-a288-9adfb3c19cb1",
+        "transactionId": "ccYfk2n10J8mgXKgOEKtVN7Zs50FUMy8Ii2syn35lSA=",
+        "signature": null
+      },
+      "nonce": 0
+    },
+    {
+      "transactionId": "l3POAuyr9lcoWiKAPz/uG2LV0aU/DoWlMD2CiIOPK/4=",
+      "index": 1,
+      "timestamp": 1747131930130,
+      "hash": "5686a3918b6796f6be5d7c8efbf2d4dae9f73038bb154f883860cacf8e29c82c",
+      "previousHash": "121f49a9fa1358dde32221d6ccd3b29d9e08659faea283b08b0b0397854bcd7f",
+      "transaction": {
+        "voterId": "voter1",
+        "candidateId": "ec9d30a4-552f-4e2c-a59c-499add89dfac",
+        "transactionId": "l3POAuyr9lcoWiKAPz/uG2LV0aU/DoWlMD2CiIOPK/4=",
+        "signature": "AYM1M5LMD88bt1Jya2JJqrtJ9rA0UJoJNMUow2YC/dRyoO3d6nr4fIB/wUQOefsN1F9XGg1v7depk3gofBDmp1jrsdf7H4+20C9X29qIv/lU5i2ZWzQyn+qwzDUX+sz5aVKbMwLECnx5+O8cXRpD+iH5+d4Vxt53dvUn92px03M8tzpBJ/yX57QacuL7fhBaFcmNzOSxlskcJESgcde9s81WWKjnMC4YMb6vsjfKOry7EPGJjmyhdB+ENfJ41b4GKc4xqhSQBsyG0h5d0sv0w8142z5tzOBdAl0iSKPW2sCh+8e7KhHXGZ67g+H0Xsw6bOu1ij6SzO+YTjctjZKeqw=="
+      },
+      "nonce": 0
     }
-  }, {
-    "index" : 1,
-    "timestamp" : 1747093598834,
-    "hash" : "fbb0f02befcf8aa74e02cac47e387a221ddce5af835ba0dd5c26839d32df00c6",
-    "previousHash" : "0e646878b74eaf713769e4d5c7b8e618a1fa6ad02bc911cb664849934d10e69a",
-    "data" : {
-      "voterId" : "voter1",
-      "candidateId" : "ff30e26b-4dce-445f-92f6-563a85e414be",
-      "transactionId" : "ZJEn7ZMAIsZ0crdUhK3MS6lDqRsDJY/qxTWG44g3P/s=",
-      "signature" : "sakRKFWRkyjImTbErAwZFjxBxh3iqJsFoUCzBplr7E9ZczicKwtXb+F3QiRDPZUW5Lkv7+I8P2e13rC10WlSNFUd3EwtBJ9wkTe9tBIAwfz/44b7gbjk5SVQO/brqbREoLHmiDN99fK49MTAy24yx80Qy5zYdqb9ULHUDmLWp8YkmTJP14olQ4Z0LSG9FdM2PUB0NiWK66s/iGzg/8MMS4FPUrFYPCYR7omXaMBNgpvVCAevQ124K0fQAdgkjr1GCbhiPjoinqDIKuBxNZlpOMCcfWE7/R5pIC0Iz8Xu1Ogby2enCROI9qqRGly1wa2KxvoPx94VmbwPWnhXfOBxmA=="
-    }
-  }, {
-    "index" : 2,
-    "timestamp" : 1747093598834,
-    "hash" : "a7711e9a98c48684dfa9968b9873b40cb7d855679ba749a1772e3e5ef55f9f88",
-    "previousHash" : "fbb0f02befcf8aa74e02cac47e387a221ddce5af835ba0dd5c26839d32df00c6",
-    "data" : {
-      "voterId" : "voter2",
-      "candidateId" : "a54415c8-8132-4d6b-b844-d07a1bf86e81",
-      "transactionId" : "rg5fIylkejlglXNdP35AG7A7zMO9C8dwKECl+XHzuXo=",
-      "signature" : "Gf2TnE/EOPvsQriw0VxGuMx3BJT96a4esXVxNvDH3bQO8dGkc7FYPHdTo1HClJTX0vczHBFZzEAu+yJcFJshXEqhcZkgO79S0I64A8p7ZuNkW35bP3gF2N81UVoLVBSFJBXP1v3HD4QSuggFLMXARLEkl24npA/4nAdt6JTKiTqAsLDeMBEBhGlLxuOZ8Oj1JzZeIf6WtyBS2Jgsk3RUI7TcIeYWcudhsnF1XAHnqJmLy8YBzPXvKDSWEBdBgn3sHXls653DrQPTgUhzRjo4N55Ahc0lZbIrmHFPkbOheBlYIRW1zocAVjhSxs0l6T3uuZJRkkT/TmSRJQn0zh2fsA=="
-    }
-  }, {
-    "index" : 3,
-    "timestamp" : 1747093598834,
-    "hash" : "8e6cb171b26a1711d0cc83d2bbd9e4f602f51401bc78369ec8ce8b4e273dab77",
-    "previousHash" : "a7711e9a98c48684dfa9968b9873b40cb7d855679ba749a1772e3e5ef55f9f88",
-    "data" : {
-      "voterId" : "voter3",
-      "candidateId" : "ff30e26b-4dce-445f-92f6-563a85e414be",
-      "transactionId" : "QTGwnQjVOleyOtI/9FIc59J/JQEZw6EHUd/d1w/uCoY=",
-      "signature" : "ge2gKRDIwAZwVS7a8WrlKtRw5XPHuKiRmU2P/bgdT15dvSw2VjCvCoEIvIZMYrva5QOvg9gQ/Zy24MeldMhiYEvmXIV+SwxX928lOuIVRRvYWMC7Gf1V7B3cA37XMq+9ZqlxK3DahgybQXwn4RdMh8wBDwZsmLed0Urt/zoh0Xb0b7Ij0N5j8D8oH5SAAc690eq41w9MU/Aj4qfjvR1cEYQ05YzI9rnnRGyQ82fBF4ot1AhaU3fRicDucUFGaRFku7Qy2WNDqTFf/WlVThWI4Cz8PZu7taRcnjwCpqwpvwnmV+amQTRu+TPpdr91sOZtLvuOnd2RPq8IKzK3uo8oNg=="
-    }
-  } ]
+  ]
 }
