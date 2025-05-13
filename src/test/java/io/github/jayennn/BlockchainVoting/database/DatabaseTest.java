@@ -1,4 +1,4 @@
-package io.github.jayennn.BlockchainVoting;
+package io.github.jayennn.BlockchainVoting.database;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package io.github.jayennn.blockchainvoting;
+package io.github.jayennn.BlockchainVoting.app;
 
 import io.github.jayennn.BlockchainVoting.blockchainvoting.TempClass;
 import org.junit.jupiter.api.Test;
