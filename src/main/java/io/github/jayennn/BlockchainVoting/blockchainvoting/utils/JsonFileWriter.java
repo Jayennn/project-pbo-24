@@ -1,9 +1,8 @@
-package io.github.jayennn.blockchainvoting.utils;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import io.github.jayennn.blockchainvoting.blockchain.Block;
-import io.github.jayennn.blockchainvoting.blockchain.Blockchain;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.Blockchain;
 
 import java.io.IOException;
 import java.nio.file.Path;

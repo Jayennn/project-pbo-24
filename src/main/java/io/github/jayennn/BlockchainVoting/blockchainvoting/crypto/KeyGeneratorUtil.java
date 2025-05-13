@@ -1,4 +1,4 @@
-package io.github.jayennn.blockchainvoting.crypto;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.crypto;
 
 import io.github.jayennn.blockchainvoting.blockchain.KeyPairHolder;
 

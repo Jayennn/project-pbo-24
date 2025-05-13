@@ -1,4 +1,4 @@
-package io.github.jayennn.blockchainvoting.crypto;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.crypto;
 
 import java.security.*;
 

@@ -1,4 +1,4 @@
-package io.github.jayennn.blockchainvoting.entity;
+package io.github.jayennn.BlockchainVoting.blockchainvoting.entity;
 
 import io.github.jayennn.blockchainvoting.enums.Role;
 
