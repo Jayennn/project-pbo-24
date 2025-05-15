@@ -16,6 +16,7 @@ public class Blockchain {
     private static final Logger log = LogManager.getLogger(Blockchain.class);
     @JsonProperty("chain")
     private final List<Block> chain;
+    private List<String> votedIds = new ArrayList<>();
     private final boolean valid;
 
 
@@ -32,7 +33,6 @@ public class Blockchain {
     }
 
     public boolean validateBlockchain() {
-
         for(int i = 1; i < chain.size(); i++) {
             Block currentBlock = chain.get(i);
             Block previousBlock = chain.get(i - 1);
@@ -41,7 +41,7 @@ public class Blockchain {
                 return false;
             }
 
-//            if(!currentBlock.getTransaction().verifySignature(currentBlock.getTransaction().getPublicKey()));
+
         }
         return true;
     }
@@ -56,6 +56,13 @@ public class Blockchain {
             log.warn("Invalid signature for transaction: {}", transaction.getTransactionId());
             return;
         }
+
+        if(!votedIds.contains(transaction.getVoterId())) {
+            log.warn("Voter already voted: {}", transaction.getVoterId());
+            return;
+        }
+
+        votedIds.add(transaction.getVoterId());
 
         String previousHash = chain.isEmpty() ? "0" : getLatestBlock().getHash();
         Block newBlock = new Block(chain.size(), previousHash, transaction);

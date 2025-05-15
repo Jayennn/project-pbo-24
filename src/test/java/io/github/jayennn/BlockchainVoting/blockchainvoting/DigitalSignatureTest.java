@@ -14,6 +14,7 @@ import java.util.UUID;
 
 public class DigitalSignatureTest {
     private static final Logger logger = LogManager.getLogger();
+
     @Test
     public void digitalSignatureTest() throws Exception {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
