@@ -1,6 +1,6 @@
-package io.github.jayennn.BlockchainVoting;
+package io.github.jayennn.BlockchainVoting.app;
 
-import io.github.jayennn.BlockchainVoting.TempClass;
+import io.github.jayennn.BlockchainVoting.blockchainvoting.TempClass;
 import org.junit.jupiter.api.Test;
 
 public class TempClassTest {

@@ -1,0 +1,47 @@
+{
+  "chain" : [ {
+    "index" : 0,
+    "timestamp" : 1747078414038,
+    "hash" : "6256f25cda9d575b6f3fdea9d00733e7344ab61300c0b58ab843fe9ca0f231cc",
+    "previousHash" : "0",
+    "data" : {
+      "voterId" : "genesis",
+      "candidateId" : "cbdbfdde-6ed8-4298-b667-e93e3669c7ac",
+      "transactionId" : "LksdJJaUgUIKV+M5LwSaUBxaFtg5okv+GMbUINIEY+Y=",
+      "signature" : null
+    }
+  }, {
+    "index" : 1,
+    "timestamp" : 1747078414221,
+    "hash" : "bc981cb48e81be3b3c6f553306b2be9bf47bed7ba2353c3cc57fd759a9688935",
+    "previousHash" : "6256f25cda9d575b6f3fdea9d00733e7344ab61300c0b58ab843fe9ca0f231cc",
+    "data" : {
+      "voterId" : "voter1",
+      "candidateId" : "31d7694f-b788-447e-9b50-64c968c91fb6",
+      "transactionId" : "Tu1W+Ru6CRBuGgnjoMMWpfuOdjFvzkK2KUyjPdBENAk=",
+      "signature" : "HSeYHfxm0P8enVWXqeCFImnqVAf+dtxoQNwZEbo+uaxrheUL07fOImCxffZ3crLHPBr3zUem81uH4XmcikjgYSPiYHLvLSuEGI4A8jYetmhQopWWSWL7Tqeso7fzBd8n19y5CGXCd8BtS56JV5wjHoLto5nhAY6AVOb8QVuiM7vv8G+v/8JIXVnaPYqIuOVYbDN2jl7d8wPX1nDXU/tEcIisOCozAGDWqQ9FAw4O91uzWbvHNiWizJhlntnQyS00ufhuXI4S0jN+msjCMKBgUDKUofTElbyNR1IbW3N/HROqCQpsE22lY7fbwn1L9XnPYEcfGK8fV21a73Zw1GHa9g=="
+    }
+  }, {
+    "index" : 2,
+    "timestamp" : 1747078414221,
+    "hash" : "776ae373a5ec7a0bbee8429bb2d936732ff6618b753c78dc6cd5f65334e1a480",
+    "previousHash" : "bc981cb48e81be3b3c6f553306b2be9bf47bed7ba2353c3cc57fd759a9688935",
+    "data" : {
+      "voterId" : "voter2",
+      "candidateId" : "aa3b2712-eb8d-4ad4-9052-5f00c657f4e1",
+      "transactionId" : "pZWyMwLiqtqZw4/PSk6A72twb1w1dGjJRCZ+XQlK3Fk=",
+      "signature" : "Ligyi5yLZCpAh5OFtRdrExSGfZTM7fm9STsmEy2QgjaCAbuhHisxlO+vJxQwFgsxkPdL7fdMLOrdMtMIgsc0af1O8ZNa7vQIdA0IJosQIadmAx7dkpTXmeX7LuYZhGkor0nzKvF8wCRUhVrnCu4wm83V7iok4qG9xMmk0O171/cDSmhDUuRVeTl17ERfx5bJOwYe3czi0ughUWVxIrwWneRJxKggqrdq95cOFqdrOdFPfmt6oXOXvg+k/8uHoCNMDjSsutkuDxDV6CQlrQ/riX1dQf+jKixBovaK1I8JqB8oa5E2lgHs431u0GwZktNn4saL2VBRiXEqzn+bvSNg5g=="
+    }
+  }, {
+    "index" : 3,
+    "timestamp" : 1747078414222,
+    "hash" : "9f8aeeae49cd6b79432482bac09940ea6293ea2d4ef81b23456fd1cb3f4951b2",
+    "previousHash" : "776ae373a5ec7a0bbee8429bb2d936732ff6618b753c78dc6cd5f65334e1a480",
+    "data" : {
+      "voterId" : "voter3",
+      "candidateId" : "31d7694f-b788-447e-9b50-64c968c91fb6",
+      "transactionId" : "b1iRTwAtYrxf6gfcobLWdMNoBzpZgd9kcLTt+fJZhYw=",
+      "signature" : "Ro0IXFWAgFgjyeaDLuSKPXTnwm7I9zQ8TytI3fjFw5aOzxmTIz7dXXfVKOjUt//lHpmA0dthh7yJ/yI9H+9GnUgx257YXrISLeYeqvmRZmoR/Au5tJcdDOX4kW7jrhGsd0Hbv1BepaeaneQmbb9Zm0y/cvgNlasaTFgnSbdQyLS+Vi2BYZBskbELz5dvsqokouHz2qRKKsg5st2TovO/zU/6TI1Y5rbALNmuU01U0uKiyieUmOZ4gw22AYF56jcJiioMkIzhWJ+i8WXprS0EhF9nj0Yk5kEjvRHGx9l9SBhE7RJTm4VQj9r4ri1LSLQKqh6Qrf8VJSy7NTbPsbTg7g=="
+    }
+  } ]
+}
