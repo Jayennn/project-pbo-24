@@ -48,6 +48,10 @@ public class ConfigManager {
         return properties.getProperty(key);
     }
 
+    public Properties getProperties() {
+        return properties;
+    }
+
     /**
      * Dapatkan properti dari key atau return nilai default
      * @param key kata kunci atau atribut properti
