@@ -1,0 +1,17 @@
+<!-- src/main/resources/log4j2.xml -->
+<Configuration>
+    <Appenders>
+        <File name="JsonFile" fileName="logs/voting.json">
+            <JsonLayout compact="true" eventEol="true" header="true" properties="true"/>
+        </File>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} %-5level %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="JsonFile"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

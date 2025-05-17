@@ -45,8 +45,12 @@ public class Transaction {
     }
 
     public boolean verifySignature(PublicKey publicKey) {
-        String data = voterId + candidateId+ transactionId;
+        String data = voterId + candidateId + transactionId;
         return SignatureUtil.verify(data, signature, publicKey);
+    }
+
+    public boolean validateTransaction(PublicKey publicKey) {
+        return verifySignature(publicKey);
     }
 
     public String getVoterId() {
@@ -65,5 +69,13 @@ public class Transaction {
         return signature;
     }
 
-
+    @Override
+    public String toString() {
+        return "Transaction { " +
+                "voterId='" + voterId + '\'' +
+                ", candidateId=" + candidateId +
+                ", transactionId='" + transactionId + '\'' +
+                ", signature=" + (signature != null ? "Exists" : "None") +
+                ", }";
+    }
 }
