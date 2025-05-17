@@ -2,6 +2,8 @@ package io.github.jayennn.BlockchainVoting.entity;
 
 import jakarta.persistence.*;
 
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
 @Entity
@@ -32,24 +34,32 @@ public class Voters {
         return id;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public String getPublicKey() {
-        return publicKey;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public String getPublicKey() {
+        return publicKey;
     }
 }
 

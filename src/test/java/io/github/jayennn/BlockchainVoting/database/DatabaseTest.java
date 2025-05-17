@@ -1,6 +1,8 @@
 package io.github.jayennn.BlockchainVoting.database;
 
+import io.github.jayennn.BlockchainVoting.entity.Voters;
 import io.github.jayennn.BlockchainVoting.utils.ConfigManager;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.flywaydb.core.Flyway;
@@ -24,8 +26,14 @@ public class DatabaseTest {
 
     @Test
     public void initiateEMF(){
-       Properties properties = ConfigManager.getInstance().getProperties();
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-pu",properties);
+        Properties properties = ConfigManager.getInstance().getProperties();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("main-pu",properties);
+
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+
+        Voters test_1 =  new Voters("11241000");
     }
 
 }
