@@ -2,6 +2,7 @@ package io.github.jayennn.BlockchainVoting.blockchainvoting.crypto;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 /**
@@ -16,9 +17,10 @@ public class KeyGeneratorUtil {
      * Menghasilkan pasangan kunci RSA dengan ukuran 2048 bit.
      *
      * @return KeyPair pasangan kunci yang terdiri dari kunci publik dan kunci pribadi.
-     * @throws Exception jika terjadi kesalahan saat menghasilkan pasangan kunci.
+     * <p>Method akan menangani {@link java.security.NoSuchAlgorithmException} dengan melempar
+     * {@link RuntimeException} apabila algoritma RSA tidak ditemukan </p>
      */
-    public static KeyPair generateKeyPair() throws Exception {
+    public static KeyPair generateKeyPair() {
         try {
             // Membuat instance KeyPairGenerator untuk algoritma RSA
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
@@ -28,9 +30,8 @@ public class KeyGeneratorUtil {
             keyGen.initialize(2048, secureRandom); // Menginisialisasi dengan ukuran kunci 2048 bit
 
             // Menghasilkan pasangan kunci
-            KeyPair keyPair = keyGen.generateKeyPair();
-            return keyPair; // Mengembalikan pasangan kunci
-        } catch (Exception e) {
+            return keyGen.generateKeyPair(); // Mengembalikan pasangan kunci
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e); // Menangani kesalahan dengan melempar RuntimeException
         }
     }
