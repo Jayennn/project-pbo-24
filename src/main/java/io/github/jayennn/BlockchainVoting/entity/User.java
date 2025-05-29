@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
     @Id
     @Column(columnDefinition = "binary(16)")
     private UUID uuid;
@@ -20,13 +20,11 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(length = 10)
-    private String voter_id;
-
     @OneToOne
     @JoinColumn(name = "voter_id",referencedColumnName = "id", nullable = true)
-    private Voters voters;
-    public Users(){}
+    private Voter voter;
+
+    private User(){}
 
     public UUID getUuid() {
         return uuid;
@@ -43,5 +41,7 @@ public class Users {
     public String getPassword() {
         return password;
     }
+
+
 }
 
