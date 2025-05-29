@@ -1,5 +1,6 @@
 package io.github.jayennn.BlockchainVoting.database;
 
+import io.github.jayennn.BlockchainVoting.entity.Gender;
 import io.github.jayennn.BlockchainVoting.entity.Voters;
 import io.github.jayennn.BlockchainVoting.utils.ConfigManager;
 import jakarta.persistence.EntityManager;
@@ -9,6 +10,7 @@ import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.Test;
 
 
+import java.time.LocalDate;
 import java.util.Properties;
 
 public class DatabaseTest {
@@ -34,6 +36,11 @@ public class DatabaseTest {
         em.getTransaction().begin();
 
         Voters test_1 =  new Voters("11241000");
+        test_1.setName("rojo");
+        test_1.setDateOfBirth(LocalDate.of(2006,12,12));
+        test_1.setGender(Gender.MALE);
+        em.persist(test_1);
+        em.getTransaction().commit();
     }
 
 }

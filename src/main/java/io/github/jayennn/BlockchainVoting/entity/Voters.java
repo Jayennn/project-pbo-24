@@ -1,12 +1,17 @@
 package io.github.jayennn.BlockchainVoting.entity;
 
+import io.github.jayennn.BlockchainVoting.blockchainvoting.crypto.KeyGeneratorUtil;
+import io.github.jayennn.BlockchainVoting.utils.KeyConverter;
 import jakarta.persistence.*;
 
+import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "voters")
 public class Voters {
     @Id
     @Column(length = 10)
@@ -28,6 +33,9 @@ public class Voters {
 
     public Voters(String id){
         this.id = id;
+        KeyPair keyPair = KeyGeneratorUtil.generateKeyPair();
+
+        this.publicKey = KeyConverter.keyToString(keyPair.getPublic());
     }
 
     public String getId() {

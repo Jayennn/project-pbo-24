@@ -8,8 +8,7 @@
             <property name="jakarta.persistence.jdbc.user" value=""/>
             <property name="jakarta.persistence.jdbc.password" value=""/>
 
-            <property name="hibernate.dialect" value=""/>
-            <property name="hibernate.hbm2ddl.auto" value=""/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
         </properties>
     </persistence-unit>
 </persistence>
