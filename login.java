@@ -1,7 +1,15 @@
 import java.awt.Color;
-import javax.swing.*;
 
-public class login {
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+public class Login {
     public static void main(String[] args) {
 
         JLabel background = new JLabel(new ImageIcon("foto/21357_pri_boardelections_hero_777797 2.png"));
@@ -51,7 +59,7 @@ public class login {
         panel.add(erorJLabel);
 
         //simulasi login doang
-        loginButton.addActionListener(_ -> {
+        loginButton.addActionListener(e -> {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
 
@@ -62,7 +70,6 @@ public class login {
                 erorJLabel.setVisible(true);}
         });
 
-        frame.add(panel);
         frame.add(background);
         frame.setVisible(true);
 
