@@ -1,9 +1,8 @@
 package io.github.jayennn.BlockchainVoting.database;
 
-import org.junit.jupiter.api.Test;
-
-
 import java.util.Properties;
+
+import org.junit.jupiter.api.Test;
 
 public class DatabaseTest {
     @Test

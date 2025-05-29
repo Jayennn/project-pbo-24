@@ -1,4 +1,4 @@
-package src.main.guiDashboardAdmin;
+package io.github.jayennn.BlockchainVoting.gui.dashboardAdmin;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class dashboard_admin {
+public class DashboardAdmin {
     static JButton activeteButton = null;
     public static void main(String[] args) {
         JFrame frame = new JFrame("Admin Dashboard");
