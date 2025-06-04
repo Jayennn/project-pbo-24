@@ -1,3 +1,5 @@
+package io.github.jayennn.BlockchainVoting.gui;
+
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
@@ -11,12 +13,13 @@ import javax.swing.SwingConstants;
 
 public class Login {
     public static void main(String[] args) {
+        String assetsLocation = "src/main/resources/assets/";
 
-        JLabel background = new JLabel(new ImageIcon("foto/21357_pri_boardelections_hero_777797 2.png"));
+        JLabel background = new JLabel(new ImageIcon(assetsLocation + "login-backbround.png"));
         background.setBounds(0, 0, 1000, 800);
         background.setLayout(null);
 
-        JLabel logoLabel = new JLabel(new ImageIcon("foto/logo-itk 1.png"));
+        JLabel logoLabel = new JLabel(new ImageIcon(assetsLocation + "itk.png"));
         logoLabel.setBounds(250, 120, 500, 100); 
         background.add(logoLabel);
 

@@ -26,7 +26,7 @@ public class DashboardAdmin {
         sidebar.setBounds(0, 0, 300, 700);
         sidebar.setBackground(Color.WHITE);
 
-        ImageIcon logoIcon = new ImageIcon("foto/logo-itk 1.png");
+        ImageIcon logoIcon = new ImageIcon("foto/itk.png");
         Image scaledLogo = logoIcon.getImage().getScaledInstance(200, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedLogo = new ImageIcon(scaledLogo);
 
