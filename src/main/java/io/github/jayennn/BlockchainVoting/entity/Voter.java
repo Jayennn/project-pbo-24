@@ -23,19 +23,10 @@ public class Voter {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(name = "public_key", columnDefinition = "TEXT")
-    private String publicKey;
-
-    @OneToOne(mappedBy = "voter")
-    private User user;
-
-    public Voter(){}
+    private Voter(){}
 
     public Voter(String id){
         this.id = id;
-        KeyPair keyPair = KeyGeneratorUtil.generateKeyPair();
-
-        this.publicKey = KeyConverter.keyToString(keyPair.getPublic());
     }
 
     public String getId() {
@@ -66,8 +57,6 @@ public class Voter {
         this.gender = gender;
     }
 
-    public String getPublicKey() {
-        return publicKey;
-    }
+
 }
 
