@@ -23,7 +23,7 @@ public class Voter {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    public Voter(){}
+    private Voter(){}
 
     public Voter(String id){
         this.id = id;

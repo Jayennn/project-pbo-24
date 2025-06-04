@@ -1,9 +1,6 @@
 package io.github.jayennn.BlockchainVoting.utils;
 
-import io.github.jayennn.BlockchainVoting.entity.Gender;
-import io.github.jayennn.BlockchainVoting.entity.Role;
-import io.github.jayennn.BlockchainVoting.entity.User;
-import io.github.jayennn.BlockchainVoting.entity.Voter;
+import io.github.jayennn.BlockchainVoting.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -15,7 +12,7 @@ import java.util.Properties;
 
 public class JpaManagerTest {
     @Test
-    public void initiateData(){
+    public void initiateUserData(){
         EntityManager em = JpaManager.getInstance().getEM();
 
         em.getTransaction().begin();
@@ -58,7 +55,32 @@ public class JpaManagerTest {
 
     }
 
+    @Test
+    public void initiateElectionData(){
+        EntityManager em = JpaManager.getInstance().getEM();
 
+        em.getTransaction().begin();
+
+        Election election = new Election();
+
+        election.setDateStart(LocalDate.now());
+        election.setDateEnd(LocalDate.now().plusDays(7));
+        election.setTitle("election");
+        election.setActive(true);
+        em.persist(election);
+
+        Candidate candidate1 = new Candidate("candidate1");
+
+        candidate1.setElection(election);
+        em.persist(candidate1);
+
+        Candidate candidate2 = new Candidate("candidate2");
+
+        candidate2.setElection(election);
+
+        em.persist(candidate2);
+        em.getTransaction().commit();
+    }
 
 
 
