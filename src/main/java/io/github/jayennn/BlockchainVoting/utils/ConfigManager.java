@@ -14,7 +14,7 @@ public class ConfigManager {
 
     /**
      * Private Constructor sehingga insiasi objek dapat dikontrol
-     * @Throws RuntimeException jika properties tidak ditemukan
+     * @    Throws RuntimeException jika properties tidak ditemukan
      */
     private ConfigManager(){
         properties = new Properties();
