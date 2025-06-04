@@ -3,13 +3,15 @@ package io.github.jayennn.BlockchainVoting.blockchainvoting.utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.Blockchain;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class JsonFileWriter {
-
+    private static final Logger log = LogManager.getLogger(JsonFileWriter.class);
     public static void JsonWritter(Blockchain blockchain) {
         String filePath = "blockchain.json";
 
@@ -20,10 +22,9 @@ public class JsonFileWriter {
             Path path = Paths.get(filePath);
             mapper.writeValue(path.toFile(), blockchain);
 
-            System.out.println("Successfully wrote blockchain with " + blockchain.getChain().size() + " blocks to: " + path.toAbsolutePath());
-
+            log.info("Successfully wrote blockchain with {} block to: {}", blockchain.getChain().size(), path.toAbsolutePath());
         } catch (IOException e) {
-            System.err.println("Error writing JSON file: " + e.getMessage());
+            log.error("Error writing JSON file: {}", e.getMessage());
             e.printStackTrace();
         }
     }

@@ -1,6 +1,8 @@
 package io.github.jayennn.BlockchainVoting.blockchainvoting;
 
 import io.github.jayennn.BlockchainVoting.blockchainvoting.blockchain.Transaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +13,8 @@ import java.security.PublicKey;
 import java.util.UUID;
 
 public class DigitalSignatureTest {
+    private static final Logger logger = LogManager.getLogger();
+
     @Test
     public void digitalSignatureTest() throws Exception {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
@@ -26,7 +30,7 @@ public class DigitalSignatureTest {
         transaction.generateSignature(privateKey);
 
         boolean isVerified = transaction.verifySignature(publicKey);
-        System.out.println(isVerified);
+        logger.info("Signature verified: {}", isVerified);
         Assertions.assertTrue(isVerified, "The Signature should be verified");
     }
 
