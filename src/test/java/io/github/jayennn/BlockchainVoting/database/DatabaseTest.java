@@ -1,6 +1,8 @@
 package io.github.jayennn.BlockchainVoting.database;
 
 import io.github.jayennn.BlockchainVoting.entity.Gender;
+import io.github.jayennn.BlockchainVoting.entity.Role;
+import io.github.jayennn.BlockchainVoting.entity.User;
 import io.github.jayennn.BlockchainVoting.entity.Voter;
 import io.github.jayennn.BlockchainVoting.utils.ConfigManager;
 import jakarta.persistence.EntityManager;
@@ -15,19 +17,7 @@ import java.util.Properties;
 
 public class DatabaseTest {
     @Test
-    public void migrate(){
-        ConfigManager config = ConfigManager.getInstance();
-        String url = config.get("db.url");
-        String user = config.get("db.user");
-        String password = config.get("db.password");
-
-        Flyway flyway = Flyway.configure().dataSource(url,user,password).load();
-        flyway.migrate();
-
-    }
-
-    @Test
-    public void initiateEMF(){
+    public void initiateData(){
         Properties properties = ConfigManager.getInstance().getProperties();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("main-pu",properties);
 
@@ -35,12 +25,24 @@ public class DatabaseTest {
 
         em.getTransaction().begin();
 
-        Voter test_1 =  new Voter("11241000");
-        test_1.setName("rojo");
-        test_1.setDateOfBirth(LocalDate.of(2006,12,12));
-        test_1.setGender(Gender.MALE);
-        em.persist(test_1);
+        Voter voter_0 = new Voter("11240000");
+
+        voter_0.setName("Rojo Kasino");
+        voter_0.setGender(Gender.MALE);
+        voter_0.setDateOfBirth(LocalDate.of(2006,8,31));
+
+
+        User user_1 = new User(Role.USER,"bukabuka");
+        user_1.setVoter(voter_0);
+        user_1.setUsername("rojo-soprano");
+        user_1.setPassword("testtest");
+        em.persist(user_1);
         em.getTransaction().commit();
+
     }
+
+
+
+
 
 }
