@@ -42,6 +42,7 @@ public class JpaManagerTest {
 
         em.getTransaction().begin();
 
+
         User user = em.createQuery(
                 "SELECT u FROM User u WHERE u.username = :username", User.class)
                 .setParameter("username","rojo-soprano")
@@ -49,7 +50,7 @@ public class JpaManagerTest {
 
         String password = "1234abcd";
         UpdatableBcrypt UBcrypt = new UpdatableBcrypt(12);
-        Boolean result = UBcrypt.verifyHash(password,user.getPassword());
+        boolean result = UBcrypt.verifyHash(password,user.getPassword());
 
         System.out.println(result);
 

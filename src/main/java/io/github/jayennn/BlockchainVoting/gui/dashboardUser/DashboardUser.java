@@ -1,4 +1,6 @@
 package io.github.jayennn.BlockchainVoting.gui.dashboardUser;
+import io.github.jayennn.BlockchainVoting.gui.GuiManager;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -12,10 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class DashboardUser {
-    static JButton activeteButton = null;
-    public static void main(String[] args) {       
-        JFrame frame = new JFrame("Dashboard User");
+public class DashboardUser extends JPanel{
+    public DashboardUser(GuiManager guiManager){
+        JFrame frame = guiManager;
         frame.setSize(1000, 700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -85,14 +86,16 @@ public class DashboardUser {
             c1.show(contentPanel, "riwayat");
             switchActiveButton(btnHistory);
         });
-        
+
 
         frame.add(sidebar);
         frame.add(contentPanel);
         frame.setVisible(true);;
     }
 
-    private static JPanel createContentPanel(String labelTex) {
+    JButton activeteButton = null;
+
+    private JPanel createContentPanel(String labelTex) {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         JLabel label = new  JLabel(labelTex, SwingConstants.CENTER);
@@ -110,7 +113,7 @@ public class DashboardUser {
         return button;
     }
 
-    private static void  switchActiveButton(JButton neButton) {
+    private void  switchActiveButton(JButton neButton) {
         if (activeteButton != null) {
             setInactiveStyle(activeteButton);
         }
@@ -118,12 +121,12 @@ public class DashboardUser {
         setActiveStyle(activeteButton);
     }
 
-    private static void setActiveStyle(JButton button) {
+    private void setActiveStyle(JButton button) {
         button.setBackground(Color.lightGray);
         button.setFont(button.getFont().deriveFont(Font.BOLD));
     }
 
-    private static void setInactiveStyle(JButton button) {
+    private void setInactiveStyle(JButton button) {
         button.setBackground(Color.WHITE);
         button.setFont(button.getFont().deriveFont(Font.PLAIN));
     }

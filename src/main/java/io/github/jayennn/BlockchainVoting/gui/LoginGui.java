@@ -1,5 +1,9 @@
 package io.github.jayennn.BlockchainVoting.gui;
 
+import io.github.jayennn.BlockchainVoting.controller.Login;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
@@ -11,8 +15,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Login {
-    public static void main(String[] args) {
+public class LoginGui extends JPanel {
+    private static final Logger log = LogManager.getLogger(LoginGui.class);
+
+    public LoginGui(GuiManager guiManager){
         String assetsLocation = "src/main/resources/assets/";
 
         JLabel background = new JLabel(new ImageIcon(assetsLocation + "login-backbround.png"));
@@ -20,19 +26,21 @@ public class Login {
         background.setLayout(null);
 
         JLabel logoLabel = new JLabel(new ImageIcon(assetsLocation + "itk.png"));
-        logoLabel.setBounds(250, 120, 500, 100); 
+        logoLabel.setBounds(250, 120, 500, 100);
         background.add(logoLabel);
 
-        JPanel panel = new JPanel();
+//        JPanel panel = new JPanel();
+        JPanel panel = this;
         panel.setLayout(null);
         panel.setBounds(300, 250, 400, 250);
         panel.setBackground(new Color(255, 255, 255, 200));
-        background.add(panel); 
+        background.add(panel);
 
-        JFrame frame = new JFrame("Login");
-        frame.setSize(1000, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+//        JFrame frame = new JFrame("Login");
+        JFrame frame = guiManager;
+//        frame.setSize(1000, 800);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setLayout(null);
 
         JLabel userLabel = new  JLabel("Username:");
         userLabel.setBounds(50, 30, 300, 25);
@@ -57,20 +65,21 @@ public class Login {
         JLabel erorJLabel = new JLabel("Username atau Password salah");
         erorJLabel.setBackground(Color.RED);
         erorJLabel.setBounds(50, 220, 300, 25);
-        erorJLabel.setHorizontalAlignment(SwingConstants.CENTER); 
+        erorJLabel.setHorizontalAlignment(SwingConstants.CENTER);
         erorJLabel.setVisible(false);
         panel.add(erorJLabel);
+
+
+        Login login = new Login();
 
         //simulasi login doang
         loginButton.addActionListener(e -> {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
 
-            if (username.equals("admin") && password.equals("123")) {
-                erorJLabel.setVisible(false);
-                System.out.println("Login Berhasil");
-            } else {
-                erorJLabel.setVisible(true);}
+            login.validate(username,password,guiManager);
+
+            erorJLabel.setVisible(true);
         });
 
         frame.add(background);
