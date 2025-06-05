@@ -13,7 +13,7 @@ import jakarta.persistence.NoResultException;
 public class Login {
     public Login(){}
 
-    public void validate(String username,String password,GuiManager guiManager){
+    public boolean validate(String username,String password,GuiManager guiManager){
         EntityManager em = JpaManager.getInstance().getEM();
         em.getTransaction().begin();
 

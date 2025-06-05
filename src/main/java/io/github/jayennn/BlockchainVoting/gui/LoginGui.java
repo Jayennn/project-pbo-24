@@ -10,7 +10,6 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -37,11 +36,19 @@ public class LoginGui extends JPanel {
         setLayout(new BorderLayout());
         
         ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/login-background.png"));
+        java.net.URL bgUrl = getClass().getResource("/assets/login-background.png");
+        if (bgUrl == null) {
+            System.out.println("gambar gak ada");
+        } else {
+            System.out.println("gambar ada" + bgUrl);
+        }
+        
         JLabel background = new JLabel(bgIcon);
         background.setLayout(new BorderLayout());
         add(background, BorderLayout.CENTER);
 
-        JPanel formPanel = new JPanel();
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setOpaque(false);
         formPanel.setLayout(new GridBagLayout());
         formPanel.setBackground(new Color(255, 255, 255, 220));
         formPanel.setBorder(BorderFactory.createCompoundBorder(
@@ -61,6 +68,7 @@ public class LoginGui extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridy = 0;
         
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -98,23 +106,22 @@ public class LoginGui extends JPanel {
         ));
     }
 
-    private void addLabelAndField(JPanel panel, GridBagConstraints gbc, String labelText, JComponent field) {
-        gbc.gridx = 0;
-        gbc.gridwidth = 1;
-        gbc.anchor = GridBagConstraints.LINE_END;
-        panel.add(new JLabel(labelText), gbc);
-        
-        gbc.gridx = 1;
-        gbc.anchor = GridBagConstraints.LINE_START;
-        panel.add(field, gbc);
-        
-        gbc.gridy++;
+    private void handleLogin(String username, String password) {
+        //contoh doang
+        String validUsername = "admin";
+        String validPassword = "1234";
+
+        if (!username.equals(validUsername)) {
+            JOptionPane.showMessageDialog(this, "nama gak ada", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!password.equals(validPassword)) {
+            JOptionPane.showMessageDialog(this, "Password salah ", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        guiManager.showDashboardUser();
     }
 
-    private void handleLogin(String username, String password) {
-        boolean isValid = loginController.validate(username, password, guiManager);
-        if (!isValid) {
-            JOptionPane.showMessageDialog(this, "Login gagal!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
 }
