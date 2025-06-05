@@ -1,89 +1,120 @@
 package io.github.jayennn.BlockchainVoting.gui;
 
-import io.github.jayennn.BlockchainVoting.controller.Login;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import io.github.jayennn.BlockchainVoting.controller.Login;
 
 public class LoginGui extends JPanel {
-    private static final Logger log = LogManager.getLogger(LoginGui.class);
+    private static final Logger logger = LogManager.getLogger(LoginGui.class);
+    private final GuiManager guiManager;
+    private final Login loginController;
 
-    public LoginGui(GuiManager guiManager){
-        String assetsLocation = "src/main/resources/assets/";
+    public LoginGui(GuiManager guiManager, Login loginController) {
+        this.guiManager = guiManager;
+        this.loginController = loginController;
+        initUI();
+    }
 
-        JLabel background = new JLabel(new ImageIcon(assetsLocation + "login-backbround.png"));
-        background.setBounds(0, 0, 1000, 800);
-        background.setLayout(null);
+    private void initUI() {
+        setLayout(new BorderLayout());
+        
+        ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/login-background.png"));
+        JLabel background = new JLabel(bgIcon);
+        background.setLayout(new BorderLayout());
+        add(background, BorderLayout.CENTER);
 
-        JLabel logoLabel = new JLabel(new ImageIcon(assetsLocation + "itk.png"));
-        logoLabel.setBounds(250, 120, 500, 100);
-        background.add(logoLabel);
+        JPanel formPanel = new JPanel();
+        formPanel.setLayout(new GridBagLayout());
+        formPanel.setBackground(new Color(255, 255, 255, 220));
+        formPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(0, 120, 215)),
+            BorderFactory.createEmptyBorder(30, 30, 30, 30)
+         ));
 
-//        JPanel panel = new JPanel();
-        JPanel panel = this;
-        panel.setLayout(null);
-        panel.setBounds(300, 250, 400, 250);
-        panel.setBackground(new Color(255, 255, 255, 200));
-        background.add(panel);
+         addFormComponents(formPanel);
+         GridBagConstraints gbc = new GridBagConstraints();
+         gbc.weightx = 1.0;
+         gbc.weighty = 1.0;
+         background.add(formPanel, BorderLayout.CENTER);
+    }
 
-//        JFrame frame = new JFrame("Login");
-        JFrame frame = guiManager;
-//        frame.setSize(1000, 800);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setLayout(null);
+    private void addFormComponents(JPanel formPanel) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.WEST;
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        formPanel.add(new JLabel("Username"), gbc);
 
-        JLabel userLabel = new  JLabel("Username:");
-        userLabel.setBounds(50, 30, 300, 25);
-        panel.add(userLabel);
+        gbc.gridx = 1;
+        JTextField usernameField = new JTextField(20);
+        usernameField.setPreferredSize(new Dimension(200, 30));
+        formPanel.add(usernameField, gbc);
 
-        JTextField usernameField = new JTextField();
-        usernameField.setBounds(50, 50, 300, 30);
-        panel.add(usernameField);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        formPanel.add(new JLabel("Password"), gbc);
 
-        JLabel passLabel = new JLabel("Password:");
-        passLabel.setBounds(50, 90, 80, 25);
-        panel.add(passLabel);
+        gbc.gridx = 1;
+        JPasswordField passwordField = new JPasswordField(20);
+        passwordField.setPreferredSize(new Dimension(200, 30));
+        formPanel.add(passwordField, gbc);
 
-        JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(50, 110, 300, 30);
-        panel.add(passwordField);
-
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(150, 155, 100, 30);
-        panel.add(loginButton);
+        loginButton.setPreferredSize(new Dimension(100, 30));
+        loginButton.setBackground(new Color(0, 120, 215));
+        loginButton.setForeground(Color.WHITE);
+        formPanel.add(loginButton, gbc);
 
-        JLabel erorJLabel = new JLabel("Username atau Password salah");
-        erorJLabel.setBackground(Color.RED);
-        erorJLabel.setBounds(50, 220, 300, 25);
-        erorJLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        erorJLabel.setVisible(false);
-        panel.add(erorJLabel);
+        loginButton.addActionListener(e -> handleLogin(
+            usernameField.getText(),
+            new String(passwordField.getPassword())
+        ));
+    }
 
+    private void addLabelAndField(JPanel panel, GridBagConstraints gbc, String labelText, JComponent field) {
+        gbc.gridx = 0;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        panel.add(new JLabel(labelText), gbc);
+        
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        panel.add(field, gbc);
+        
+        gbc.gridy++;
+    }
 
-        Login login = new Login();
-
-        //simulasi login doang
-        loginButton.addActionListener(e -> {
-            String username = usernameField.getText();
-            String password = new String(passwordField.getPassword());
-
-            login.validate(username,password,guiManager);
-
-            erorJLabel.setVisible(true);
-        });
-
-        frame.add(background);
-        frame.setVisible(true);
-
+    private void handleLogin(String username, String password) {
+        boolean isValid = loginController.validate(username, password, guiManager);
+        if (!isValid) {
+            JOptionPane.showMessageDialog(this, "Login gagal!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -1,28 +1,35 @@
 package io.github.jayennn.BlockchainVoting.gui;
 
+import io.github.jayennn.BlockchainVoting.controller.Login;
 import io.github.jayennn.BlockchainVoting.gui.dashboardUser.DashboardUser;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class GuiManager extends JFrame {
-    public GuiManager(){
-        setTitle("Aplikasi Voting");
-        setSize(1000,800);
-        setLocationRelativeTo(null);
+    private final Login loginController;
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    public GuiManager() {
+        this.loginController = new Login();
+        initializeFrame();
         showLogin();
     }
 
-    public void showLogin(){
+    private void initializeFrame() {
+        setTitle("Aplikasi Voting");
+        setSize(1000, 800);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+    }
+
+    public void showLogin() {
         getContentPane().removeAll();
-        add(new LoginGui(this));
+        add(new LoginGui(this, loginController));
         revalidate();
         repaint();
     }
 
-    public void showDashboardUser(){
+    public void showDashboardUser() {
         getContentPane().removeAll();
         add(new DashboardUser(this));
         revalidate();
@@ -30,9 +37,9 @@ public class GuiManager extends JFrame {
     }
 
     public static void main(String[] args) {
-        GuiManager guiManager = new GuiManager();
-
+        SwingUtilities.invokeLater(() -> {
+            GuiManager guiManager = new GuiManager();
+            guiManager.setVisible(true);
+        });
     }
 }
-
-
