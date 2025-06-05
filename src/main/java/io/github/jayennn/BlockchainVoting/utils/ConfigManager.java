@@ -14,7 +14,7 @@ public class ConfigManager {
 
     /**
      * Private Constructor sehingga insiasi objek dapat dikontrol
-     * @Throws RuntimeException jika properties tidak ditemukan
+     * @    Throws RuntimeException jika properties tidak ditemukan
      */
     private ConfigManager(){
         properties = new Properties();
@@ -46,6 +46,10 @@ public class ConfigManager {
      */
     public String get(String key){
         return properties.getProperty(key);
+    }
+
+    public Properties getProperties() {
+        return properties;
     }
 
     /**
