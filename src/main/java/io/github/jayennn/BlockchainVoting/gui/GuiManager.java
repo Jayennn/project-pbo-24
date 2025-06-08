@@ -1,9 +1,12 @@
 package io.github.jayennn.BlockchainVoting.gui;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import io.github.jayennn.BlockchainVoting.controller.Login;
-import io.github.jayennn.BlockchainVoting.gui.dashboardUser.DashboardUser;
-import javax.swing.*;
-import java.awt.*;
+import io.github.jayennn.BlockchainVoting.gui.dashboardAdmin.DashboardAdmin;
 
 public class GuiManager extends JFrame {
     private final Login loginController;
@@ -29,12 +32,21 @@ public class GuiManager extends JFrame {
         repaint();
     }
 
-    public void showDashboardUser() {
+    public void showDashboardAdmin() {
         getContentPane().removeAll();
-        add(new DashboardUser(this));
+        add(new DashboardAdmin(this));
         revalidate();
         repaint();
     }
+
+    // public void showDashboardUser() {
+    //     getContentPane().removeAll();
+    //     add(new DashboardUser(this));
+    //     revalidate();
+    //     repaint();
+    // }
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

@@ -16,13 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.github.jayennn.BlockchainVoting.controller.Login;
 
 public class LoginGui extends JPanel {
-    private static final Logger logger = LogManager.getLogger(LoginGui.class);
     private final GuiManager guiManager;
     private final Login loginController;
 
@@ -121,7 +117,7 @@ public class LoginGui extends JPanel {
             return;
         }
 
-        guiManager.showDashboardUser();
+        guiManager.showDashboardAdmin();
     }
 
 }
