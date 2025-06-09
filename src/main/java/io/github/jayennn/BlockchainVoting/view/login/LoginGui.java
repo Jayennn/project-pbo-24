@@ -25,6 +25,7 @@ public class LoginGui extends JPanel implements ILoginView{
 
     public LoginGui() {
         initUI();
+        System.out.println("Login GUI");
     }
 
     public void setLoginController(LoginController loginController) {
@@ -39,6 +40,11 @@ public class LoginGui extends JPanel implements ILoginView{
     @Override
     public String getPasswordInput() {
         return new String(passwordField.getPassword());
+    }
+
+    @Override
+    public void displayError(String message) {
+        JOptionPane.showMessageDialog(this,message);
     }
 
     private void initUI() {
@@ -114,8 +120,5 @@ public class LoginGui extends JPanel implements ILoginView{
         });
     }
 
-    @Override
-    public void displayError(String message) {
-        JOptionPane.showMessageDialog(this,message);
-    }
+
 }

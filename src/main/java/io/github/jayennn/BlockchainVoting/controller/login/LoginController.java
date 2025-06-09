@@ -19,7 +19,7 @@ public class LoginController {
         this.navigator = navigator;
     }
 
-    public boolean validate(){
+    public void validate(){
         EntityManager em = JpaManager.getInstance().getEM();
         em.getTransaction().begin();
 
@@ -35,12 +35,11 @@ public class LoginController {
             if (result){
                 SessionManager.getInstance().setUser(user);
                 if (user.getRole().equals(Role.USER)){
-                    navigator.showPanel("DashboardUser");
+                    navigator.showPanel("DashboardAdminCard");
                 }
             }
         }catch (NoResultException e){
             view.displayError("Invalid username or password");
         }
-        return  true;
     }
 }

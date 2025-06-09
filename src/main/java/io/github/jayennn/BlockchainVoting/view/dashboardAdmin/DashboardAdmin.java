@@ -17,7 +17,7 @@ import io.github.jayennn.BlockchainVoting.view.common.GuiManager;
 public class DashboardAdmin extends JPanel {
     static JButton activeteButton = null;
 
-    public DashboardAdmin(GuiManager guiManager) {
+    public DashboardAdmin() {
         setLayout(null);
         setPreferredSize(new Dimension(1000, 700));
 
@@ -73,7 +73,7 @@ public class DashboardAdmin extends JPanel {
         btnLogout.setBorderPainted(false);
         btnLogout.setHorizontalAlignment(SwingConstants.LEFT);
         btnLogout.addActionListener(e -> {
-            guiManager.showLogin();
+
         });
         sidebar.add(btnLogout);
 

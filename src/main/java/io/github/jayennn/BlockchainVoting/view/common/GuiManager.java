@@ -7,7 +7,6 @@ import javax.swing.*;
 import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.DashboardAdmin;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.DashboardUser;
-import io.github.jayennn.BlockchainVoting.view.login.ILoginView;
 import io.github.jayennn.BlockchainVoting.view.login.LoginGui;
 
 public class GuiManager extends JFrame implements Navigator{
@@ -25,16 +24,20 @@ public class GuiManager extends JFrame implements Navigator{
         mainPanel = new JPanel(cardLayout);
         add(mainPanel);
 
+        // todo: change to interface later
         loginGui = new LoginGui();
-        loginController= new LoginController(loginGui,this);
+        loginController = new LoginController(loginGui,this);
         loginGui.setLoginController(loginController);
 
-        mainPanel.add(loginGui, "Login");
-        cardLayout.show(mainPanel,"Login");
-//        dashboardUser = new DashboardUser(this);
+        mainPanel.add(loginGui, "LoginCard");
+        cardLayout.show(mainPanel,"LoginCard");
 
-//        mainPanel.add(dashboardUser,"DashboardUser");
-//        cardLayout.show(mainPanel,"DashboardUser");
+        DashboardAdmin dashboardAdmin = new DashboardAdmin();
+        mainPanel.add(dashboardAdmin,"DashboardAdminCard");
+//        cardLayout.show(dashboardAdmin,"DashboardAdminCard");
+
+        InfoPanel infoPanel = new InfoPanel();
+        mainPanel.add(infoPanel,"InfoCard");
 
     }
 
@@ -51,28 +54,7 @@ public class GuiManager extends JFrame implements Navigator{
         setLayout(new BorderLayout());
     }
 
-    public void showLogin() {
 
-
-        getContentPane().removeAll();
-//        add(new LoginGui(this, loginController));
-        revalidate();
-        repaint();
-    }
-
-    public void showDashboardAdmin() {
-        getContentPane().removeAll();
-        add(new DashboardAdmin(this));
-        revalidate();
-        repaint();
-    }
-
-    // public void showDashboardUser() {
-    //     getContentPane().removeAll();
-    //     add(new DashboardUser(this));
-    //     revalidate();
-    //     repaint();
-    // }
 
 
 
