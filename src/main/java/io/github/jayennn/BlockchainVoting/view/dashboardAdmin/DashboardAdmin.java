@@ -1,4 +1,4 @@
-package io.github.jayennn.BlockchainVoting.gui.dashboardAdmin;
+package io.github.jayennn.BlockchainVoting.view.dashboardAdmin;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import io.github.jayennn.BlockchainVoting.gui.GuiManager;
+import io.github.jayennn.BlockchainVoting.view.common.GuiManager;
 
 public class DashboardAdmin extends JPanel {
     static JButton activeteButton = null;
