@@ -50,13 +50,13 @@ public class LoginGui extends JPanel {
         formPanel.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLineBorder(new Color(0, 120, 215)),
             BorderFactory.createEmptyBorder(30, 30, 30, 30)
-         ));
+        ));
 
-         addFormComponents(formPanel);
-         GridBagConstraints gbc = new GridBagConstraints();
-         gbc.weightx = 1.0;
-         gbc.weighty = 1.0;
-         background.add(formPanel, BorderLayout.CENTER);
+        addFormComponents(formPanel);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        background.add(formPanel, BorderLayout.CENTER);
     }
 
     private void addFormComponents(JPanel formPanel) {

@@ -40,7 +40,7 @@ public class DashboardAdmin extends JPanel {
         JPanel statisticPanel = createContentPanel("Halaman vote static");
         contentPanel.add(statisticPanel, "statistic");
 
-        JPanel candidatesPanel = createContentPanel("Halaman manage candidates");
+        JPanel candidatesPanel = createContentPanel("haman manage candidates");
         contentPanel.add(candidatesPanel, "candidates");
 
         JPanel electionPanel = createContentPanel("Halaman manage election");
