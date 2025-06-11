@@ -1,0 +1,20 @@
+<!-- maven settings.xml location -->
+<!-- linux ~/.m2/settings.xml -->
+<!-- windows $M2_HOME/conf/settings.xml -->
+<settings>
+  <profiles>
+    <profile>
+      <id>flyway-profile</id>
+      <properties>
+        <flyway.url>jdbc:mysql://localhost:3306/blockchainVoting</flyway.url>
+        <flyway.user>root</flyway.user>
+        <flyway.password>lkjoiu987</flyway.password>
+      </properties>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>flyway-profile</activeProfile>
+  </activeProfiles>
+</settings>
+

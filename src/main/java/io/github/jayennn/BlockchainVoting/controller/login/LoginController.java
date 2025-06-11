@@ -36,6 +36,8 @@ public class LoginController {
                 SessionManager.getInstance().setUser(user);
                 if (user.getRole().equals(Role.USER)){
                     navigator.showPanel("DashboardAdminCard");
+                }else{
+                    navigator.showPanel("DashboardAdminCard");
                 }
             }
         }catch (NoResultException e){

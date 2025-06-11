@@ -33,6 +33,17 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-maven-plugin -->
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>9.22.3</version>
+                <configuration>
+                    <url>${flyway.url}</url>
+                    <user>${flyway.user}</user>
+                    <password>${flyway.password}</password>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
