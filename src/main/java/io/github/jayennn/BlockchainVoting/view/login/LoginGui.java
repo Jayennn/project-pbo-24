@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.SwingUtilities;
+import javax.swing.JRootPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -117,6 +119,12 @@ public class LoginGui extends JPanel implements ILoginView{
 
         loginButton.addActionListener(e -> {
             loginController.validate();
+        });
+        SwingUtilities.invokeLater(() -> {
+            JRootPane rootPane = SwingUtilities.getRootPane(formPanel);
+            if (rootPane != null) {
+                rootPane.setDefaultButton(loginButton);
+            }
         });
     }
 

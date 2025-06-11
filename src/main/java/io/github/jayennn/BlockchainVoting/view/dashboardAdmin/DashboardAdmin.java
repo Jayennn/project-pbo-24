@@ -12,18 +12,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import io.github.jayennn.BlockchainVoting.view.common.GuiManager;
+import io.github.jayennn.BlockchainVoting.gui.dashboardAdmin.view.StatisticPanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.CandidatePanel;
 
 public class DashboardAdmin extends JPanel {
     static JButton activeteButton = null;
 
     public DashboardAdmin() {
-        setLayout(null);
-        setPreferredSize(new Dimension(1000, 700));
+        setLayout(new BorderLayout());
 
         JPanel sidebar = new JPanel();
         sidebar.setLayout(null);
-        sidebar.setBounds(0, 0, 300, 700);
+        sidebar.setPreferredSize(new Dimension(300, 700));
         sidebar.setBackground(Color.WHITE);
 
         ImageIcon logoIcon = new ImageIcon(getClass().getResource("/assets/itk.png"));
@@ -35,13 +35,12 @@ public class DashboardAdmin extends JPanel {
         sidebar.add(logoLabel);
 
         JPanel contentPanel = new JPanel(new CardLayout());
-        contentPanel.setBounds(300, 0, 700, 700);
 
-        JPanel statisticPanel = createContentPanel("Halaman vote static");
+        StatisticPanel statisticPanel = new StatisticPanel();
         contentPanel.add(statisticPanel, "statistic");
 
-        JPanel candidatesPanel = createContentPanel("haman manage candidates");
-        contentPanel.add(candidatesPanel, "candidates");
+        CandidatePanel candidatePanel = new CandidatePanel();
+        contentPanel.add(candidatePanel, "candidate");
 
         JPanel electionPanel = createContentPanel("Halaman manage election");
         contentPanel.add(electionPanel, "election");
@@ -54,15 +53,15 @@ public class DashboardAdmin extends JPanel {
         sidebar.add(btnStatistic);
         activeteButton = btnStatistic;
 
-        JButton btnCandidates = createMenuButton("Manage Candidates", false);
-        btnCandidates.setBounds(25, 200, 250, 40);
-        sidebar.add(btnCandidates);
+        JButton btnCandidate = createMenuButton("Manage Candidate", false);
+        btnCandidate.setBounds(25, 200, 250, 40);
+        sidebar.add(btnCandidate);
 
         JButton btnelection = createMenuButton("Manage Election", false);
         btnelection.setBounds(25, 250, 250, 40);
         sidebar.add(btnelection);
 
-        JButton btnVoter = createMenuButton("Manage Voter", false);
+        JButton btnVoter = createMenuButton("Manage Voters", false);
         btnVoter.setBounds(25, 300, 250, 40);
         sidebar.add(btnVoter);
 
@@ -75,7 +74,8 @@ public class DashboardAdmin extends JPanel {
         btnLogout.addActionListener(e -> {
 
         });
-        sidebar.add(btnLogout);
+        add(sidebar, BorderLayout.WEST);
+        add(contentPanel, BorderLayout.CENTER);
 
         CardLayout c1 = (CardLayout) contentPanel.getLayout();
 
@@ -84,9 +84,9 @@ public class DashboardAdmin extends JPanel {
             switchActiveButton(btnStatistic);
         });
 
-        btnCandidates.addActionListener(e -> {
-            c1.show(contentPanel, "candidates");
-            switchActiveButton(btnCandidates);
+        btnCandidate.addActionListener(e -> {
+            c1.show(contentPanel, "candidate");
+            switchActiveButton(btnCandidate);
         });
 
         btnelection.addActionListener(e -> {
@@ -99,8 +99,6 @@ public class DashboardAdmin extends JPanel {
             switchActiveButton(btnVoter);
         });
 
-        this.add(sidebar);
-        this.add(contentPanel);
     }
 
 
