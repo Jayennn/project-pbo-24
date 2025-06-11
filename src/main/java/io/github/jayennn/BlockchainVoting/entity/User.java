@@ -1,5 +1,6 @@
 package io.github.jayennn.BlockchainVoting.entity;
 
+import io.github.jayennn.BlockchainVoting.utils.UpdatableBcrypt;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -30,7 +31,9 @@ public class User {
 
     public User(Role role,String password){
        this.role = role;
-       this.password = password;
+       // todo: possibility more well defined methode
+        UpdatableBcrypt UBcrypt = new UpdatableBcrypt(12);
+        this.password = UBcrypt.hash(password);
     }
     public UUID getUuid() {
         return uuid;

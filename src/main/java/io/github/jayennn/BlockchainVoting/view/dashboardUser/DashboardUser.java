@@ -1,5 +1,5 @@
-package io.github.jayennn.BlockchainVoting.gui.dashboardUser;
-import io.github.jayennn.BlockchainVoting.gui.GuiManager;
+package io.github.jayennn.BlockchainVoting.view.dashboardUser;
+import io.github.jayennn.BlockchainVoting.view.common.GuiManager;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;

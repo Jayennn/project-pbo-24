@@ -1,4 +1,4 @@
-package io.github.jayennn.BlockchainVoting.gui;
+package io.github.jayennn.BlockchainVoting.view.login;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,16 +16,35 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import io.github.jayennn.BlockchainVoting.controller.Login;
+import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
 
-public class LoginGui extends JPanel {
-    private final GuiManager guiManager;
-    private final Login loginController;
+public class LoginGui extends JPanel implements ILoginView{
+    private LoginController loginController;
+    private JTextField usernameField;
+    private JPasswordField passwordField;
 
-    public LoginGui(GuiManager guiManager, Login loginController) {
-        this.guiManager = guiManager;
-        this.loginController = loginController;
+    public LoginGui() {
         initUI();
+        System.out.println("Login GUI");
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
+    @Override
+    public String getUsernameInput() {
+        return usernameField.getText();
+    }
+
+    @Override
+    public String getPasswordInput() {
+        return new String(passwordField.getPassword());
+    }
+
+    @Override
+    public void displayError(String message) {
+        JOptionPane.showMessageDialog(this,message);
     }
 
     private void initUI() {
@@ -72,7 +91,7 @@ public class LoginGui extends JPanel {
         formPanel.add(new JLabel("Username"), gbc);
 
         gbc.gridx = 1;
-        JTextField usernameField = new JTextField(20);
+        usernameField = new JTextField(20);
         usernameField.setPreferredSize(new Dimension(200, 30));
         formPanel.add(usernameField, gbc);
 
@@ -81,7 +100,7 @@ public class LoginGui extends JPanel {
         formPanel.add(new JLabel("Password"), gbc);
 
         gbc.gridx = 1;
-        JPasswordField passwordField = new JPasswordField(20);
+        passwordField = new JPasswordField(20);
         passwordField.setPreferredSize(new Dimension(200, 30));
         formPanel.add(passwordField, gbc);
 
@@ -96,28 +115,10 @@ public class LoginGui extends JPanel {
         loginButton.setForeground(Color.WHITE);
         formPanel.add(loginButton, gbc);
 
-        loginButton.addActionListener(e -> handleLogin(
-            usernameField.getText(),
-            new String(passwordField.getPassword())
-        ));
+        loginButton.addActionListener(e -> {
+            loginController.validate();
+        });
     }
 
-    private void handleLogin(String username, String password) {
-        //contoh doang
-        String validUsername = "admin";
-        String validPassword = "1234";
-
-        if (!username.equals(validUsername)) {
-            JOptionPane.showMessageDialog(this, "nama gak ada", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!password.equals(validPassword)) {
-            JOptionPane.showMessageDialog(this, "Password salah ", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        guiManager.showDashboardAdmin();
-    }
 
 }
