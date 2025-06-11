@@ -4,17 +4,24 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
 import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
+import io.github.jayennn.BlockchainVoting.entity.Candidate;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.DashboardAdmin;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.candidate.CandidatePanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.DashboardUser;
 import io.github.jayennn.BlockchainVoting.view.login.LoginGui;
 
 public class GuiManager extends JFrame implements Navigator {
   private CardLayout cardLayout;
   private JPanel mainPanel;
+
   LoginGui loginGui;
   LoginController loginController;
   DashboardUser dashboardUser;
+
+  CandidatePanel candidatePanel;
+  CandidateController candidateController;
 
   public GuiManager() {
     initializeFrame();
@@ -27,6 +34,10 @@ public class GuiManager extends JFrame implements Navigator {
     loginGui = new LoginGui();
     loginController = new LoginController(loginGui, this);
     loginGui.setLoginController(loginController);
+
+    // candidatePanel = new CandidatePanel();
+    // candidateController = new CandidateController(candidatePanel);
+    // candidatePanel.setCandidateController(candidateController);
 
     mainPanel.add(loginGui, "LoginCard");
     cardLayout.show(mainPanel, "LoginCard");
