@@ -1,14 +1,22 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view;
 
-import javax.swing.*;
-import javax.swing.table.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Insets;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.security.PublicKey;
-
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers;
-import com.mysql.cj.xdevapi.Table;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 public class CandidatePanel extends JPanel {
     private JTable table;
     private JTextField searchField;
@@ -60,7 +68,7 @@ public class CandidatePanel extends JPanel {
             removeAll();
             add(createIconButton("✏️"));
             add(createIconButton("🗑️"));
-            add(createIconButton("🔗"));
+            //add(createIconButton("🔗"));
             return this;
         }
     
@@ -74,16 +82,16 @@ public class CandidatePanel extends JPanel {
     }
     class ButtonEditor extends DefaultCellEditor {
         protected JPanel panel;
-        protected JButton btnEdit, btnDelete, btnShare;
+        protected JButton btnEdit, btnDelete;//, btnShare;
 
         public ButtonEditor(JCheckBox checkBox) {
             super(checkBox);
             panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
             btnEdit = new JButton("✏️");
             btnDelete = new JButton("🗑️");
-            btnShare = new JButton("🔗");
+            //btnShare = new JButton("🔗");
 
-            for (JButton btn : new JButton[]{btnEdit, btnDelete, btnShare}) {
+            for (JButton btn : new JButton[]{btnEdit, btnDelete, }) {  //btnShare
                 btn.setMargin(new Insets(2, 4, 2,4));
                 btn.setFocusable(false);
                 btn.setBackground(Color.WHITE);
@@ -91,7 +99,7 @@ public class CandidatePanel extends JPanel {
             }
             btnEdit.addActionListener(e -> JOptionPane.showMessageDialog(null, "edit clicked"));
             btnDelete.addActionListener(e -> JOptionPane.showMessageDialog(null, "delate clicked"));
-            btnShare.addActionListener(e -> JOptionPane.showMessageDialog(null, "share clicked"));
+            //btnShare.addActionListener(e -> JOptionPane.showMessageDialog(null, "share clicked"));
         }
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {

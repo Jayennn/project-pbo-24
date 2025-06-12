@@ -1,17 +1,18 @@
 package io.github.jayennn.BlockchainVoting.utils;
 
-import io.github.jayennn.BlockchainVoting.entity.*;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
-
-import java.time.LocalDate;
-import java.util.Properties;
+import io.github.jayennn.BlockchainVoting.entity.Candidate;
+import io.github.jayennn.BlockchainVoting.entity.Election;
+import io.github.jayennn.BlockchainVoting.entity.Gender;
+import io.github.jayennn.BlockchainVoting.entity.Role;
+import io.github.jayennn.BlockchainVoting.entity.User;
+import io.github.jayennn.BlockchainVoting.entity.Voter;
+import jakarta.persistence.EntityManager;
 
 public class JpaManagerTest {
     @Test
@@ -42,7 +43,7 @@ public class JpaManagerTest {
     @ParameterizedTest(name = "nim: {0},username: {1},password: {2}")
     @CsvSource({
             "11241069, clemont, bukabuka"
-    })
+    }) 
     public void createAccount(String nim,String username,String password){
         EntityManager em = JpaManager.getInstance().getEM();
 

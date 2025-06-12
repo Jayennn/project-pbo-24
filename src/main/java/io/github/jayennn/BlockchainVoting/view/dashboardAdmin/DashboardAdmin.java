@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 import io.github.jayennn.BlockchainVoting.gui.dashboardAdmin.view.StatisticPanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.CandidatePanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.ElectionPanel;
 
 public class DashboardAdmin extends JPanel {
     static JButton activeteButton = null;
@@ -42,7 +43,7 @@ public class DashboardAdmin extends JPanel {
         CandidatePanel candidatePanel = new CandidatePanel();
         contentPanel.add(candidatePanel, "candidate");
 
-        JPanel electionPanel = createContentPanel("Halaman manage election");
+        ElectionPanel electionPanel = new ElectionPanel();
         contentPanel.add(electionPanel, "election");
 
         JPanel votersPanel = createContentPanel("Halaman manage vote");

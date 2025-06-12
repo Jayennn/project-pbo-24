@@ -1,8 +1,11 @@
 package io.github.jayennn.BlockchainVoting.view.common;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.DashboardAdmin;
@@ -24,15 +27,16 @@ public class GuiManager extends JFrame implements Navigator {
     add(mainPanel);
 
     // todo: change to interface later
-    loginGui = new LoginGui();
-    loginController = new LoginController(loginGui, this);
-    loginGui.setLoginController(loginController);
+    // loginGui = new LoginGui();
+    // loginController = new LoginController(loginGui, this);
+    // loginGui.setLoginController(loginController);
 
-    mainPanel.add(loginGui, "LoginCard");
-    cardLayout.show(mainPanel, "LoginCard");
+    // mainPanel.add(loginGui, "LoginCard");
+    // cardLayout.show(mainPanel, "LoginCard");
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();
     mainPanel.add(dashboardAdmin, "DashboardAdminCard");
+    cardLayout.show(mainPanel, "DashboardAdminCard");
     // cardLayout.show(dashboardAdmin,"DashboardAdminCard");
 
     InfoPanel infoPanel = new InfoPanel();
