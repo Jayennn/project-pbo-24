@@ -1,11 +1,21 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view;
-import javax.swing.*;
-import javax.swing.table.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Insets;
 
-import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.CandidatePanel.ButtonEditor;
-
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 public class ElectionPanel extends JPanel {
     private JTable electionTable;
     private JTextField searchField;
@@ -81,9 +91,9 @@ public class ElectionPanel extends JPanel {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
             removeAll();
-            add(createIconButton("✏️"));
-            add(createIconButton("🗑️"));
-            add(createIconButton("🔗"));
+            add(createIconButton("Edit"));
+            add(createIconButton("Delate"));
+            add(createIconButton("Shared"));
             return this;  
         }
 
@@ -103,9 +113,9 @@ public class ElectionPanel extends JPanel {
         public ButtonEditor(JCheckBox checkbox) {
             super(checkbox);
             panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5,0));
-            btnEdit = createButton("✏️");
-            btnDelete = createButton("🗑️");
-            btnShare = createButton("🔗");
+            btnEdit = createButton("Edit");
+            btnDelete = createButton("Delate");
+            btnShare = createButton("Share");
 
             panel.add(btnEdit);
             panel.add(btnDelete);

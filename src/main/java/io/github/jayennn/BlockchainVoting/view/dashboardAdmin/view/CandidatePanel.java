@@ -16,47 +16,69 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+
 public class CandidatePanel extends JPanel {
-    private JTable table;
+    private JTable candidateTable;
     private JTextField searchField;
-    private JButton addButton;
 
     public CandidatePanel() {
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
 
-        JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        searchField = new JTextField("search");
-        addButton = new JButton("+ add");
-        topPanel.add(searchField, BorderLayout.CENTER);
-        topPanel.add(addButton, BorderLayout.EAST);
+        initTopPanel();
+        initTablePanel();
+    }
 
+    private void initTopPanel(){
+        JPanel topPanel = new JPanel(new BorderLayout(10, 10));
+        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        topPanel.setBackground(Color.WHITE);
+
+        JPanel leftTop = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        leftTop.setOpaque(false);
+
+        JButton searchButton = new JButton("Search");
+        searchField = new JTextField(20);
+        leftTop.add(searchButton);
+        leftTop.add(searchField);
+
+        JPanel rightTop = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        rightTop.setOpaque(false);
+        JButton addButton = new JButton("Add");
+        rightTop.add(addButton);
+
+        topPanel.add(leftTop, BorderLayout.WEST);
+        topPanel.add(rightTop, BorderLayout.EAST);
+
+        add(topPanel, BorderLayout.NORTH);
+    }
+
+    private void initTablePanel() {
         String[] columnNames = {"Name", "Visi", "Misi", "Actions"};
-        Object[][] data = {
-            {"Nama Kandidat", "Visi", "Misi", "Edit"}
+        Object[][] data = new Object[][]{
+            {"Nama kandidat", "Visi", "Misi", ""}
         };
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return column == 3;
-        }
-    };
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 3;
+            }
+        };
 
-    table = new JTable(model);
-    table.setRowHeight(40);
+        candidateTable = new JTable(model);
+        candidateTable.setRowHeight(40);
 
-    table.getColumn("Actions").setCellRenderer(new ButtonRenderer());
-    table.getColumn("Actions").setCellEditor(new ButtonEditor(new JCheckBox()));
+        candidateTable.getColumn("Actions").setCellRenderer(new ButtonRenderer());
+        candidateTable.getColumn("Actions").setCellEditor((TableCellEditor) new ButtonEditor(new JCheckBox()));
 
-    JScrollPane scrollPane = new JScrollPane(table);
-
-    add(topPanel, BorderLayout.NORTH);
-    add(scrollPane, BorderLayout.CENTER);
-
+        JScrollPane scrollPane = new JScrollPane(candidateTable);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        add(scrollPane, BorderLayout.CENTER);
     }
+
     class ButtonRenderer extends JPanel implements TableCellRenderer {
         public ButtonRenderer() {
             setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
@@ -66,41 +88,47 @@ public class CandidatePanel extends JPanel {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             removeAll();
-            add(createIconButton("✏️"));
-            add(createIconButton("🗑️"));
-            //add(createIconButton("🔗"));
+            add(createIconButton("Edit"));
+            add(createIconButton("Hapus"));
             return this;
         }
-    
+
         private JButton createIconButton(String text) {
             JButton button = new JButton(text);
             button.setMargin(new Insets(2, 4, 2, 4));
-            button.setFocusable((false));
+            button.setFocusable(false);
             button.setBackground(Color.WHITE);
             return button;
         }
     }
+
     class ButtonEditor extends DefaultCellEditor {
         protected JPanel panel;
-        protected JButton btnEdit, btnDelete;//, btnShare;
+        protected JButton btnEdit, btnDelete;
 
         public ButtonEditor(JCheckBox checkBox) {
             super(checkBox);
             panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
-            btnEdit = new JButton("✏️");
-            btnDelete = new JButton("🗑️");
-            //btnShare = new JButton("🔗");
+            panel.setBackground(Color.WHITE);
+        
+            btnEdit = createButton("Edit");
+            btnDelete = createButton("Delete");
 
-            for (JButton btn : new JButton[]{btnEdit, btnDelete, }) {  //btnShare
-                btn.setMargin(new Insets(2, 4, 2,4));
-                btn.setFocusable(false);
-                btn.setBackground(Color.WHITE);
-                panel.add(btn);
-            }
-            btnEdit.addActionListener(e -> JOptionPane.showMessageDialog(null, "edit clicked"));
-            btnDelete.addActionListener(e -> JOptionPane.showMessageDialog(null, "delate clicked"));
-            //btnShare.addActionListener(e -> JOptionPane.showMessageDialog(null, "share clicked"));
+            panel.add(btnEdit);
+            panel.add(btnDelete);
+
+            btnEdit.addActionListener(e -> JOptionPane.showMessageDialog(null, "Edit clicked"));
+            btnDelete.addActionListener(e -> JOptionPane.showMessageDialog(null, "Delete clicked"));
         }
+
+        private JButton createButton(String text) {
+            JButton btn = new JButton(text);
+            btn.setMargin(new Insets(2, 4, 2, 4));
+            btn.setFocusable(false);
+            btn.setBackground(Color.WHITE);
+            return btn;
+        }
+
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             return panel;
