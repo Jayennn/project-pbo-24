@@ -11,7 +11,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Properties;
+import java.util.UUID;
 
 public class JpaManagerTest {
     @Test
@@ -111,6 +113,38 @@ public class JpaManagerTest {
         em.getTransaction().commit();
     }
 
+    @ParameterizedTest(name = "electionUUID: {0},voterId: {1},candidateUUID: {2}")
+    @CsvSource({
+            "0x0894110757f343e2963f83643e7c5ecb," +
+                    "11241069," +
+                    "0x9c592d0963574824b46c1dbc5cdccb0d"
+    })
+    public void castVote(String AelectionUUID,String voterId, String AcandidateUUID){
+        EntityManager em = JpaManager.getInstance().getEM();
+        em.getTransaction().begin();
+
+        UUID electionUUID = UUID.fromString(UUIDUtil.toUUIDString(AelectionUUID));
+        UUID candidateUUID = UUID.fromString(UUIDUtil.toUUIDString(AcandidateUUID));
+
+        Election election = em.find(Election.class,electionUUID);
+        Voter voter = em.find(Voter.class,voterId);
+        Candidate candidate = em.find(Candidate.class,candidateUUID);
+
+        VoteId voteId = new VoteId();
+        voteId.setElectionUUID(electionUUID);
+        voteId.setVoterId(voterId);
+
+        Vote vote = new Vote();
+        vote.setId(voteId);
+        vote.setCandidate(candidate);
+        vote.setElection(election);
+        vote.setVoter(voter);
+        vote.setTimestamp(LocalDateTime.now());
+
+        em.persist(vote);
+        em.getTransaction().commit();
+
+    }
 
 
 }
