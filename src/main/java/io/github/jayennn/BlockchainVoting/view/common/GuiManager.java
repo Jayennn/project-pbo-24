@@ -26,6 +26,10 @@ public class GuiManager extends JFrame implements Navigator {
     mainPanel = new JPanel(cardLayout);
     add(mainPanel);
 
+    // DashboardUser dashboardUser = new DashboardUser(this); 
+    // mainPanel.add(dashboardUser, "DashboardUserCard"); 
+    // cardLayout.show(mainPanel, "DashboardUserCard"); 
+
     // todo: change to interface later
     // loginGui = new LoginGui();
     // loginController = new LoginController(loginGui, this);
@@ -36,7 +40,7 @@ public class GuiManager extends JFrame implements Navigator {
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();
     mainPanel.add(dashboardAdmin, "DashboardAdminCard");
-    cardLayout.show(mainPanel, "DashboardAdminCard");
+    // cardLayout.show(mainPanel, "DashboardAdminCard");
     // cardLayout.show(dashboardAdmin,"DashboardAdminCard");
 
     InfoPanel infoPanel = new InfoPanel();
