@@ -17,6 +17,7 @@ import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
 import io.github.jayennn.BlockchainVoting.gui.dashboardAdmin.view.StatisticPanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.CandidatePanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.ElectionPanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.VotersPanel;
 
 public class DashboardAdmin extends JPanel {
 
@@ -57,7 +58,7 @@ public class DashboardAdmin extends JPanel {
     ElectionPanel electionPanel = new ElectionPanel();
     contentPanel.add(electionPanel, "election");
 
-    JPanel votersPanel = createContentPanel("Halaman manage vote");
+    VotersPanel votersPanel = new VotersPanel();
     contentPanel.add(votersPanel, "voters");
 
     JButton btnStatistic = createMenuButton("votes Statistic", true);
