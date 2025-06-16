@@ -18,11 +18,11 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
-public class ElectionPanel extends JPanel {
+public class ManageElectionPanel extends JPanel {
   private JTable electionTable;
   private JTextField searchField;
 
-  public ElectionPanel() {
+  public ManageElectionPanel() {
     setLayout(new BorderLayout());
     setBackground(Color.WHITE);
 

@@ -36,12 +36,17 @@ public class GuiManager extends JFrame implements Navigator {
     loginController = new LoginController(loginGui, this);
     loginGui.setLoginController(loginController);
 
-    mainPanel.add(loginGui, "LoginCard");
-    cardLayout.show(mainPanel, "LoginCard");
+    // mainPanel.add(loginGui, "LoginCard");
+    // cardLayout.show(mainPanel, "LoginCard");
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();
     mainPanel.add(dashboardAdmin, "DashboardAdminCard");
-    // cardLayout.show(mainPanel, "DashboardAdminCard");
+    cardLayout.show(mainPanel, "DashboardAdminCard");
+
+    // DashboardUser dashboardUser = new DashboardUser();
+    // mainPanel.add(dashboardUser, "DashboardUserCard");
+    // cardLayout.show(mainPanel, "DashboardUserCard");
+
     // cardLayout.show(dashboardAdmin,"DashboardAdminCard");
 
     InfoPanel infoPanel = new InfoPanel();

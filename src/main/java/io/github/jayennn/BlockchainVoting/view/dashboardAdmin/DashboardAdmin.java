@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
-import io.github.jayennn.BlockchainVoting.gui.dashboardAdmin.view.StatisticPanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.StatisticPanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.CandidatePanel;
-import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.ElectionPanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.ManageElectionPanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.VotersPanel;
 
 public class DashboardAdmin extends JPanel {
@@ -55,7 +55,7 @@ public class DashboardAdmin extends JPanel {
     CandidatePanel candidatePanel = new CandidatePanel(candidateController);
     contentPanel.add(candidatePanel, "candidate");
 
-    ElectionPanel electionPanel = new ElectionPanel();
+    ManageElectionPanel electionPanel = new ManageElectionPanel();
     contentPanel.add(electionPanel, "election");
 
     VotersPanel votersPanel = new VotersPanel();
