@@ -7,20 +7,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
-import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
+import io.github.jayennn.BlockchainVoting.controller.dashboardUser.Controller;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.DashboardAdmin;
-import io.github.jayennn.BlockchainVoting.view.dashboardUser.DashboardUser;
-import io.github.jayennn.BlockchainVoting.view.login.LoginGui;
+import io.github.jayennn.BlockchainVoting.view.login.Panel;
 
 public class GuiManager extends JFrame implements Navigator {
   private CardLayout cardLayout;
   private JPanel mainPanel;
 
-  LoginGui loginGui;
-  LoginController loginController;
-  DashboardUser dashboardUser;
+  Panel loginGui;
+  io.github.jayennn.BlockchainVoting.controller.login.Controller loginController;
+  io.github.jayennn.BlockchainVoting.view.dashboardUser.Panel dashboardUser;
+  Controller dashboardUserController;
 
   public GuiManager() {
     initializeFrame();
@@ -30,10 +29,12 @@ public class GuiManager extends JFrame implements Navigator {
     mainPanel = new JPanel(cardLayout);
     add(mainPanel);
 
-    loginGui = new LoginGui();
-    loginController = new LoginController(loginGui, this);
+    loginGui = new Panel();
+    loginController = new io.github.jayennn.BlockchainVoting.controller.login.Controller(loginGui, this);
+    mainPanel.add(loginGui, "LoginCard");
 
-    dashboardUser = new DashboardUser();
+    dashboardUser = new io.github.jayennn.BlockchainVoting.view.dashboardUser.Panel();
+    dashboardUserController = new Controller(dashboardUser);
     mainPanel.add(dashboardUser, "DashboardUserCard");
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();
@@ -42,10 +43,8 @@ public class GuiManager extends JFrame implements Navigator {
     InfoPanel infoPanel = new InfoPanel();
     mainPanel.add(infoPanel, "InfoCard");
 
-    mainPanel.add(loginGui, "LoginCard");
 
     cardLayout.show(mainPanel,"LoginCard");
-//    cardLayout.show(mainPanel, "DashboardUserCard");
   }
 
   @Override

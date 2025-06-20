@@ -18,17 +18,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
 import io.github.jayennn.BlockchainVoting.controller.login.LoginHandler;
 
-public class LoginGui extends JPanel implements ILoginView {
+public class Panel extends JPanel implements View {
   private JTextField usernameField;
   private JPasswordField passwordField;
   private JButton loginButton;
   private LoginHandler loginHandler;
 
 
-  public LoginGui() {
+  public Panel() {
     initUI();
     System.out.println("Login GUI");
   }

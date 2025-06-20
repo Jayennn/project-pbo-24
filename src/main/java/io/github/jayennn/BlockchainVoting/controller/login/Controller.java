@@ -6,15 +6,15 @@ import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.utils.JpaManager;
 import io.github.jayennn.BlockchainVoting.utils.UpdatableBcrypt;
 import io.github.jayennn.BlockchainVoting.view.common.Navigator;
-import io.github.jayennn.BlockchainVoting.view.login.ILoginView;
+import io.github.jayennn.BlockchainVoting.view.login.View;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 
-public class LoginController{
-  private ILoginView view;
+public class Controller {
+  private View view;
   private Navigator navigator;
 
-  public LoginController(ILoginView view, Navigator navigator) {
+  public Controller(View view, Navigator navigator) {
     this.view = view;
     this.navigator = navigator;
     this.view.setLoginHandler(this::authenticate);
