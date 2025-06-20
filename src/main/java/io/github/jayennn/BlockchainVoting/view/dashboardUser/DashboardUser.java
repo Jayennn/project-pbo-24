@@ -1,5 +1,7 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardUser;
 
+import io.github.jayennn.BlockchainVoting.session.SessionManager;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -19,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class DashboardUser extends JPanel {
+
+
 
   private JButton activeButton = null;
   private CardLayout cardLayout;
@@ -131,8 +135,7 @@ public class DashboardUser extends JPanel {
 
     JButton logoutBtn = createMenuButton("📚 Logout", false);
     logoutBtn.addActionListener(e -> {
-      // Handle logout logic here
-      System.out.println("Logout clicked");
+      SessionManager.getInstance().logout();
     });
     bottomSection.add(logoutBtn, BorderLayout.SOUTH);
 

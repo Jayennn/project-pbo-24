@@ -49,6 +49,12 @@ public class LoginGui extends JPanel implements ILoginView {
     JOptionPane.showMessageDialog(this, message);
   }
 
+  @Override
+  public void clearInput() {
+    usernameField.setText("");
+    passwordField.setText("");
+  }
+
   private void initUI() {
     setLayout(new BorderLayout());
 

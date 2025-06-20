@@ -35,13 +35,15 @@ public class LoginController {
       if (result) {
         SessionManager.getInstance().setUser(user);
         if (user.getRole().equals(Role.USER)) {
-          navigator.showPanel("DashboardAdminCard");
+          navigator.showPanel("DashboardUserCard");
         } else {
           navigator.showPanel("DashboardAdminCard");
         }
       }
+      SessionManager.getInstance().setUser(user);
     } catch (NoResultException e) {
       view.displayError("Invalid username or password");
     }
+    view.clearInput();
   }
 }

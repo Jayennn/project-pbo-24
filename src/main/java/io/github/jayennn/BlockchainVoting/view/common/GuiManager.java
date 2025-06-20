@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 
 import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
 import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
+import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.DashboardAdmin;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.DashboardUser;
 import io.github.jayennn.BlockchainVoting.view.login.LoginGui;
@@ -25,22 +26,20 @@ public class GuiManager extends JFrame implements Navigator {
 
   public GuiManager() {
     initializeFrame();
+    SessionManager.getInstance().setGuiManager(this);
 
     cardLayout = new CardLayout();
     mainPanel = new JPanel(cardLayout);
     add(mainPanel);
 
-    // DashboardUser dashboardUser = new DashboardUser(this);
-    // mainPanel.add(dashboardUser, "DashboardUserCard");
-    // cardLayout.show(mainPanel, "DashboardUserCard");
+     DashboardUser dashboardUser = new DashboardUser();
+     mainPanel.add(dashboardUser, "DashboardUserCard");
+//     cardLayout.show(mainPanel, "DashboardUserCard");
 
     // todo: change to interface later
-    // loginGui = new LoginGui();
-    // loginController = new LoginController(loginGui, this);
-    // loginGui.setLoginController(loginController);
-
-    // mainPanel.add(loginGui, "LoginCard");
-    // cardLayout.show(mainPanel, "LoginCard");
+     loginGui = new LoginGui();
+     loginController = new LoginController(loginGui, this);
+     loginGui.setLoginController(loginController);
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();
     mainPanel.add(dashboardAdmin, "DashboardAdminCard");
@@ -50,6 +49,10 @@ public class GuiManager extends JFrame implements Navigator {
     InfoPanel infoPanel = new InfoPanel();
     mainPanel.add(infoPanel, "InfoCard");
 
+    mainPanel.add(loginGui, "LoginCard");
+
+    cardLayout.show(mainPanel,"LoginCard");
+//    cardLayout.show(mainPanel, "DashboardUserCard");
   }
 
   @Override
