@@ -76,6 +76,7 @@ public class DashboardAdmin extends JPanel {
         btnLogout.addActionListener(e -> {
 
         });
+        sidebar.add(btnLogout);
         add(sidebar, BorderLayout.WEST);
         add(contentPanel, BorderLayout.CENTER);
 
@@ -99,6 +100,14 @@ public class DashboardAdmin extends JPanel {
         btnVoter.addActionListener(e -> {
             c1.show(contentPanel, "voters");
             switchActiveButton(btnVoter);
+        });
+
+        sidebar.addComponentListener(new  java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                int sidebarHeight = sidebar.getHeight();
+                btnLogout.setLocation(25, sidebarHeight - 60);
+            }
         });
 
     }
