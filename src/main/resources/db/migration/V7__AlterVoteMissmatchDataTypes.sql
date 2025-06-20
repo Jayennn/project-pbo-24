@@ -1,0 +1,3 @@
+ALTER TABLE votes DROP FOREIGN KEY votes_ibfk_3;
+ALTER TABLE `votes` CHANGE `voter_id` `voter_id` CHAR(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
+ALTER TABLE `votes` ADD CONSTRAINT `votes_ibfk_3` FOREIGN KEY (`voter_id`) REFERENCES `voters`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;

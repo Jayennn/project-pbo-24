@@ -7,65 +7,78 @@ import java.util.UUID;
 @Entity
 @Table(name = "candidates")
 public class Candidate {
-  @Id
-  @GeneratedValue(generator = "uuid2")
-  @Column(columnDefinition = "binary(16)")
-  private UUID uuid;
+    @Id
+    @GeneratedValue(generator = "uuid2")
+    @Column(columnDefinition = "binary(16)")
+    private UUID uuid;
 
-  @Column(length = 100)
-  private String name;
+    @Column(length = 100)
+    private String name;
 
-  private String vission;
+    private String vission;
 
-  private String mission;
+    private String mission;
 
-  @ManyToOne
-  @JoinColumn(name = "election_uuid")
-  private Election election;
+    @ManyToOne
+    @JoinColumn(name = "election_uuid")
+    private Election election;
 
-  public Candidate() {
-  }
+    @Column(name = "is_active")
+    private boolean isActive;
 
-  public Candidate(String name) {
-    this.name = name;
-    this.mission = "misi";
-    this.vission = "visi";
-  }
+    public Candidate(){}
 
-  public UUID getUuid() {
-    return uuid;
-  }
+    public Candidate(String name){
+        this.name = name;
+        this.mission = "misi";
+        this.vission = "visi";
+        this.isActive = true;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public UUID getUuid() {
+        return uuid;
+    }
 
-  public String getMission() {
-    return mission;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public String getVission() {
-    return vission;
-  }
+    public String getMission() {
+        return mission;
+    }
 
-  public Election getElection() {
-    return election;
-  }
+    public String getVission() {
+        return vission;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public Election getElection() {
+        return election;
+    }
 
-  public void setMission(String mission) {
-    this.mission = mission;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setVission(String vission) {
-    this.vission = vission;
-  }
+    public void setMission(String mission) {
+        this.mission = mission;
+    }
 
-  public void setElection(Election election) {
-    this.election = election;
-  }
+    public void setVission(String vission) {
+        this.vission = vission;
+    }
 
+    public void setElection(Election election) {
+        this.election = election;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
 }
+
+
+
