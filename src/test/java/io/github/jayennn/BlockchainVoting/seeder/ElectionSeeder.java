@@ -39,7 +39,15 @@ public class ElectionSeeder {
       // election1.setDateEnd("2024-12-31");
       election1.setActive(false);
 
+      Election election2 = new Election();
+      election2.setTitle("Local Council Election 2024");
+      election2.setDateStart(LocalDate.of(2024, 6, 1));
+      election2.setDateEnd(LocalDate.of(2024, 6, 30));
+      // election2.setDateEnd("2024-06-30");
+      election2.setActive(true);
+
       em.persist(election1);
+      em.persist(election2);
 
       System.out.println("Elections seeded successfully.");
       tx.commit();

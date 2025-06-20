@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.swing.text.html.parser.Entity;
 
 import io.github.jayennn.BlockchainVoting.entity.Candidate;
+import io.github.jayennn.BlockchainVoting.entity.Election;
 import io.github.jayennn.BlockchainVoting.utils.JpaManager;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -81,13 +82,14 @@ public class CandidateController {
     }
   }
 
-  public void addCandidate(String name, String mission, String vission) {
+  public void addCandidate(String name, String mission, String vission, Election election) {
     EntityManager em = JpaManager.getInstance().getEM();
     EntityTransaction tx = em.getTransaction();
 
     Candidate candidate = new Candidate(name);
     candidate.setMission(mission);
     candidate.setVission(vission);
+    candidate.setElection(election);
 
     try {
       tx.begin();
@@ -99,6 +101,37 @@ public class CandidateController {
       System.out.println("Candidate added successfully.");
     } catch (Exception e) {
       System.err.println("Error adding candidate: " + e.getMessage());
+      if (tx.isActive()) {
+        tx.rollback();
+      }
+    } finally {
+      em.close();
+    }
+  }
+
+  public void editCandidate(UUID id, String name, String mission, String vission, Election election) {
+    EntityManager em = JpaManager.getInstance().getEM();
+    EntityTransaction tx = em.getTransaction();
+
+    try {
+      tx.begin();
+      System.out.println("Updating candidate with ID: " + id);
+
+      Candidate existingCandidate = em.find(Candidate.class, id);
+      if (existingCandidate != null) {
+        existingCandidate.setName(name);
+        existingCandidate.setMission(mission);
+        existingCandidate.setVission(vission);
+        existingCandidate.setElection(election);
+        em.merge(existingCandidate);
+        System.out.println("Candidate updated successfully.");
+      } else {
+        System.out.println("Candidate not found with ID: " + id);
+      }
+
+      tx.commit();
+    } catch (Exception e) {
+      System.err.println("Error updating candidate: " + e.getMessage());
       if (tx.isActive()) {
         tx.rollback();
       }
