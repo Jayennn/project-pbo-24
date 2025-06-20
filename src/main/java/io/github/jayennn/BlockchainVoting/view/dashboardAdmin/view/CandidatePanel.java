@@ -111,9 +111,21 @@ public class CandidatePanel extends JPanel {
             String visi = visiArea.getText();
             String misi = misiArea.getText();
 
-            if (name.isEmpty() || visi.isEmpty() || misi.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Nama, Visi dan Misi tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
+            if (name.trim().isEmpty() || visi.trim().isEmpty() || misi.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nama, Visi dan Misi tidak boleh kosong", "Peringatan", JOptionPane.WARNING_MESSAGE);
                 return;
+            }
+
+            if (name.length() > 100 || visi.length() > 500 || misi.length() > 500) {
+                JOptionPane.showMessageDialog(this, "Teks terlalu panjang. Maksimal: Nama (100), Visi/Misi (500)", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (i != editingRow && name.equalsIgnoreCase(model.getValueAt(i, 0).toString().trim())) {
+                    JOptionPane.showMessageDialog(this, "Nama kandidat sudah terdaftar.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
             }
 
             if (editingRow == -1) {

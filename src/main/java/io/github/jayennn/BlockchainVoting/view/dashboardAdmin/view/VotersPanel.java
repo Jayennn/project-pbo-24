@@ -114,9 +114,21 @@ public class VotersPanel  extends JPanel {
             String nim = nimField.getText();
             String title = titleField.getText();
 
-            if (name.isEmpty() || nim.isEmpty() || title.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Semua Field Harus diisi.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (name.trim().isEmpty() || nim.trim().isEmpty() || title.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Semua Field Harus diisi.", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
+            }
+
+            if (!nim.matches("\\d{8}")) {
+                JOptionPane.showMessageDialog(this, "NIM harus 8 digit angka", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (i != editingRow && model.getValueAt(i, 1).toString().equals(nim)) {
+                    JOptionPane.showMessageDialog(this, "NIM sudah terdaftar", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
             }
 
             if (editingRow == -1) {

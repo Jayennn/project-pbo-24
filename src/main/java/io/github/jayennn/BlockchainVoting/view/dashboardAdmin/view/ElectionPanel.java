@@ -21,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -114,8 +113,23 @@ public class ElectionPanel extends JPanel {
 
         saveButton.addActionListener(e -> {
             String name = nameField.getText();
+            if (name.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nama pemilu tidak boleh kosong.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             java.sql.Date start = (java.sql.Date) startdatePicker.getModel().getValue();
             java.sql.Date end = (java.sql.Date) endDatePicker.getModel().getValue();
+
+            if (start == null || end == null) {
+                JOptionPane.showMessageDialog(this, "Tanggal Mulai dan Akhir harus dipilih", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (start.after(end)) {
+                JOptionPane.showMessageDialog(this, "Tangal mulai harus sebelum atau sama dengan tanggal selesai", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
             if (editingRow == -1) {
                 model.addRow(new Object[]{name, start.toString(), end.toString(), ""});
