@@ -1,5 +1,6 @@
 package io.github.jayennn.BlockchainVoting.utils;
 
+import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
 import io.github.jayennn.BlockchainVoting.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -22,6 +23,7 @@ public class JpaManagerTest {
 
         em.getTransaction().begin();
 
+        CandidateController candidateController;
         User user_1 = new User(Role.ADMIN,"bukabuka");
         user_1.setUsername("admin");
 

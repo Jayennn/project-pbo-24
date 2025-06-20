@@ -22,8 +22,6 @@ public class GuiManager extends JFrame implements Navigator {
   LoginController loginController;
   DashboardUser dashboardUser;
 
-  CandidateController candidateController;
-
   public GuiManager() {
     initializeFrame();
     SessionManager.getInstance().setGuiManager(this);
@@ -32,19 +30,14 @@ public class GuiManager extends JFrame implements Navigator {
     mainPanel = new JPanel(cardLayout);
     add(mainPanel);
 
-     DashboardUser dashboardUser = new DashboardUser();
-     mainPanel.add(dashboardUser, "DashboardUserCard");
-//     cardLayout.show(mainPanel, "DashboardUserCard");
+    loginGui = new LoginGui();
+    loginController = new LoginController(loginGui, this);
 
-    // todo: change to interface later
-     loginGui = new LoginGui();
-     loginController = new LoginController(loginGui, this);
-     loginGui.setLoginController(loginController);
+    dashboardUser = new DashboardUser();
+    mainPanel.add(dashboardUser, "DashboardUserCard");
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();
     mainPanel.add(dashboardAdmin, "DashboardAdminCard");
-    // cardLayout.show(mainPanel, "DashboardAdminCard");
-    // cardLayout.show(dashboardAdmin,"DashboardAdminCard");
 
     InfoPanel infoPanel = new InfoPanel();
     mainPanel.add(infoPanel, "InfoCard");
