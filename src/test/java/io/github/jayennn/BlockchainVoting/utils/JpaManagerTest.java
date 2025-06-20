@@ -115,9 +115,9 @@ public class JpaManagerTest {
 
     @ParameterizedTest(name = "electionUUID: {0},voterId: {1},candidateUUID: {2}")
     @CsvSource({
-            "0x0894110757f343e2963f83643e7c5ecb," +
+            "0x590bd72ca6ff4043b63b5baf72a325b0," +
                     "11241069," +
-                    "0x9c592d0963574824b46c1dbc5cdccb0d"
+                    "0x5f77fa41fae043da8502988193c16bef"
     })
     public void castVote(String AelectionUUID,String voterId, String AcandidateUUID){
         EntityManager em = JpaManager.getInstance().getEM();
