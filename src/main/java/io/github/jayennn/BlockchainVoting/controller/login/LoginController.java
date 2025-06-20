@@ -2,7 +2,6 @@ package io.github.jayennn.BlockchainVoting.controller.login;
 
 import io.github.jayennn.BlockchainVoting.entity.Role;
 import io.github.jayennn.BlockchainVoting.entity.User;
-import io.github.jayennn.BlockchainVoting.view.common.GuiManager;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.utils.JpaManager;
 import io.github.jayennn.BlockchainVoting.utils.UpdatableBcrypt;

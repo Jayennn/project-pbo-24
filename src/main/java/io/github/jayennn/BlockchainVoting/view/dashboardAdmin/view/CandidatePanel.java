@@ -24,7 +24,6 @@ public class CandidatePanel extends JPanel {
   private UUID electionId = null;
 
   private int editingRow = -1;
-  private String editingId = null;
 
   public CandidatePanel(CandidateController candidateController) {
     this.candidateController = candidateController;
@@ -160,7 +159,7 @@ public class CandidatePanel extends JPanel {
     JButton saveButton = new JButton("Save");
     JButton cancelButton = new JButton("Cancel");
 
-    saveButton.addActionListener(e -> saveCandidate());
+    saveButton.addActionListener(e -> onSubmit());
     cancelButton.addActionListener(e -> hideForm());
 
     buttonPanel.add(saveButton);
@@ -232,7 +231,6 @@ public class CandidatePanel extends JPanel {
     visiInput.setText(visi);
     misiInput.setText(misi);
     editingRow = row;
-    editingId = id;
     formPanel.setVisible(true);
     revalidate();
     repaint();
@@ -243,21 +241,35 @@ public class CandidatePanel extends JPanel {
     visiInput.setText("");
     misiInput.setText("");
     editingRow = -1;
-    editingId = null;
     formPanel.setVisible(false);
     revalidate();
     repaint();
   }
 
-  private void saveCandidate() {
+  private void onSubmit() {
     String name = nameInput.getText().trim();
     String visi = visiInput.getText().trim();
     String misi = misiInput.getText().trim();
 
-    if (name.isEmpty() || visi.isEmpty() || misi.isEmpty() || electionId == null) {
-      JOptionPane.showMessageDialog(this,
-          "Please fill in all fields and select an election.", "Error", JOptionPane.ERROR_MESSAGE);
+    if (name.trim().isEmpty() || visi.trim().isEmpty() || misi.trim().isEmpty() || electionId == null) {
+      JOptionPane.showMessageDialog(this, "Nama, Visi dan Misi tidak boleh kosong", "Warning",
+          JOptionPane.WARNING_MESSAGE);
       return;
+    }
+
+    if (name.length() > 100 || visi.length() > 500 || misi.length() > 500) {
+      JOptionPane.showMessageDialog(this, "Teks terlalu panjang. Maksimal: Nama (100), Visi/Misi (500)", "Warning",
+          JOptionPane.WARNING_MESSAGE);
+      return;
+    }
+
+    for (int i = 0; i < model.getRowCount(); i++) {
+      if (i != editingRow && name.equalsIgnoreCase(model.getValueAt(i, 0).toString().trim())) {
+        JOptionPane.showMessageDialog(this, "Nama kandidat sudah terdaftar.", "Warning",
+            JOptionPane.WARNING_MESSAGE);
+        return;
+      }
+
     }
 
     ElectionController electionController = new ElectionController();

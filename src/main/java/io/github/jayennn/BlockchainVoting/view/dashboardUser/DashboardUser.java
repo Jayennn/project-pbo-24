@@ -8,8 +8,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -263,17 +261,4 @@ public class DashboardUser extends JPanel {
     return new ElectionHistory();
   }
 
-  private JPanel createContentPanel(String labelText) {
-    JPanel panel = new JPanel();
-    panel.setLayout(new BorderLayout());
-    panel.setBackground(new Color(248, 249, 250));
-    panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-
-    JLabel label = new JLabel(labelText, SwingConstants.CENTER);
-    label.setFont(new Font("Arial", Font.BOLD, 24));
-    label.setForeground(new Color(51, 51, 51));
-
-    panel.add(label, BorderLayout.CENTER);
-    return panel;
-  }
 }
