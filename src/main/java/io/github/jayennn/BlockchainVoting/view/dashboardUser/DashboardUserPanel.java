@@ -1,5 +1,6 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardUser;
 
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.profile.ProfilePanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.sidebar.View;
 
 import java.awt.BorderLayout;
@@ -15,13 +16,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Panel extends JPanel implements io.github.jayennn.BlockchainVoting.view.dashboardUser.View {
+public class DashboardUserPanel extends JPanel implements DashboardUserView {
 
   private CardLayout cardLayout;
   private JPanel contentPanel;
+  private JPanel profilePanel;
   private io.github.jayennn.BlockchainVoting.view.dashboardUser.sidebar.Panel sidebar;
 
-  public Panel() {
+  public DashboardUserPanel() {
     initializeComponents();
   }
 
@@ -59,7 +61,8 @@ public class Panel extends JPanel implements io.github.jayennn.BlockchainVoting.
     contentPanel.setBackground(new Color(248, 249, 250));
 
     // Add content panels
-    contentPanel.add(createProfilePanel(), "profile");
+    profilePanel = new ProfilePanel();
+    contentPanel.add(profilePanel, "profile");
     contentPanel.add(createElectionPanel(), "election");
     contentPanel.add(createManageElectionPanel(), "manage");
 

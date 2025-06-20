@@ -7,19 +7,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import io.github.jayennn.BlockchainVoting.controller.dashboardUser.Controller;
+import io.github.jayennn.BlockchainVoting.controller.dashboardUser.DashboardUserController;
+import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.DashboardAdmin;
-import io.github.jayennn.BlockchainVoting.view.login.Panel;
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.DashboardUserPanel;
+import io.github.jayennn.BlockchainVoting.view.login.LoginPanel;
 
 public class GuiManager extends JFrame implements Navigator {
   private CardLayout cardLayout;
   private JPanel mainPanel;
 
-  Panel loginGui;
-  io.github.jayennn.BlockchainVoting.controller.login.Controller loginController;
-  io.github.jayennn.BlockchainVoting.view.dashboardUser.Panel dashboardUser;
-  Controller dashboardUserController;
+  LoginPanel loginGui;
+  LoginController loginController;
+  DashboardUserPanel dashboardUser;
+  DashboardUserController dashboardUserController;
 
   public GuiManager() {
     initializeFrame();
@@ -29,12 +31,12 @@ public class GuiManager extends JFrame implements Navigator {
     mainPanel = new JPanel(cardLayout);
     add(mainPanel);
 
-    loginGui = new Panel();
-    loginController = new io.github.jayennn.BlockchainVoting.controller.login.Controller(loginGui, this);
+    loginGui = new LoginPanel();
+    loginController = new LoginController(loginGui, this);
     mainPanel.add(loginGui, "LoginCard");
 
-    dashboardUser = new io.github.jayennn.BlockchainVoting.view.dashboardUser.Panel();
-    dashboardUserController = new Controller(dashboardUser);
+    dashboardUser = new DashboardUserPanel();
+    dashboardUserController = new DashboardUserController(dashboardUser);
     mainPanel.add(dashboardUser, "DashboardUserCard");
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();

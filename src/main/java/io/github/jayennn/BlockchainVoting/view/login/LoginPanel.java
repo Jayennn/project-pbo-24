@@ -20,14 +20,14 @@ import javax.swing.JTextField;
 
 import io.github.jayennn.BlockchainVoting.controller.login.LoginHandler;
 
-public class Panel extends JPanel implements View {
+public class LoginPanel extends JPanel implements LoginView {
   private JTextField usernameField;
   private JPasswordField passwordField;
   private JButton loginButton;
   private LoginHandler loginHandler;
 
 
-  public Panel() {
+  public LoginPanel() {
     initUI();
     System.out.println("Login GUI");
   }
