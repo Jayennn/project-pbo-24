@@ -1,4 +1,4 @@
-package io.github.jayennn.BlockchainVoting.view.dashboardUser;
+package io.github.jayennn.BlockchainVoting.view.dashboardUser.manage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,11 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class ElectionHistory extends JPanel {
+public class Manage extends JPanel {
 
   private List<HistoricalElection> historicalElections;
 
-  public ElectionHistory() {
+  public Manage() {
     initializeHistoricalElections();
     initializeComponents();
   }

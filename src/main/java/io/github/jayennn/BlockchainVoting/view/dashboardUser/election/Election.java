@@ -1,4 +1,4 @@
-package io.github.jayennn.BlockchainVoting.view.dashboardUser;
+package io.github.jayennn.BlockchainVoting.view.dashboardUser.election;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,11 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class ElectionPanel extends JPanel {
+public class Election extends JPanel {
 
-  private List<Election> elections;
+  private List<StaticElection> elections;
 
-  public ElectionPanel() {
+  public Election() {
     initializeElections();
     initializeComponents();
   }
@@ -30,9 +30,9 @@ public class ElectionPanel extends JPanel {
   private void initializeElections() {
     elections = new ArrayList<>();
     // Sample election data
-    elections.add(new Election("Pemilihan Ketua BEM", "11/7/2025", "Active"));
-    elections.add(new Election("Pemilihan Wakil Ketua BEM", "15/7/2025", "Upcoming"));
-    elections.add(new Election("Pemilihan Sekretaris", "20/7/2025", "Upcoming"));
+    elections.add(new StaticElection("Pemilihan Ketua BEM", "11/7/2025", "Active"));
+    elections.add(new StaticElection("Pemilihan Wakil Ketua BEM", "15/7/2025", "Upcoming"));
+    elections.add(new StaticElection("Pemilihan Sekretaris", "20/7/2025", "Upcoming"));
   }
 
   private void initializeComponents() {
@@ -91,7 +91,7 @@ public class ElectionPanel extends JPanel {
 
     // Add election cards
     for (int i = 0; i < elections.size(); i++) {
-      Election election = elections.get(i);
+      StaticElection election = elections.get(i);
       JPanel electionCard = createElectionCard(election);
       gbc.gridy = i;
       electionsPanel.add(electionCard, gbc);
@@ -108,7 +108,7 @@ public class ElectionPanel extends JPanel {
     return electionsPanel;
   }
 
-  private JPanel createElectionCard(Election election) {
+  private JPanel createElectionCard(StaticElection election) {
     JPanel card = new JPanel();
     card.setLayout(new BorderLayout());
     card.setBackground(Color.WHITE);
@@ -169,7 +169,7 @@ public class ElectionPanel extends JPanel {
     return card;
   }
 
-  private JButton createVoteButton(Election election) {
+  private JButton createVoteButton(StaticElection election) {
     JButton button = new JButton("Vote");
     button.setFont(new Font("Arial", Font.BOLD, 14));
     button.setForeground(new Color(51, 51, 51));
@@ -212,19 +212,19 @@ public class ElectionPanel extends JPanel {
     return button;
   }
 
-  private void handleVoteClick(Election election) {
+  private void handleVoteClick(StaticElection election) {
     // Handle vote button click
     System.out.println("Vote clicked for: " + election.getTitle());
     // Here you would typically open a voting dialog or navigate to voting page
   }
 
   // Inner class to represent an Election
-  private static class Election {
+  private static class StaticElection {
     private String title;
     private String date;
     private String status;
 
-    public Election(String title, String date, String status) {
+    public StaticElection(String title, String date, String status) {
       this.title = title;
       this.date = date;
       this.status = status;
