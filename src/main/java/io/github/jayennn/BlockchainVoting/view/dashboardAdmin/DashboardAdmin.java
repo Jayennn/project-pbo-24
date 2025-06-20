@@ -1,4 +1,5 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardAdmin;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -12,131 +13,142 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import io.github.jayennn.BlockchainVoting.view.common.GuiManager;
+import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.StatisticPanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.CandidatePanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.ManageElectionPanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.VotersPanel;
 
 public class DashboardAdmin extends JPanel {
-    static JButton activeteButton = null;
 
-    public DashboardAdmin() {
-        setLayout(null);
-        setPreferredSize(new Dimension(1000, 700));
+  private CandidateController candidateController;
 
-        JPanel sidebar = new JPanel();
-        sidebar.setLayout(null);
-        sidebar.setBounds(0, 0, 300, 700);
-        sidebar.setBackground(Color.WHITE);
+  static JButton activeteButton = null;
 
-        ImageIcon logoIcon = new ImageIcon(getClass().getResource("/assets/itk.png"));
-        Image scaledLogo = logoIcon.getImage().getScaledInstance(200, 80, Image.SCALE_SMOOTH);
-        ImageIcon resizedLogo = new ImageIcon(scaledLogo);
+  public DashboardAdmin() {
+    this.candidateController = new CandidateController();
+    initializeComponents();
+  }
 
-        JLabel logoLabel = new JLabel(resizedLogo);
-        logoLabel.setBounds(50, 20, 200, 80);
-        sidebar.add(logoLabel);
+  public void initializeComponents() {
+    setLayout(new BorderLayout());
 
-        JPanel contentPanel = new JPanel(new CardLayout());
-        contentPanel.setBounds(300, 0, 700, 700);
+    JPanel sidebar = new JPanel();
+    sidebar.setLayout(null);
+    sidebar.setPreferredSize(new Dimension(300, 700));
+    sidebar.setBackground(Color.WHITE);
 
-        JPanel statisticPanel = createContentPanel("Halaman vote static");
-        contentPanel.add(statisticPanel, "statistic");
+    ImageIcon logoIcon = new ImageIcon(getClass().getResource("/assets/itk.png"));
+    Image scaledLogo = logoIcon.getImage().getScaledInstance(200, 80, Image.SCALE_SMOOTH);
+    ImageIcon resizedLogo = new ImageIcon(scaledLogo);
 
-        JPanel candidatesPanel = createContentPanel("haman manage candidates");
-        contentPanel.add(candidatesPanel, "candidates");
+    JLabel logoLabel = new JLabel(resizedLogo);
+    logoLabel.setBounds(50, 20, 200, 80);
+    sidebar.add(logoLabel);
 
-        JPanel electionPanel = createContentPanel("Halaman manage election");
-        contentPanel.add(electionPanel, "election");
+    JPanel contentPanel = new JPanel(new CardLayout());
 
-        JPanel votersPanel = createContentPanel("Halaman manage vote");
-        contentPanel.add(votersPanel, "voters");
+    StatisticPanel statisticPanel = new StatisticPanel();
+    contentPanel.add(statisticPanel, "statistic");
 
-        JButton btnStatistic = createMenuButton("votes Statistic", true);
-        btnStatistic.setBounds(25, 150, 250, 40);
-        sidebar.add(btnStatistic);
-        activeteButton = btnStatistic;
+    // Create the candidate panel with the controller
+    CandidatePanel candidatePanel = new CandidatePanel(candidateController);
+    contentPanel.add(candidatePanel, "candidate");
 
-        JButton btnCandidates = createMenuButton("Manage Candidates", false);
-        btnCandidates.setBounds(25, 200, 250, 40);
-        sidebar.add(btnCandidates);
+    ManageElectionPanel electionPanel = new ManageElectionPanel();
+    contentPanel.add(electionPanel, "election");
 
-        JButton btnelection = createMenuButton("Manage Election", false);
-        btnelection.setBounds(25, 250, 250, 40);
-        sidebar.add(btnelection);
+    VotersPanel votersPanel = new VotersPanel();
+    contentPanel.add(votersPanel, "voters");
 
-        JButton btnVoter = createMenuButton("Manage Voter", false);
-        btnVoter.setBounds(25, 300, 250, 40);
-        sidebar.add(btnVoter);
+    JButton btnStatistic = createMenuButton("votes Statistic", true);
+    btnStatistic.setBounds(25, 150, 250, 40);
+    sidebar.add(btnStatistic);
 
-        JButton btnLogout = createMenuButton("Logout", false);
-        btnLogout.setBounds(25, 600, 250, 40);
-        btnLogout.setFocusPainted(false);
-        btnLogout.setBackground(Color.WHITE);
-        btnLogout.setBorderPainted(false);
-        btnLogout.setHorizontalAlignment(SwingConstants.LEFT);
-        btnLogout.addActionListener(e -> {
+    // set the active button
+    activeteButton = btnStatistic;
 
-        });
-        sidebar.add(btnLogout);
+    JButton btnCandidate = createMenuButton("Manage Candidate", false);
+    btnCandidate.setBounds(25, 200, 250, 40);
+    sidebar.add(btnCandidate);
 
-        CardLayout c1 = (CardLayout) contentPanel.getLayout();
+    JButton btnelection = createMenuButton("Manage Election", false);
+    btnelection.setBounds(25, 250, 250, 40);
+    sidebar.add(btnelection);
 
-        btnStatistic.addActionListener(e -> {
-            c1.show(contentPanel, "statistic");
-            switchActiveButton(btnStatistic);
-        });
+    JButton btnVoter = createMenuButton("Manage Voters", false);
+    btnVoter.setBounds(25, 300, 250, 40);
+    sidebar.add(btnVoter);
 
-        btnCandidates.addActionListener(e -> {
-            c1.show(contentPanel, "candidates");
-            switchActiveButton(btnCandidates);
-        });
+    JButton btnLogout = createMenuButton("Logout", false);
+    btnLogout.setBounds(25, 600, 250, 40);
+    btnLogout.setFocusPainted(false);
+    btnLogout.setBackground(Color.WHITE);
+    btnLogout.setBorderPainted(false);
+    btnLogout.setHorizontalAlignment(SwingConstants.LEFT);
+    btnLogout.addActionListener(e -> {
 
-        btnelection.addActionListener(e -> {
-            c1.show(contentPanel, "election");
-            switchActiveButton(btnelection);
-        });
+    });
+    add(sidebar, BorderLayout.WEST);
+    add(contentPanel, BorderLayout.CENTER);
 
-        btnVoter.addActionListener(e -> {
-            c1.show(contentPanel, "voters");
-            switchActiveButton(btnVoter);
-        });
+    CardLayout c1 = (CardLayout) contentPanel.getLayout();
 
-        this.add(sidebar);
-        this.add(contentPanel);
+    btnStatistic.addActionListener(e -> {
+      c1.show(contentPanel, "statistic");
+      switchActiveButton(btnStatistic);
+    });
+
+    btnCandidate.addActionListener(e -> {
+      c1.show(contentPanel, "candidate");
+      switchActiveButton(btnCandidate);
+    });
+
+    btnelection.addActionListener(e -> {
+      c1.show(contentPanel, "election");
+      switchActiveButton(btnelection);
+    });
+
+    btnVoter.addActionListener(e -> {
+      c1.show(contentPanel, "voters");
+      switchActiveButton(btnVoter);
+    });
+
+  }
+
+  private static JPanel createContentPanel(String labelTex) {
+    JPanel panel = new JPanel();
+    panel.setLayout(new BorderLayout());
+    JLabel label = new JLabel(labelTex, SwingConstants.CENTER);
+    label.setFont(new Font("arial", Font.BOLD, 24));
+    panel.add(label, BorderLayout.CENTER);
+    return panel;
+  }
+
+  private static JButton createMenuButton(String text, boolean active) {
+    JButton button = new JButton(text);
+    button.setFocusPainted(false);
+    button.setHorizontalAlignment(SwingConstants.LEFT);
+    button.setBackground(active ? Color.LIGHT_GRAY : Color.WHITE);
+    button.setBorderPainted(false);
+    return button;
+  }
+
+  private static void switchActiveButton(JButton newButton) {
+    if (activeteButton != null) {
+      setInactiveStyle(activeteButton);
     }
+    activeteButton = newButton;
+    setActiveStyle(activeteButton);
+  }
 
+  private static void setActiveStyle(JButton button) {
+    button.setBackground(Color.LIGHT_GRAY);
+    button.setFont(button.getFont().deriveFont(Font.BOLD));
+  }
 
-    private static JPanel createContentPanel(String labelTex) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        JLabel label = new JLabel(labelTex, SwingConstants.CENTER);
-        label.setFont(new Font("arial", Font.BOLD, 24));
-        panel.add(label, BorderLayout.CENTER);
-        return panel;
-    }
-
-    private static JButton createMenuButton(String text, boolean active) {
-        JButton button = new JButton(text);
-        button.setFocusPainted(false);
-        button.setHorizontalAlignment(SwingConstants.LEFT);
-        button.setBackground(active ? Color.LIGHT_GRAY : Color.WHITE);
-        button.setBorderPainted(false);
-        return button;
-    }
-
-    private static void switchActiveButton(JButton newButton) {
-        if (activeteButton != null) {
-            setInactiveStyle(activeteButton);
-        }
-        activeteButton = newButton;
-        setActiveStyle(activeteButton);
-    }
-
-    private static void setActiveStyle(JButton button) {
-        button.setBackground(Color.LIGHT_GRAY);
-        button.setFont(button.getFont().deriveFont(Font.BOLD));
-    }
-
-    private static void setInactiveStyle(JButton button) {
-        button.setBackground(Color.white);
-        button.setFont(button.getFont().deriveFont(Font.PLAIN));
-    }
+  private static void setInactiveStyle(JButton button) {
+    button.setBackground(Color.white);
+    button.setFont(button.getFont().deriveFont(Font.PLAIN));
+  }
 }

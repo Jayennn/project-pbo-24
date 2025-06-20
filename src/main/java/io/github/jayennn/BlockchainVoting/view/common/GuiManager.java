@@ -1,9 +1,13 @@
 package io.github.jayennn.BlockchainVoting.view.common;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
 import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.DashboardAdmin;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.DashboardUser;
@@ -12,9 +16,12 @@ import io.github.jayennn.BlockchainVoting.view.login.LoginGui;
 public class GuiManager extends JFrame implements Navigator {
   private CardLayout cardLayout;
   private JPanel mainPanel;
+
   LoginGui loginGui;
   LoginController loginController;
   DashboardUser dashboardUser;
+
+  CandidateController candidateController;
 
   public GuiManager() {
     initializeFrame();
@@ -23,16 +30,21 @@ public class GuiManager extends JFrame implements Navigator {
     mainPanel = new JPanel(cardLayout);
     add(mainPanel);
 
-    // todo: change to interface later
-    loginGui = new LoginGui();
-    loginController = new LoginController(loginGui, this);
-    loginGui.setLoginController(loginController);
+    // DashboardUser dashboardUser = new DashboardUser(this);
+    // mainPanel.add(dashboardUser, "DashboardUserCard");
+    // cardLayout.show(mainPanel, "DashboardUserCard");
 
-    mainPanel.add(loginGui, "LoginCard");
-    cardLayout.show(mainPanel, "LoginCard");
+    // todo: change to interface later
+    // loginGui = new LoginGui();
+    // loginController = new LoginController(loginGui, this);
+    // loginGui.setLoginController(loginController);
+
+    // mainPanel.add(loginGui, "LoginCard");
+    // cardLayout.show(mainPanel, "LoginCard");
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();
     mainPanel.add(dashboardAdmin, "DashboardAdminCard");
+    // cardLayout.show(mainPanel, "DashboardAdminCard");
     // cardLayout.show(dashboardAdmin,"DashboardAdminCard");
 
     InfoPanel infoPanel = new InfoPanel();
