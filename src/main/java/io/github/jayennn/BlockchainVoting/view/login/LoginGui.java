@@ -7,8 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.SwingUtilities;
-import javax.swing.JRootPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
 
@@ -67,7 +67,7 @@ public class LoginGui extends JPanel implements ILoginView{
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setOpaque(false);
         formPanel.setLayout(new GridBagLayout());
-        formPanel.setBackground(new Color(255, 255, 255, 220));
+        formPanel.setBackground(new Color(255, 255, 255, 80));
         formPanel.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLineBorder(new Color(0, 120, 215)),
             BorderFactory.createEmptyBorder(30, 30, 30, 30)
