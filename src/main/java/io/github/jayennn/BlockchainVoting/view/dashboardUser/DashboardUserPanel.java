@@ -1,6 +1,7 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardUser;
 
-import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.Election;
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.ElectionPanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.ElectionView;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.manage.Manage;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.profile.ProfilePanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.profile.ProfileView;
@@ -51,6 +52,11 @@ public class DashboardUserPanel extends JPanel implements DashboardUserView {
     return contentPanel;
   }
 
+  @Override
+  public ElectionView getElectionView() {
+    return (ElectionView) electionPanel;
+  }
+
   public void initializeComponents() {
     setLayout(new BorderLayout());
     setBackground(Color.WHITE);
@@ -66,7 +72,7 @@ public class DashboardUserPanel extends JPanel implements DashboardUserView {
 
     // Add content panels
     profilePanel = new ProfilePanel();
-    electionPanel = new Election();
+    electionPanel = new ElectionPanel();
     manage = new Manage();
     contentPanel.add(profilePanel, "profile");
     contentPanel.add(electionPanel, "election");

@@ -1,6 +1,7 @@
 package io.github.jayennn.BlockchainVoting.controller.dashboardUser.profile;
 
 import io.github.jayennn.BlockchainVoting.controller.dashboardUser.PostLogin;
+import io.github.jayennn.BlockchainVoting.entity.Role;
 import io.github.jayennn.BlockchainVoting.entity.User;
 import io.github.jayennn.BlockchainVoting.entity.Vote;
 import io.github.jayennn.BlockchainVoting.entity.Voter;
@@ -26,11 +27,12 @@ public class ProfileController implements PostLogin {
     }
     @Override
     public void initiate(){
-
-        votingHistoryCard.clearContent();
-        personalInfoCard.clearContent();
-        updateProfileInfo();
-        updateVotingHistory();
+        if (SessionManager.getInstance().getUser().getRole() == Role.USER) {
+            votingHistoryCard.clearContent();
+            personalInfoCard.clearContent();
+            updateProfileInfo();
+            updateVotingHistory();
+        }
     }
 
     private void updateProfileInfo(){

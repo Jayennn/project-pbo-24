@@ -18,11 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class Election extends JPanel {
+public class ElectionPanel extends JPanel implements ElectionView{
 
   private List<StaticElection> elections;
+  private JPanel electionsPanel;
 
-  public Election() {
+  public ElectionPanel() {
     initializeElections();
     initializeComponents();
   }
@@ -35,6 +36,11 @@ public class Election extends JPanel {
     elections.add(new StaticElection("Pemilihan Sekretaris", "20/7/2025", "Upcoming"));
   }
 
+  @Override
+  public void addElection(String title, String date,String status){
+    elections.add(new StaticElection(title,date,status));
+  }
+
   private void initializeComponents() {
     setLayout(new BorderLayout());
     setBackground(new Color(248, 249, 250));
@@ -45,7 +51,7 @@ public class Election extends JPanel {
     add(headerPanel, BorderLayout.NORTH);
 
     // Elections list
-    JPanel electionsPanel = createElectionsPanel();
+    electionsPanel = createElectionsPanel();
     JScrollPane scrollPane = new JScrollPane(electionsPanel);
     scrollPane.setBorder(null);
     scrollPane.setBackground(new Color(248, 249, 250));
@@ -78,6 +84,7 @@ public class Election extends JPanel {
     return headerPanel;
   }
 
+
   private JPanel createElectionsPanel() {
     JPanel electionsPanel = new JPanel();
     electionsPanel.setLayout(new GridBagLayout());
@@ -106,6 +113,12 @@ public class Election extends JPanel {
     electionsPanel.add(spacer, gbc);
 
     return electionsPanel;
+  }
+
+  @Override
+  public void updateElectionsPanel() {
+    electionsPanel = createElectionsPanel();
+    System.out.println(electionsPanel);
   }
 
   private JPanel createElectionCard(StaticElection election) {
