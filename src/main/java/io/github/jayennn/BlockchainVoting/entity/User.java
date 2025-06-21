@@ -59,6 +59,10 @@ public class User {
         this.voter = voter;
     }
 
+    public Voter getVoter() {
+        return voter;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }

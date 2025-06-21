@@ -23,12 +23,16 @@ public class Candidate {
     @JoinColumn(name = "election_uuid")
     private Election election;
 
+    @Column(name = "is_active")
+    private boolean isActive;
+
     public Candidate(){}
 
     public Candidate(String name){
         this.name = name;
         this.mission = "misi";
         this.vission = "visi";
+        this.isActive = true;
     }
 
     public UUID getUuid() {
@@ -66,5 +70,15 @@ public class Candidate {
     public void setElection(Election election) {
         this.election = election;
     }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
 }
+
+
 

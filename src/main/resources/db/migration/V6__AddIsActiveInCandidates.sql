@@ -1,0 +1,1 @@
+ALTER TABLE `candidates` ADD `is_active` TINYINT(1) NOT NULL AFTER `election_uuid`;

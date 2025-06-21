@@ -12,7 +12,7 @@ public class UpdatableBcryptTest {
         UpdatableBcrypt UBcrypt = new UpdatableBcrypt(12);
 
         String hashedPassword = UBcrypt.hash(password);
-
+        System.out.println(hashedPassword);
         boolean result = UBcrypt.verifyHash(inputPass,hashedPassword);
         System.out.println(result);
     }
