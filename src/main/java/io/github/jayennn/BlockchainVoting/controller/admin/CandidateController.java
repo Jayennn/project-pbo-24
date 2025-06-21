@@ -1,11 +1,8 @@
 package io.github.jayennn.BlockchainVoting.controller.admin;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-
-import javax.swing.text.html.parser.Entity;
 
 import io.github.jayennn.BlockchainVoting.entity.Candidate;
 import io.github.jayennn.BlockchainVoting.entity.Election;

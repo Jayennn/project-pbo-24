@@ -1,7 +1,5 @@
 package io.github.jayennn.BlockchainVoting.seeder;
 
-import static org.junit.Assert.assertTrue;
-
 import java.time.LocalDate;
 
 import org.junit.Test;

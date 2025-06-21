@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.util.Objects;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,19 +15,27 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
+import io.github.jayennn.BlockchainVoting.controller.admin.ElectionController;
+import io.github.jayennn.BlockchainVoting.controller.admin.VoterController;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.StatisticPanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.CandidatePanel;
-import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.ManageElectionPanel;
+import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.ElectionPanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.VotersPanel;
 
 public class DashboardAdmin extends JPanel {
 
   private CandidateController candidateController;
+  private ElectionController electionController;
+  private VoterController voterController;
+
+  private VotersPanel votersPanel;
 
   static JButton activeteButton = null;
 
   public DashboardAdmin() {
     this.candidateController = new CandidateController();
+    this.electionController = new ElectionController();
+    this.voterController = new VoterController();
     initializeComponents();
   }
 
@@ -38,7 +47,7 @@ public class DashboardAdmin extends JPanel {
     sidebar.setPreferredSize(new Dimension(300, 700));
     sidebar.setBackground(Color.WHITE);
 
-    ImageIcon logoIcon = new ImageIcon(getClass().getResource("/assets/itk.png"));
+    ImageIcon logoIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/itk.png")));
     Image scaledLogo = logoIcon.getImage().getScaledInstance(200, 80, Image.SCALE_SMOOTH);
     ImageIcon resizedLogo = new ImageIcon(scaledLogo);
 
@@ -46,20 +55,7 @@ public class DashboardAdmin extends JPanel {
     logoLabel.setBounds(50, 20, 200, 80);
     sidebar.add(logoLabel);
 
-    JPanel contentPanel = new JPanel(new CardLayout());
-
-    StatisticPanel statisticPanel = new StatisticPanel();
-    contentPanel.add(statisticPanel, "statistic");
-
-    // Create the candidate panel with the controller
-    CandidatePanel candidatePanel = new CandidatePanel(candidateController);
-    contentPanel.add(candidatePanel, "candidate");
-
-    ManageElectionPanel electionPanel = new ManageElectionPanel();
-    contentPanel.add(electionPanel, "election");
-
-    VotersPanel votersPanel = new VotersPanel();
-    contentPanel.add(votersPanel, "voters");
+    JPanel contentPanel = getJPanel();
 
     JButton btnStatistic = createMenuButton("votes Statistic", true);
     btnStatistic.setBounds(25, 150, 250, 40);
@@ -110,19 +106,29 @@ public class DashboardAdmin extends JPanel {
     });
 
     btnVoter.addActionListener(e -> {
+      votersPanel.reset();
       c1.show(contentPanel, "voters");
       switchActiveButton(btnVoter);
     });
 
   }
 
-  private static JPanel createContentPanel(String labelTex) {
-    JPanel panel = new JPanel();
-    panel.setLayout(new BorderLayout());
-    JLabel label = new JLabel(labelTex, SwingConstants.CENTER);
-    label.setFont(new Font("arial", Font.BOLD, 24));
-    panel.add(label, BorderLayout.CENTER);
-    return panel;
+  private JPanel getJPanel() {
+    JPanel contentPanel = new JPanel(new CardLayout());
+
+    StatisticPanel statisticPanel = new StatisticPanel();
+    contentPanel.add(statisticPanel, "statistic");
+
+    CandidatePanel candidatePanel = new CandidatePanel(candidateController);
+    contentPanel.add(candidatePanel, "candidate");
+
+    ElectionPanel electionPanel = new ElectionPanel(electionController);
+    contentPanel.add(electionPanel, "election");
+
+    votersPanel = new VotersPanel(voterController);
+    contentPanel.add(votersPanel, "voters");
+
+    return contentPanel;
   }
 
   private static JButton createMenuButton(String text, boolean active) {

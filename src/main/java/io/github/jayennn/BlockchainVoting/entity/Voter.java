@@ -20,10 +20,14 @@ public class Voter {
   @Enumerated(EnumType.STRING)
   private Gender gender;
 
-  private Voter() {
+  public Voter() {
   }
 
   public Voter(String id) {
+    this.id = id;
+  }
+
+  public void setId(String id) {
     this.id = id;
   }
 
