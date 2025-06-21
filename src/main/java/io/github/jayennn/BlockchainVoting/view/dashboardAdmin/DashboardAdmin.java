@@ -14,9 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.mysql.cj.Session;
 import io.github.jayennn.BlockchainVoting.controller.admin.CandidateController;
 import io.github.jayennn.BlockchainVoting.controller.admin.ElectionController;
 import io.github.jayennn.BlockchainVoting.controller.admin.VoterController;
+import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.StatisticPanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.CandidatePanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardAdmin.view.ElectionPanel;
@@ -76,6 +78,7 @@ public class DashboardAdmin extends JPanel {
     btnVoter.setBounds(25, 300, 250, 40);
     sidebar.add(btnVoter);
 
+
     JButton btnLogout = createMenuButton("Logout", false);
     btnLogout.setBounds(25, 600, 250, 40);
     btnLogout.setFocusPainted(false);
@@ -83,8 +86,9 @@ public class DashboardAdmin extends JPanel {
     btnLogout.setBorderPainted(false);
     btnLogout.setHorizontalAlignment(SwingConstants.LEFT);
     btnLogout.addActionListener(e -> {
-
+      SessionManager.getInstance().logout();
     });
+    sidebar.add(btnLogout);
     add(sidebar, BorderLayout.WEST);
     add(contentPanel, BorderLayout.CENTER);
 

@@ -24,21 +24,7 @@ public class ElectionPanel extends JPanel implements ElectionView{
   private JPanel electionsPanel;
 
   public ElectionPanel() {
-    initializeElections();
-    initializeComponents();
-  }
-
-  private void initializeElections() {
     elections = new ArrayList<>();
-    // Sample election data
-    elections.add(new StaticElection("Pemilihan Ketua BEM", "11/7/2025", "Active"));
-    elections.add(new StaticElection("Pemilihan Wakil Ketua BEM", "15/7/2025", "Upcoming"));
-    elections.add(new StaticElection("Pemilihan Sekretaris", "20/7/2025", "Upcoming"));
-  }
-
-  @Override
-  public void addElection(String title, String date,String status){
-    elections.add(new StaticElection(title,date,status));
   }
 
   private void initializeComponents() {
@@ -116,9 +102,15 @@ public class ElectionPanel extends JPanel implements ElectionView{
   }
 
   @Override
+  public void addElection(String title, String date,String status){
+    elections.add(new StaticElection(title,date,status));
+  }
+
+  @Override
   public void updateElectionsPanel() {
-    electionsPanel = createElectionsPanel();
-    System.out.println(electionsPanel);
+    initializeComponents();
+
+    System.out.println("total election = "+elections.size());
   }
 
   private JPanel createElectionCard(StaticElection election) {

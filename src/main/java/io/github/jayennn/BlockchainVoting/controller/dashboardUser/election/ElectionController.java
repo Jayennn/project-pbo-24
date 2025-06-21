@@ -16,8 +16,8 @@ public class ElectionController implements PostLogin {
 
     @Override
     public void initiate() {
-        getAllElection();
         System.out.println("election init");
+        getAllElection();
     }
 
     public void getAllElection(){
@@ -29,9 +29,7 @@ public class ElectionController implements PostLogin {
         for(Election election:elections){
             System.out.println(election.getTitle());
             view.addElection(election.getTitle(),election.getDateStart().toString(),election.isActive()?"Active":"Upcoming");
-        }
-
-        ;
+        };
 
         view.updateElectionsPanel();
     }
