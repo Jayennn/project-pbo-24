@@ -1,0 +1,1 @@
+ALTER TABLE `voters` DROP `public_key`;
