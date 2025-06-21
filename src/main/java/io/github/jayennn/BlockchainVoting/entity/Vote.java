@@ -39,11 +39,23 @@ public class Vote {
     this.candidate = candidate;
   }
 
+  public Candidate getCandidate() {
+    return candidate;
+  }
+
   public void setElection(Election election) {
     this.election = election;
   }
 
+  public Election getElection() {
+    return election;
+  }
+
   public void setTimestamp(LocalDateTime timestamp) {
     this.timestamp = timestamp;
+  }
+
+  public LocalDateTime getTimestamp() {
+    return timestamp;
   }
 }

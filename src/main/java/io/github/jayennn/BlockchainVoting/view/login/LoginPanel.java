@@ -18,35 +18,44 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import io.github.jayennn.BlockchainVoting.controller.login.LoginController;
+import io.github.jayennn.BlockchainVoting.controller.login.LoginHandler;
 
-public class LoginGui extends JPanel implements ILoginView {
-  private LoginController loginController;
+public class LoginPanel extends JPanel implements LoginView {
   private JTextField usernameField;
   private JPasswordField passwordField;
+  private JButton loginButton;
+  private LoginHandler loginHandler;
 
-  public LoginGui() {
+
+  public LoginPanel() {
     initUI();
     System.out.println("Login GUI");
   }
 
-  public void setLoginController(LoginController loginController) {
-    this.loginController = loginController;
-  }
-
   @Override
-  public String getUsernameInput() {
+  public String getUsername() {
     return usernameField.getText();
   }
 
   @Override
-  public String getPasswordInput() {
+  public String getPassword() {
     return new String(passwordField.getPassword());
   }
 
   @Override
   public void displayError(String message) {
     JOptionPane.showMessageDialog(this, message);
+  }
+
+  @Override
+  public void clearFields() {
+    usernameField.setText("");
+    passwordField.setText("");
+  }
+
+  @Override
+  public void setLoginHandler(LoginHandler loginHandler) {
+    this.loginHandler = loginHandler;
   }
 
   private void initUI() {
@@ -110,15 +119,18 @@ public class LoginGui extends JPanel implements ILoginView {
     gbc.gridwidth = 2;
     gbc.fill = GridBagConstraints.NONE;
     gbc.anchor = GridBagConstraints.CENTER;
-    JButton loginButton = new JButton("Login");
+    loginButton = new JButton("Login");
     loginButton.setPreferredSize(new Dimension(100, 30));
     loginButton.setBackground(new Color(0, 120, 215));
     loginButton.setForeground(Color.WHITE);
     formPanel.add(loginButton, gbc);
 
     loginButton.addActionListener(e -> {
-      loginController.validate();
+      if (loginHandler!=null){
+        loginHandler.handle(getUsername(),getPassword());
+      }
     });
+
     SwingUtilities.invokeLater(() -> {
       JRootPane rootPane = SwingUtilities.getRootPane(formPanel);
       if (rootPane != null) {
