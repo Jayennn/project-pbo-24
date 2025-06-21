@@ -31,13 +31,14 @@ public class GuiManager extends JFrame implements Navigator {
     mainPanel = new JPanel(cardLayout);
     add(mainPanel);
 
-    loginGui = new LoginPanel();
-    loginController = new LoginController(loginGui, this);
-    mainPanel.add(loginGui, "LoginCard");
 
     dashboardUser = new DashboardUserPanel();
     dashboardUserController = new DashboardUserController(dashboardUser);
     mainPanel.add(dashboardUser, "DashboardUserCard");
+
+    loginGui = new LoginPanel();
+    loginController = new LoginController(loginGui, this,dashboardUserController);
+    mainPanel.add(loginGui, "LoginCard");
 
     DashboardAdmin dashboardAdmin = new DashboardAdmin();
     mainPanel.add(dashboardAdmin, "DashboardAdminCard");

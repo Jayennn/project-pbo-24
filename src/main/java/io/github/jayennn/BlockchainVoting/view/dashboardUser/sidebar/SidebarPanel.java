@@ -6,11 +6,11 @@ import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class Panel extends JPanel implements View {
+public class SidebarPanel extends JPanel implements SIdebarView {
     private JButton activeButton;
     private SwitchPanelHandler switchPanelHandler;
 
-    public Panel(){
+    public SidebarPanel(){
         setLayout(new BorderLayout());
         setPreferredSize(new java.awt.Dimension(280, 700));
         setBackground(Color.WHITE);

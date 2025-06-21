@@ -1,5 +1,7 @@
 package io.github.jayennn.BlockchainVoting.controller.login;
 
+import io.github.jayennn.BlockchainVoting.controller.dashboardUser.DashboardUserController;
+import io.github.jayennn.BlockchainVoting.controller.dashboardUser.PostLogin;
 import io.github.jayennn.BlockchainVoting.entity.Role;
 import io.github.jayennn.BlockchainVoting.entity.User;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
@@ -13,11 +15,13 @@ import jakarta.persistence.NoResultException;
 public class LoginController {
   private LoginView view;
   private Navigator navigator;
+  private DashboardUserController dashboardUserController;
 
-  public LoginController(LoginView view, Navigator navigator) {
+  public LoginController(LoginView view, Navigator navigator,DashboardUserController dashboardUserController) {
     this.view = view;
     this.navigator = navigator;
     this.view.setLoginHandler(this::authenticate);
+    this.dashboardUserController = dashboardUserController;
   }
 
   public void authenticate(String username,String password) {
@@ -40,6 +44,9 @@ public class LoginController {
           navigator.showPanel("DashboardAdminCard");
         }
         SessionManager.getInstance().setUser(user);
+        for (PostLogin controller : dashboardUserController.getPostLoginControllers()){
+          controller.initiate();
+        }
       }else{
         throw new NoResultException();
       }

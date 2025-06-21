@@ -3,7 +3,9 @@ package io.github.jayennn.BlockchainVoting.view.dashboardUser;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.Election;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.manage.Manage;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.profile.ProfilePanel;
-import io.github.jayennn.BlockchainVoting.view.dashboardUser.sidebar.View;
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.profile.ProfileView;
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.sidebar.SIdebarView;
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.sidebar.SidebarPanel;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -18,15 +20,20 @@ public class DashboardUserPanel extends JPanel implements DashboardUserView {
   private JPanel profilePanel;
   private JPanel electionPanel;
   private JPanel manage;
-  private io.github.jayennn.BlockchainVoting.view.dashboardUser.sidebar.Panel sidebar;
+  private SidebarPanel sidebar;
 
   public DashboardUserPanel() {
     initializeComponents();
   }
 
   @Override
-  public View getSidebarView() {
+  public SIdebarView getSidebarView() {
     return sidebar;
+  }
+
+  @Override
+  public ProfileView getProfileView() {
+    return (ProfileView) profilePanel;
   }
 
   @Override
@@ -49,7 +56,7 @@ public class DashboardUserPanel extends JPanel implements DashboardUserView {
     setBackground(Color.WHITE);
 
     // Create sidebar
-    sidebar = new io.github.jayennn.BlockchainVoting.view.dashboardUser.sidebar.Panel();
+    sidebar = new SidebarPanel();
 
 
     // Create main content area

@@ -35,6 +35,7 @@ public class JpaManagerTest {
 
     @ParameterizedTest(name = "nim: {0},username: {1},password: {2}")
     @CsvSource({
+            "11241013, maria, bukabuka",
             "11241069, clemont, bukabuka"
     })
     public void createAccount(String nim,String username,String password){
@@ -109,7 +110,7 @@ public class JpaManagerTest {
     @CsvSource({
             "0x590bd72ca6ff4043b63b5baf72a325b0," +
                     "11241069," +
-                    "0x5f77fa41fae043da8502988193c16bef"
+                    "0xbc816127b96b443485c9f5bc2895107b"
     })
     public void castVote(String AelectionUUID,String voterId, String AcandidateUUID){
         EntityManager em = JpaManager.getInstance().getEM();
