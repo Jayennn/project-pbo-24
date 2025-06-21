@@ -3,12 +3,11 @@ package io.github.jayennn.BlockchainVoting.view.login;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.SwingUtilities;
-import javax.swing.JRootPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,7 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import io.github.jayennn.BlockchainVoting.controller.login.LoginHandler;
 
@@ -61,73 +63,163 @@ public class LoginPanel extends JPanel implements LoginView {
   private void initUI() {
     setLayout(new BorderLayout());
 
+    // Background image
     ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/login-background.png"));
-    java.net.URL bgUrl = getClass().getResource("/assets/login-background.png");
-    if (bgUrl == null) {
-      System.out.println("gambar gak ada");
-    } else {
-      System.out.println("gambar ada" + bgUrl);
-    }
-
     JLabel background = new JLabel(bgIcon);
-    background.setLayout(new BorderLayout());
+    background.setLayout(new GridBagLayout());
     add(background, BorderLayout.CENTER);
 
+    // === Panel vertikal (logo + form) ===
+    JPanel verticalPanel = new JPanel(new GridBagLayout());
+    verticalPanel.setOpaque(false); // transparan, biar background terlihat
+
+    GridBagConstraints gbcVertical = new GridBagConstraints();
+    gbcVertical.gridx = 0;
+    gbcVertical.gridy = 0;
+    gbcVertical.insets = new Insets(0, 0, 10, 0);
+
+    // Logo ITK
+    ImageIcon itkLogoIcon = new ImageIcon(getClass().getResource("/assets/itk.png"));
+    JLabel itkLogoLabel = new JLabel(itkLogoIcon);
+    verticalPanel.add(itkLogoLabel, gbcVertical);
+
     JPanel formPanel = new JPanel(new GridBagLayout());
-    formPanel.setOpaque(false);
+    formPanel.setOpaque(true);
     formPanel.setLayout(new GridBagLayout());
-    formPanel.setBackground(new Color(255, 255, 255, 220));
+    formPanel.setBackground(new Color(255, 255, 255, 200));
     formPanel.setBorder(BorderFactory.createCompoundBorder(
-        BorderFactory.createLineBorder(new Color(0, 120, 215)),
-        BorderFactory.createEmptyBorder(30, 30, 30, 30)));
+            BorderFactory.createLineBorder(new Color(0, 120, 215, 150), 2),
+            BorderFactory.createEmptyBorder(40, 50, 40, 50)
+    ));
+
+    formPanel.setPreferredSize(new Dimension(600,480));
+
+    gbcVertical.gridy = 1;
+    verticalPanel.add(formPanel, gbcVertical);
+
+    GridBagConstraints gbcFormPanel = new GridBagConstraints();
+    gbcFormPanel.gridx = 0;
+    gbcFormPanel.gridy = 0;
+    gbcFormPanel.anchor = GridBagConstraints.CENTER;
+    background.add(verticalPanel, gbcFormPanel);
 
     addFormComponents(formPanel);
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.weightx = 1.0;
-    gbc.weighty = 1.0;
-    background.add(formPanel, BorderLayout.CENTER);
   }
 
   private void addFormComponents(JPanel formPanel) {
     GridBagConstraints gbc = new GridBagConstraints();
-    gbc.insets = new Insets(10, 10, 10, 10);
+    gbc.insets = new Insets(10, 0, 10, 0);
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    gbc.anchor = GridBagConstraints.WEST;
-    gbc.gridy = 0;
-
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    gbc.gridwidth = 1;
-    formPanel.add(new JLabel("Username"), gbc);
-
-    gbc.gridx = 1;
-    usernameField = new JTextField(20);
-    usernameField.setPreferredSize(new Dimension(200, 30));
-    formPanel.add(usernameField, gbc);
-
-    gbc.gridx = 0;
-    gbc.gridy = 1;
-    formPanel.add(new JLabel("Password"), gbc);
-
-    gbc.gridx = 1;
-    passwordField = new JPasswordField(20);
-    passwordField.setPreferredSize(new Dimension(200, 30));
-    formPanel.add(passwordField, gbc);
-
-    gbc.gridx = 0;
-    gbc.gridy = 2;
-    gbc.gridwidth = 2;
-    gbc.fill = GridBagConstraints.NONE;
+    gbc.gridwidth = GridBagConstraints.REMAINDER;
     gbc.anchor = GridBagConstraints.CENTER;
-    loginButton = new JButton("Login");
-    loginButton.setPreferredSize(new Dimension(100, 30));
-    loginButton.setBackground(new Color(0, 120, 215));
+
+    int row = 0;
+
+    JPanel usernamePanel = new JPanel(new GridBagLayout());
+    usernamePanel.setOpaque(false);
+    JLabel userIcon = new JLabel(new ImageIcon(getClass().getResource("/assets/icons8-user-48.png")));
+    userIcon.setPreferredSize(new Dimension(48,40));
+    userIcon.setHorizontalAlignment(SwingConstants.CENTER);
+    usernameField = new JTextField("Username");
+    usernameField.setBackground(Color.WHITE);
+    usernameField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+    usernameField.setForeground(Color.GRAY);
+    usernameField.setPreferredSize(new Dimension(250, 40));
+
+    usernameField.addFocusListener(new java.awt.event.FocusAdapter() {
+      @Override
+      public void focusGained(java.awt.event.FocusEvent evt) {
+        if (usernameField.getText().equals("Username")) {
+          usernameField.setText("");
+          usernameField.setForeground(Color.BLACK);
+        }
+      }
+
+      @Override
+      public void focusLost(java.awt.event.FocusEvent evt) {
+        if (usernameField.getText().isEmpty()) {
+          usernameField.setText("Username");
+          usernameField.setForeground(Color.GRAY);
+        }
+      }
+    });
+
+    GridBagConstraints gbcUsername = new GridBagConstraints();
+    gbcUsername.gridx = 0;
+    gbcUsername.insets = new Insets(0, 0, 0, 10);
+    usernamePanel.add(userIcon, gbcUsername);
+
+    gbcUsername.gridx = 1;
+    gbcUsername.weightx = 1;
+    gbcUsername.fill = GridBagConstraints.HORIZONTAL;
+    usernamePanel.add(usernameField, gbcUsername);
+
+    gbc.gridy = row++;
+    formPanel.add(usernamePanel, gbc);
+
+    JPanel passwordPanel = new JPanel(new GridBagLayout());
+    passwordPanel.setOpaque(false);
+    JLabel passIcon = new JLabel(new ImageIcon(getClass().getResource("/assets/icons8-password-key-50.png")));
+    passIcon.setPreferredSize(new Dimension(48, 48));
+    passIcon.setHorizontalAlignment(SwingConstants.CENTER);
+
+    passwordField = new JPasswordField("Password");
+    passwordField.setPreferredSize(new Dimension(250, 40));
+    passwordField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+    passwordField.setForeground(Color.GRAY);
+    passwordField.setEchoChar((char) 0);
+
+    passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
+      @Override
+      public void focusGained(java.awt.event.FocusEvent evt) {
+        if (new String(passwordField.getPassword()).equals("Password")) {
+          passwordField.setText("");
+          passwordField.setForeground(Color.BLACK);
+          passwordField.setEchoChar('*');
+        }
+      }
+
+      @Override
+      public void focusLost(java.awt.event.FocusEvent evt) {
+        if (new String(passwordField.getPassword()).isEmpty()) {
+          passwordField.setEchoChar((char) 0);
+          passwordField.setText("Password");
+          passwordField.setForeground(Color.GRAY);
+        }
+      }
+    });
+    GridBagConstraints gbcPassword = new GridBagConstraints();
+    gbcPassword.gridx = 0;
+    gbcPassword.insets = new Insets(0, 0, 0, 10);
+    gbcPassword.anchor = GridBagConstraints.CENTER;
+    gbcPassword.fill = GridBagConstraints.NONE;
+    passwordPanel.add(passIcon, gbcPassword);
+
+    gbcPassword.gridx = 1;
+    gbcPassword.weightx = 1;
+    gbcPassword.fill = GridBagConstraints.HORIZONTAL;
+    passwordPanel.add(passwordField, gbcPassword);
+
+    gbc.gridy = row++;
+    formPanel.add(passwordPanel, gbc);
+
+    JButton loginButton = new JButton("Login");
+    loginButton.setPreferredSize(new Dimension(200, 45));
+    loginButton.setBackground(Color.BLACK);
     loginButton.setForeground(Color.WHITE);
+    loginButton.setFont(new Font("Arial", Font.BOLD, 16));
+    loginButton.setFocusPainted(false);
+    loginButton.setBorder(BorderFactory.createEmptyBorder());
+
+    gbc.insets = new Insets(20, 0, 20, 0);
+    gbc.gridy = row++;
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+    gbc.gridwidth = GridBagConstraints.REMAINDER;
     formPanel.add(loginButton, gbc);
 
     loginButton.addActionListener(e -> {
-      if (loginHandler!=null){
-        loginHandler.handle(getUsername(),getPassword());
+      if (loginHandler != null) {
+        loginHandler.handle(getUsername(), getPassword());
       }
     });
 
@@ -138,5 +230,4 @@ public class LoginPanel extends JPanel implements LoginView {
       }
     });
   }
-
 }

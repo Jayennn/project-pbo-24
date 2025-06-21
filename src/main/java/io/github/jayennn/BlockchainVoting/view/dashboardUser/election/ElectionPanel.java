@@ -1,5 +1,7 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardUser.election;
 
+import io.github.jayennn.BlockchainVoting.entity.Candidate;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -228,6 +230,7 @@ public class ElectionPanel extends JPanel implements ElectionView{
     private String title;
     private String date;
     private String status;
+    private List<Candidate> candidates;
 
     public StaticElection(String title, String date, String status) {
       this.title = title;
@@ -245,6 +248,14 @@ public class ElectionPanel extends JPanel implements ElectionView{
 
     public String getStatus() {
       return status;
+    }
+
+    public List<Candidate> getCandidates(){
+      return candidates;
+    }
+
+    public void setCandidates(List<Candidate> candidates) {
+      this.candidates = candidates;
     }
   }
 }
