@@ -193,13 +193,13 @@ public class CandidatePanel extends JPanel {
 
     for (Candidate candidate : candidates) {
       if (candidate.getName().toLowerCase().contains(searchTerm.toLowerCase()) ||
-          candidate.getVission().toLowerCase().contains(searchTerm.toLowerCase()) ||
+          candidate.getVision().toLowerCase().contains(searchTerm.toLowerCase()) ||
           candidate.getMission().toLowerCase().contains(searchTerm.toLowerCase())) {
 
         model.addRow(new Object[] {
             candidate.getUuid(),
             candidate.getName(),
-            candidate.getVission(),
+            candidate.getVision(),
             candidate.getMission(),
             candidate.getElection() != null ? candidate.getElection().getTitle() : "-",
             ""
@@ -217,7 +217,7 @@ public class CandidatePanel extends JPanel {
         model.addRow(new Object[] {
             candidate.getUuid(),
             candidate.getName(),
-            candidate.getVission(),
+            candidate.getVision(),
             candidate.getMission(),
             candidate.getElection() != null ? candidate.getElection().getTitle() : "-",
             ""

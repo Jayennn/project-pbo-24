@@ -26,33 +26,30 @@ public class Vote {
 
   @Column(name = "timestamp")
   private LocalDateTime timestamp;
+  public Vote(){}
 
-  public void setVoter(Voter voter) {
+  public Vote(VoteId voteId,Voter voter,Candidate candidate,Election election){
+    this.id = voteId;
     this.voter = voter;
-  }
-
-  public void setId(VoteId id) {
-    this.id = id;
-  }
-
-  public void setCandidate(Candidate candidate) {
     this.candidate = candidate;
+    this.election = election;
+    this.timestamp = LocalDateTime.now();
+  }
+
+  public VoteId getId() {
+    return id;
+  }
+
+  public Voter getVoter() {
+    return voter;
   }
 
   public Candidate getCandidate() {
     return candidate;
   }
 
-  public void setElection(Election election) {
-    this.election = election;
-  }
-
   public Election getElection() {
     return election;
-  }
-
-  public void setTimestamp(LocalDateTime timestamp) {
-    this.timestamp = timestamp;
   }
 
   public LocalDateTime getTimestamp() {

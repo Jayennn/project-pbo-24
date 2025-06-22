@@ -127,12 +127,7 @@ public class JpaManagerTest {
         voteId.setElectionUUID(electionUUID);
         voteId.setVoterId(voterId);
 
-        Vote vote = new Vote();
-        vote.setId(voteId);
-        vote.setCandidate(candidate);
-        vote.setElection(election);
-        vote.setVoter(voter);
-        vote.setTimestamp(LocalDateTime.now());
+        Vote vote = new Vote(voteId,voter,candidate,election);
 
         em.persist(vote);
         em.getTransaction().commit();

@@ -1,6 +1,8 @@
 package io.github.jayennn.BlockchainVoting.session;
 
+import io.github.jayennn.BlockchainVoting.entity.Role;
 import io.github.jayennn.BlockchainVoting.entity.User;
+import io.github.jayennn.BlockchainVoting.entity.Voter;
 import io.github.jayennn.BlockchainVoting.view.common.GuiManager;
 
 public class SessionManager {
@@ -27,6 +29,13 @@ public class SessionManager {
         return user;
     }
 
+    public Voter getVoter(){
+        if (getUser().getVoter() == null){
+            throw new RuntimeException("Current user is not applicable to be voter");
+        }
+        return getUser().getVoter();
+    }
+
     public void logout(){
         if (guiManager != null){
             user = null;
@@ -37,5 +46,9 @@ public class SessionManager {
 
     public void setGuiManager(GuiManager guiManager) {
         this.guiManager = guiManager;
+    }
+
+    public String getVoterId(){
+       return getVoter().getId();
     }
 }

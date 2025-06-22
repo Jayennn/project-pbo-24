@@ -1,5 +1,5 @@
 package io.github.jayennn.BlockchainVoting.controller.dashboardUser;
 
 public interface PostLogin {
-    void initiate();
+    void onLogin();
 }

@@ -47,7 +47,7 @@ public class Candidate {
         return mission;
     }
 
-    public String getVission() {
+    public String getVision() {
         return vission;
     }
 

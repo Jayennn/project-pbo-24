@@ -45,7 +45,7 @@ public class LoginController {
         }
         SessionManager.getInstance().setUser(user);
         for (PostLogin controller : dashboardUserController.getPostLoginControllers()){
-          controller.initiate();
+          controller.onLogin();
         }
       }else{
         throw new NoResultException();

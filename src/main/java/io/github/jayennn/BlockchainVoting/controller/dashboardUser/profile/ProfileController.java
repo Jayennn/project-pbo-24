@@ -26,7 +26,7 @@ public class ProfileController implements PostLogin {
        this.votingHistoryCard = view.getVotingHistoryCard();
     }
     @Override
-    public void initiate(){
+    public void onLogin(){
         if (SessionManager.getInstance().getUser().getRole() == Role.USER) {
             votingHistoryCard.clearContent();
             personalInfoCard.clearContent();
