@@ -11,7 +11,9 @@ public class ProfilePanel extends BasePanel implements ProfileView {
     private JPanel personalInfoCard;
     private JPanel votingHistoryCard;
 
-    public ProfilePanel() {}
+    public ProfilePanel() {
+        initComponents();
+    }
 
     @Override
     protected void initComponents() {

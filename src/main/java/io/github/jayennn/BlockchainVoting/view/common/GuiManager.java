@@ -61,11 +61,4 @@ public class GuiManager extends JFrame implements Navigator {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
   }
-
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(() -> {
-      GuiManager guiManager = new GuiManager();
-      guiManager.setVisible(true);
-    });
-  }
 }

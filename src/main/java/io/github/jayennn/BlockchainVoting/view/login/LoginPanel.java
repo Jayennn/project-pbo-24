@@ -29,7 +29,9 @@ public class LoginPanel extends BasePanel implements LoginView {
   private JPasswordField passwordField;
   private LoginHandler loginHandler;
 
-  public LoginPanel() {}
+  public LoginPanel() {
+    initComponents();
+  }
 
   @Override
   public String getUsername() {

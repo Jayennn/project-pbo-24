@@ -4,6 +4,7 @@ import io.github.jayennn.BlockchainVoting.controller.dashboardUser.election.Cast
 import io.github.jayennn.BlockchainVoting.entity.Election;
 import io.github.jayennn.BlockchainVoting.entity.Vote;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
+import io.github.jayennn.BlockchainVoting.view.common.BasePanel;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.card.ElectionCardPanel;
 
 import javax.swing.*;
@@ -11,13 +12,18 @@ import java.awt.*;
 
 import java.util.List;
 
-public class ElectionListPanel extends JPanel implements ElectionListView {
+public class ElectionListPanel extends BasePanel implements ElectionListView {
     GridBagConstraints gbc;
     CastVoteHandler castVoteHandler;
 
     public ElectionListPanel() {
+        initComponents();
+    }
+
+    @Override
+    protected void initComponents() {
         setLayout(new GridBagLayout());
-        setBackground(Color.red);
+        setBackground(new Color(248, 249, 250));
 
         gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;

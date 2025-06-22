@@ -12,7 +12,9 @@ public class SidebarPanel extends BasePanel implements SidebarView {
     private JButton activeButton;
     private SwitchPanelHandler switchPanelHandler;
 
-    public SidebarPanel(){}
+    public SidebarPanel(){
+        initComponents();
+    }
 
     @Override
     protected void initComponents() {

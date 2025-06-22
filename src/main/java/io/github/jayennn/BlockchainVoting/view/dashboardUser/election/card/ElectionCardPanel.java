@@ -4,6 +4,7 @@ import io.github.jayennn.BlockchainVoting.controller.dashboardUser.election.Cast
 import io.github.jayennn.BlockchainVoting.entity.Candidate;
 import io.github.jayennn.BlockchainVoting.entity.Election;
 import io.github.jayennn.BlockchainVoting.entity.Vote;
+import io.github.jayennn.BlockchainVoting.view.common.BasePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,33 +13,23 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ElectionCardPanel extends JPanel implements ElectionCardView{
-    private Election election;
-    private String title;
-    private String date;
+public class ElectionCardPanel extends BasePanel implements ElectionCardView{
+    private final Election election;
+    private final Vote matchedVote;
+    private final List<CandidateCardPanel> candidatePanels;
     private Candidate selectedCandidate;
-    private List<CandidateCardPanel> candidatePanels;
     private CastVoteHandler castVoteHandler;
-    private Vote matchedVote;
-
 
     public ElectionCardPanel(Election election, CastVoteHandler castVoteHandler, Vote matchedVote){
         this.election = election;
         this.castVoteHandler = castVoteHandler;
         this.matchedVote = matchedVote;
-        title = election.getTitle();
-        date = election.getDateStart().toString();
         candidatePanels = new ArrayList<>();
-        initializeComponents();
-
+        initComponents();
     }
 
     @Override
-    public void setCastVoteHandler(CastVoteHandler castVoteHandler) {
-        this.castVoteHandler = castVoteHandler;
-    }
-
-    private void initializeComponents(){
+    protected void initComponents() {
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createCompoundBorder(
@@ -55,11 +46,11 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
         leftSection.setLayout(new BorderLayout());
         leftSection.setBackground(Color.WHITE);
 
-        JLabel titleLabel = new JLabel(title);
+        JLabel titleLabel = new JLabel(election.getTitle());
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
         titleLabel.setForeground(new Color(51, 51, 51));
 
-        JLabel dateLabel = new JLabel(date);
+        JLabel dateLabel = new JLabel(election.getDateStart().toString());
         dateLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         dateLabel.setForeground(new Color(102, 102, 102));
         dateLabel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
@@ -91,12 +82,16 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
         headerSection.add(leftSection, BorderLayout.CENTER);
         headerSection.add(rightSection, BorderLayout.EAST);
 
-        // Content section (placeholder for election details)
-
-
         add(headerSection, BorderLayout.NORTH);
         add(contentSection, BorderLayout.CENTER);
+
     }
+
+    @Override
+    public void setCastVoteHandler(CastVoteHandler castVoteHandler) {
+        this.castVoteHandler = castVoteHandler;
+    }
+
     private JButton createVoteButton(Election election) {
         JButton button = new JButton("Vote");
         button.setFont(new Font("Arial", Font.BOLD, 14));
@@ -113,7 +108,7 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
             button.setForeground(new Color(153, 153, 153));
         }
         if (matchedVote!=null){
-            button.setEnabled(false);
+//            button.setEnabled(false);
             button.setForeground(new Color(153, 153, 153));
             for(CandidateCardPanel panel:candidatePanels){
                 System.out.println(panel.getCandidate().getUUID());
@@ -160,12 +155,10 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
     }
 
     public void highlightSelectedCard(JPanel selectedCard) {
-        // Reset all
         for (JPanel panel : candidatePanels) {
             panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         }
 
-        // Highlight selected
-        selectedCard.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
+        selectedCard.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
     }
 }

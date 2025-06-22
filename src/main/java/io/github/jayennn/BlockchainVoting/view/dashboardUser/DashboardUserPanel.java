@@ -24,7 +24,9 @@ public class DashboardUserPanel extends BasePanel implements DashboardUserView {
   private JPanel manage;
   private SidebarPanel sidebar;
 
-  public DashboardUserPanel() {}
+  public DashboardUserPanel() {
+    initComponents();
+  }
 
   @Override
   public SidebarView getSidebarView() {

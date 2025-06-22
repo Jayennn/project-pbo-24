@@ -1,50 +1,24 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardUser.election;
 
-import io.github.jayennn.BlockchainVoting.entity.Election;
+import io.github.jayennn.BlockchainVoting.view.common.BasePanel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class ElectionPanel extends JPanel implements ElectionView {
-
-  private List<Election> elections;
+public class ElectionPanel extends BasePanel implements ElectionView {
   private JPanel electionsPanel;
 
   public ElectionPanel() {
-    elections = new ArrayList<>();
-    initializeComponents();
-  }
-  @Override
-  public void addElection(Election election){
-    elections.add(election);
+    initComponents();
   }
 
   @Override
-  public void setElection(List<Election> elections) {
-    this.elections = elections;
-  }
-
-  @Override
-  public void updateElectionsPanel() {
-    initializeComponents();
-
-    System.out.println("total election = "+elections.size());
-  }
-
-  @Override
-  public ElectionListView getElectionsView() {
-    return (ElectionListView) electionsPanel;
-  }
-
-  private void initializeComponents() {
+  protected void initComponents() {
     setLayout(new BorderLayout());
     setBackground(new Color(248, 249, 250));
     setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
@@ -60,6 +34,11 @@ public class ElectionPanel extends JPanel implements ElectionView {
     scrollPane.setBackground(new Color(248, 249, 250));
     scrollPane.getViewport().setBackground(new Color(248, 249, 250));
     add(scrollPane, BorderLayout.CENTER);
+  }
+
+  @Override
+  public ElectionListView getElectionsView() {
+    return (ElectionListView) electionsPanel;
   }
 
   private JPanel createHeaderPanel() {

@@ -13,11 +13,9 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 
 public class ElectionController implements LoginListener {
-    private ElectionView view;
-    private ElectionListView electionsView;
-    private DashboardUserController dashboardUserController;
+    private final ElectionListView electionsView;
+    private final DashboardUserController dashboardUserController;
     public ElectionController(ElectionView view, DashboardUserController dashboardUserController){
-        this.view = view;
         this.electionsView = view.getElectionsView();
         this.dashboardUserController = dashboardUserController;
     }
@@ -25,7 +23,6 @@ public class ElectionController implements LoginListener {
     @Override
     public void onLogin() {
         System.out.println("election init");
-        view.setElection(getAllElection());
         electionsView.setCastVoteHandler(this::castVote);
         electionsView.refresh(getAllElection());
     }
