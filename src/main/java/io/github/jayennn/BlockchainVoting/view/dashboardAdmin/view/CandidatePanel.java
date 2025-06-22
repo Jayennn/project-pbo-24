@@ -21,7 +21,7 @@ public class CandidatePanel extends JPanel {
   private JTextArea visiInput;
   private JTextArea misiInput;
 
-  private UUID electionId = null;
+  private UUID electionUUID = null;
 
   private int editingRow = -1;
 
@@ -149,7 +149,7 @@ public class CandidatePanel extends JPanel {
     electionComboBox.addActionListener(e -> {
       Election selectedElection = (Election) electionComboBox.getSelectedItem();
       if (selectedElection != null) {
-        this.electionId = selectedElection.getUuid();
+        this.electionUUID = selectedElection.getUUID();
       }
     });
 
@@ -197,7 +197,7 @@ public class CandidatePanel extends JPanel {
           candidate.getMission().toLowerCase().contains(searchTerm.toLowerCase())) {
 
         model.addRow(new Object[] {
-            candidate.getUuid(),
+            candidate.getUUID(),
             candidate.getName(),
             candidate.getVision(),
             candidate.getMission(),
@@ -215,7 +215,7 @@ public class CandidatePanel extends JPanel {
 
       for (Candidate candidate : candidates) {
         model.addRow(new Object[] {
-            candidate.getUuid(),
+            candidate.getUUID(),
             candidate.getName(),
             candidate.getVision(),
             candidate.getMission(),
@@ -251,7 +251,7 @@ public class CandidatePanel extends JPanel {
     String visi = visiInput.getText().trim();
     String misi = misiInput.getText().trim();
 
-    if (name.trim().isEmpty() || visi.trim().isEmpty() || misi.trim().isEmpty() || electionId == null) {
+    if (name.trim().isEmpty() || visi.trim().isEmpty() || misi.trim().isEmpty() || electionUUID == null) {
       JOptionPane.showMessageDialog(this, "Nama, Visi dan Misi tidak boleh kosong", "Warning",
           JOptionPane.WARNING_MESSAGE);
       return;
@@ -273,7 +273,7 @@ public class CandidatePanel extends JPanel {
     }
 
     ElectionController electionController = new ElectionController();
-    Election election = electionController.getElectionById(electionId);
+    Election election = electionController.getElectionById(electionUUID);
 
     if (election == null) {
       JOptionPane.showMessageDialog(this,

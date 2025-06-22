@@ -11,12 +11,24 @@ import java.awt.event.MouseEvent;
 public class CandidateCardPanel extends JPanel {
     private ElectionCardPanel electionCardPanel;
     private JPanel thisPanel;
+    private Candidate candidate;
+    private boolean isActive = true;
     public CandidateCardPanel(Candidate candidate,ElectionCardPanel electionCardPanel){
         thisPanel = this;
         this.electionCardPanel = electionCardPanel;
+        this.candidate = candidate;
         initializeComponents(candidate);
 
     }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Candidate getCandidate() {
+        return candidate;
+    }
+
     private void initializeComponents(Candidate candidate){
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -51,8 +63,11 @@ public class CandidateCardPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                electionCardPanel.setSelectedCandidate(candidate);
-                electionCardPanel.highlightSelectedCard(thisPanel);
+                if (isActive){
+                    electionCardPanel.setSelectedCandidate(candidate);
+                    electionCardPanel.highlightSelectedCard(thisPanel);
+                }
+
             }
         });
 

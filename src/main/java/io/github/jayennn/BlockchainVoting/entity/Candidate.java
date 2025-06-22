@@ -35,7 +35,7 @@ public class Candidate {
         this.isActive = true;
     }
 
-    public UUID getUuid() {
+    public UUID getUUID() {
         return uuid;
     }
 

@@ -1,13 +1,11 @@
 package io.github.jayennn.BlockchainVoting.controller.dashboardUser.election;
 
-import com.mysql.cj.Session;
 import io.github.jayennn.BlockchainVoting.controller.dashboardUser.PostLogin;
 import io.github.jayennn.BlockchainVoting.entity.*;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.utils.JpaManager;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.ElectionView;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.ElectionsView;
-import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.card.ElectionCardView;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -40,12 +38,12 @@ public class ElectionController implements PostLogin {
         em.getTransaction().begin();
 
         VoteId voteId = new VoteId();
-        voteId.setElectionUUID(election.getUuid());
+        voteId.setElectionUUID(election.getUUID());
         voteId.setVoterId(SessionManager.getInstance().getVoterId());
 
         Vote vote = new Vote(voteId,
                 em.getReference(Voter.class,SessionManager.getInstance().getVoterId()
-                ), em.getReference(Candidate.class,candidate.getUuid()), em.getReference(Election.class,election.getUuid()));
+                ), em.getReference(Candidate.class,candidate.getUUID()), em.getReference(Election.class,election.getUUID()));
 
         em.persist(vote);
         em.getTransaction().commit();

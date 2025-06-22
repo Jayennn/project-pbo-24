@@ -239,7 +239,7 @@ public class ElectionPanel extends JPanel {
       if (election.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
         model.addRow(new Object[] {
             election.isActive(),
-            election.getUuid(),
+            election.getUUID(),
             election.getTitle(),
             election.getDateStart(),
             election.getDateEnd()
@@ -260,7 +260,7 @@ public class ElectionPanel extends JPanel {
 
         model.addRow(new Object[] {
             election.isActive(),
-            election.getUuid(),
+            election.getUUID(),
             election.getTitle(),
             election.getDateStart(),
             election.getDateEnd()

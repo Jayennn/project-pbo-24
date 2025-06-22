@@ -36,25 +36,20 @@ public class ProfileController implements PostLogin {
     }
 
     private void updateProfileInfo(){
-        User user = SessionManager.getInstance().getUser();
-        Voter voter = user.getVoter();
+        Voter voter = SessionManager.getInstance().getVoter();
         personalInfoCard.addField("Name",voter.getName());
         personalInfoCard.addField("Birthday",voter.getDateOfBirth().toString());
         personalInfoCard.addField("Gender",voter.getGender().toString());
     }
 
     private void updateVotingHistory(){
-        EntityManager em = JpaManager.getInstance().getEM();
-
-        List<Vote> votes = em.createQuery("SELECT v FROM Vote v WHERE v.voter = :id",Vote.class)
-                .setParameter("id",SessionManager.getInstance().getUser().getVoter())
-                .getResultList();
-
-        for (Vote vote : votes){
-            String electionName = vote.getElection().getTitle();
-            String candidateName = vote.getCandidate().getName();
-            String dateTime = vote.getTimestamp().toString();
-            votingHistoryCard.addVoteBox(electionName,candidateName,dateTime);
+        if(SessionManager.getInstance().getVotes() != null){
+            for (Vote vote : SessionManager.getInstance().getVotes()){
+                String electionName = vote.getElection().getTitle();
+                String candidateName = vote.getCandidate().getName();
+                String dateTime = vote.getTimestamp().toString();
+                votingHistoryCard.addVoteBox(electionName,candidateName,dateTime);
+            }
         }
     }
 

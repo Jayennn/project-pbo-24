@@ -33,7 +33,7 @@ public class Election {
   public Election() {
   }
 
-  public UUID getUuid() {
+  public UUID getUUID() {
     return uuid;
   }
 

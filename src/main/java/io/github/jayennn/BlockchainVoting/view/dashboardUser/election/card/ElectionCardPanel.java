@@ -3,7 +3,7 @@ package io.github.jayennn.BlockchainVoting.view.dashboardUser.election.card;
 import io.github.jayennn.BlockchainVoting.controller.dashboardUser.election.CastVoteHandler;
 import io.github.jayennn.BlockchainVoting.entity.Candidate;
 import io.github.jayennn.BlockchainVoting.entity.Election;
-import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.ElectionPanel;
+import io.github.jayennn.BlockchainVoting.entity.Vote;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,13 +17,15 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
     private String title;
     private String date;
     private Candidate selectedCandidate;
-    private List<JPanel> candidatePanels;
+    private List<CandidateCardPanel> candidatePanels;
     private CastVoteHandler castVoteHandler;
+    private Vote matchedVote;
 
 
-    public ElectionCardPanel(Election election,CastVoteHandler castVoteHandler){
+    public ElectionCardPanel(Election election, CastVoteHandler castVoteHandler, Vote matchedVote){
         this.election = election;
         this.castVoteHandler = castVoteHandler;
+        this.matchedVote = matchedVote;
         title = election.getTitle();
         date = election.getDateStart().toString();
         candidatePanels = new ArrayList<>();
@@ -65,6 +67,19 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
         leftSection.add(titleLabel, BorderLayout.NORTH);
         leftSection.add(dateLabel, BorderLayout.CENTER);
 
+        JPanel contentSection = new JPanel();
+        contentSection.setLayout(new BorderLayout());
+        contentSection.setBackground(Color.WHITE);
+        contentSection.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        contentSection.setPreferredSize(new java.awt.Dimension(0, 200));
+
+        contentSection.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 0));
+
+        for (Candidate candidate:election.getCandidateList()){
+            CandidateCardPanel candidateCardPanel = new CandidateCardPanel(candidate,this);
+            candidatePanels.add(candidateCardPanel);
+            contentSection.add(candidateCardPanel);
+        }
         // Right side - Vote button
         JPanel rightSection = new JPanel();
         rightSection.setLayout(new BorderLayout());
@@ -77,26 +92,7 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
         headerSection.add(rightSection, BorderLayout.EAST);
 
         // Content section (placeholder for election details)
-        JPanel contentSection = new JPanel();
-        contentSection.setLayout(new BorderLayout());
-        contentSection.setBackground(Color.WHITE);
-        contentSection.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
-        contentSection.setPreferredSize(new java.awt.Dimension(0, 200));
 
-        contentSection.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 0));
-
-        for (Candidate candidate:election.getCandidateList()){
-            JPanel candidateCardPanel = new CandidateCardPanel(candidate,this);
-            candidatePanels.add(candidateCardPanel);
-            contentSection.add(candidateCardPanel);
-        }
-
-        // Add placeholder content
-//        JLabel placeholderLabel = new JLabel("Election details and candidates will be displayed here");
-//        placeholderLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//        placeholderLabel.setFont(new Font("Arial", Font.ITALIC, 12));
-//        placeholderLabel.setForeground(new Color(153, 153, 153));
-//        contentSection.add(placeholderLabel, BorderLayout.CENTER);
 
         add(headerSection, BorderLayout.NORTH);
         add(contentSection, BorderLayout.CENTER);
@@ -112,11 +108,25 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
         button.setFocusPainted(false);
         button.setPreferredSize(new java.awt.Dimension(80, 35));
 
-        // Enable/disable based on election status
         if (!election.isActive()) {
             button.setEnabled(false);
             button.setForeground(new Color(153, 153, 153));
         }
+        if (matchedVote!=null){
+            button.setEnabled(false);
+            button.setForeground(new Color(153, 153, 153));
+            for(CandidateCardPanel panel:candidatePanels){
+                System.out.println(panel.getCandidate().getUUID());
+                System.out.println(matchedVote.getCandidate().getUUID());
+                if (panel.getCandidate().getUUID().equals(matchedVote.getCandidate().getUUID())){
+                    highlightSelectedCard(panel);
+                    System.out.println("matched candidate");
+                }
+                panel.setActive(false);
+            }
+            System.out.println("panel mathced");
+        }
+
 
         // Add hover effect
         button.addMouseListener(new java.awt.event.MouseAdapter() {

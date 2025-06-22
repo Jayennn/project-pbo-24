@@ -2,6 +2,8 @@ package io.github.jayennn.BlockchainVoting.view.dashboardUser.election;
 
 import io.github.jayennn.BlockchainVoting.controller.dashboardUser.election.CastVoteHandler;
 import io.github.jayennn.BlockchainVoting.entity.Election;
+import io.github.jayennn.BlockchainVoting.entity.Vote;
+import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.card.ElectionCardPanel;
 
 import javax.swing.*;
@@ -33,7 +35,17 @@ public class ElectionsPanel extends JPanel implements ElectionsView{
     public void refresh(List<Election> elections){
         reset();
         for (int i = 0; i < elections.size(); i++){
-            JPanel electionCard = new ElectionCardPanel(elections.get(i),castVoteHandler);
+            Vote matchedVote = null;
+            for (Vote vote: SessionManager.getInstance().getVotes()){
+                System.out.println(vote.getElection().toString());
+                System.out.println(elections.get(i).toString());
+                if(vote.getElection().getUUID().equals(elections.get(i).getUUID())){
+                    matchedVote = vote;
+                    break;
+                }
+            }
+            JPanel electionCard = new ElectionCardPanel(elections.get(i),castVoteHandler,matchedVote);
+            System.out.println("matched ="+matchedVote);
             gbc.gridy = i;
             add(electionCard, gbc);
         }
