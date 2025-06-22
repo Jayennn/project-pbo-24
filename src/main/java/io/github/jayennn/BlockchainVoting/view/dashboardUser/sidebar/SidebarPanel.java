@@ -2,15 +2,20 @@ package io.github.jayennn.BlockchainVoting.view.dashboardUser.sidebar;
 
 import io.github.jayennn.BlockchainVoting.controller.dashboardUser.sidebar.SwitchPanelHandler;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
+import io.github.jayennn.BlockchainVoting.view.common.BasePanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
-public class SidebarPanel extends JPanel implements SIdebarView {
+public class SidebarPanel extends BasePanel implements SidebarView {
     private JButton activeButton;
     private SwitchPanelHandler switchPanelHandler;
 
-    public SidebarPanel(){
+    public SidebarPanel(){}
+
+    @Override
+    protected void initComponents() {
         setLayout(new BorderLayout());
         setPreferredSize(new java.awt.Dimension(280, 700));
         setBackground(Color.WHITE);
@@ -24,7 +29,7 @@ public class SidebarPanel extends JPanel implements SIdebarView {
 
         // Logo
         try {
-            ImageIcon logoIcon = new ImageIcon(getClass().getResource("/assets/itk.png"));
+            ImageIcon logoIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/itk.png")));
             Image scaledLogo = logoIcon.getImage().getScaledInstance(200, 80, Image.SCALE_SMOOTH);
             ImageIcon resizedLogo = new ImageIcon(scaledLogo);
             JLabel logoLabel = new JLabel(resizedLogo);

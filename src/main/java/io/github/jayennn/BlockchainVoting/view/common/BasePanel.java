@@ -4,8 +4,9 @@ import javax.swing.*;
 
 public abstract class BasePanel extends JPanel {
     public BasePanel(){
-        initComponent();
+        initComponents();
     }
 
-    protected abstract void initComponent();
+    protected abstract void initComponents();
+
 }

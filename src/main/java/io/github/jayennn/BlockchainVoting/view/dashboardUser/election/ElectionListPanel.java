@@ -11,11 +11,11 @@ import java.awt.*;
 
 import java.util.List;
 
-public class ElectionsPanel extends JPanel implements ElectionsView{
+public class ElectionListPanel extends JPanel implements ElectionListView {
     GridBagConstraints gbc;
     CastVoteHandler castVoteHandler;
 
-    public ElectionsPanel() {
+    public ElectionListPanel() {
         setLayout(new GridBagLayout());
         setBackground(Color.red);
 

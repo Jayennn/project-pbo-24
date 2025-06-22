@@ -1,13 +1,24 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardUser.profile;
 
+import io.github.jayennn.BlockchainVoting.view.common.BasePanel;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class CardPanel extends JPanel implements CardView{
+public class CardPanel extends BasePanel implements CardView{
 
-    private final JPanel content;
+    private JPanel content;
+    private final String title;
+    private final String subtitle;
 
     public CardPanel(String title, String subtitle) {
+        this.title = title;
+        this.subtitle = subtitle;
+        initComponents();
+    }
+
+    @Override
+    protected void initComponents() {
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createCompoundBorder(

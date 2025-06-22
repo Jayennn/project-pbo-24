@@ -9,5 +9,5 @@ public interface ElectionView {
 
     void setElection(List<Election> elections);
     void updateElectionsPanel();
-    ElectionsView getElectionsView();
+    ElectionListView getElectionsView();
 }

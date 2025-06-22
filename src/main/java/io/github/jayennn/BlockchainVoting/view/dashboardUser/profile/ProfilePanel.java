@@ -1,14 +1,20 @@
 package io.github.jayennn.BlockchainVoting.view.dashboardUser.profile;
 
+import io.github.jayennn.BlockchainVoting.view.common.BasePanel;
+
 import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
-public class ProfilePanel extends JPanel implements ProfileView {
+public class ProfilePanel extends BasePanel implements ProfileView {
     private JPanel personalInfoCard;
     private JPanel votingHistoryCard;
-    public ProfilePanel() {
+
+    public ProfilePanel() {}
+
+    @Override
+    protected void initComponents() {
         setLayout(new GridBagLayout());
         setBackground(new Color(248, 249, 250));
         setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));

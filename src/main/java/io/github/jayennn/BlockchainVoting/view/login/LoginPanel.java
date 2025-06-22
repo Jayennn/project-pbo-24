@@ -58,7 +58,7 @@ public class LoginPanel extends BasePanel implements LoginView {
   }
 
   @Override
-  protected void initComponent() {
+  protected void initComponents(){
     setLayout(new BorderLayout());
 
     // Background image

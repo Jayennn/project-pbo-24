@@ -5,7 +5,7 @@ import io.github.jayennn.BlockchainVoting.entity.Election;
 
 import java.util.List;
 
-public interface ElectionsView {
+public interface ElectionListView {
     void setCastVoteHandler(CastVoteHandler castVoteHandler);
     void refresh(List<Election> elections);
 }

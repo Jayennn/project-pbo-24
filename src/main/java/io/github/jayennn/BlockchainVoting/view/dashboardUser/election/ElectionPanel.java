@@ -40,8 +40,8 @@ public class ElectionPanel extends JPanel implements ElectionView {
   }
 
   @Override
-  public ElectionsView getElectionsView() {
-    return (ElectionsView) electionsPanel;
+  public ElectionListView getElectionsView() {
+    return (ElectionListView) electionsPanel;
   }
 
   private void initializeComponents() {
@@ -54,7 +54,7 @@ public class ElectionPanel extends JPanel implements ElectionView {
     add(headerPanel, BorderLayout.NORTH);
 
     // Elections list
-    electionsPanel = new ElectionsPanel();
+    electionsPanel = new ElectionListPanel();
     JScrollPane scrollPane = new JScrollPane(electionsPanel);
     scrollPane.setBorder(null);
     scrollPane.setBackground(new Color(248, 249, 250));

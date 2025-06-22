@@ -168,11 +168,4 @@ public class ElectionCardPanel extends JPanel implements ElectionCardView{
         // Highlight selected
         selectedCard.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
     }
-
-
-    //    private void handleVoteClick(ElectionPanel.StaticElection election) {
-//        // Handle vote button click
-//        System.out.println("Vote clicked for: " + election.getTitle());
-//        // Here you would typically open a voting dialog or navigate to voting page
-//    }
 }

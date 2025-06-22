@@ -1,7 +1,5 @@
 package io.github.jayennn.BlockchainVoting.controller.login;
 
-import io.github.jayennn.BlockchainVoting.controller.dashboardUser.DashboardUserController;
-import io.github.jayennn.BlockchainVoting.controller.dashboardUser.PostLogin;
 import io.github.jayennn.BlockchainVoting.entity.Role;
 import io.github.jayennn.BlockchainVoting.entity.User;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
@@ -12,17 +10,28 @@ import io.github.jayennn.BlockchainVoting.view.login.LoginView;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LoginController {
   private final LoginView view;
   private final Navigator navigator;
-  private final DashboardUserController dashboardUserController;
+  private final List<LoginListener> loginListeners = new ArrayList<>();
 
-  public LoginController(LoginView view, Navigator navigator,DashboardUserController dashboardUserController) {
+  public LoginController(LoginView view, Navigator navigator) {
     this.view = view;
     this.navigator = navigator;
 
     this.view.setLoginHandler(this::authenticate);
-    this.dashboardUserController = dashboardUserController;
+  }
+
+  public void addLoginListener(LoginListener loginListener){
+    loginListeners.add(loginListener);
+  }
+
+  public void addLoginListener(LoginListener... loginListeners){
+      Collections.addAll(this.loginListeners, loginListeners);
   }
 
   public void authenticate(String username,String password) {
@@ -45,9 +54,7 @@ public class LoginController {
           navigator.showPanel("DashboardAdminCard");
         }
         SessionManager.getInstance().setUser(user);
-        for (PostLogin controller : dashboardUserController.getPostLoginControllers()){
-          controller.onLogin();
-        }
+        notifyLoginListener();
       }else{
         throw new NoResultException();
       }
@@ -55,5 +62,11 @@ public class LoginController {
       view.displayError("Invalid username or password");
     }
     view.clearFields();
+  }
+
+  private void notifyLoginListener(){
+    for (LoginListener controller : loginListeners ){
+      controller.onLogin();
+    }
   }
 }

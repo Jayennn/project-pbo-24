@@ -1,21 +1,25 @@
 package io.github.jayennn.BlockchainVoting.controller.dashboardUser.election;
 
-import io.github.jayennn.BlockchainVoting.controller.dashboardUser.PostLogin;
+import io.github.jayennn.BlockchainVoting.controller.dashboardUser.DashboardUserController;
+import io.github.jayennn.BlockchainVoting.controller.login.LoginListener;
 import io.github.jayennn.BlockchainVoting.entity.*;
 import io.github.jayennn.BlockchainVoting.session.SessionManager;
 import io.github.jayennn.BlockchainVoting.utils.JpaManager;
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.DashboardUserView;
 import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.ElectionView;
-import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.ElectionsView;
+import io.github.jayennn.BlockchainVoting.view.dashboardUser.election.ElectionListView;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class ElectionController implements PostLogin {
+public class ElectionController implements LoginListener {
     private ElectionView view;
-    private ElectionsView electionsView;
-    public ElectionController(ElectionView view){
+    private ElectionListView electionsView;
+    private DashboardUserController dashboardUserController;
+    public ElectionController(ElectionView view, DashboardUserController dashboardUserController){
         this.view = view;
         this.electionsView = view.getElectionsView();
+        this.dashboardUserController = dashboardUserController;
     }
 
     @Override
@@ -48,6 +52,8 @@ public class ElectionController implements PostLogin {
         em.persist(vote);
         em.getTransaction().commit();
         electionsView.refresh(getAllElection());
+
+        dashboardUserController.getProfileController().refresh();
     }
 
 }
