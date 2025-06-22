@@ -98,7 +98,7 @@ public class ElectionController {
 
       Election election = em.find(Election.class, id);
       if (election != null) {
-        em.remove(election);
+        election.setActive(false);
         System.out.println("Election deleted successfully.");
       } else {
         System.out.println("Election not found with ID: " + id);

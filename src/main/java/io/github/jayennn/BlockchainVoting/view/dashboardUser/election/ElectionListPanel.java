@@ -34,21 +34,24 @@ public class ElectionListPanel extends JPanel implements ElectionListView {
     @Override
     public void refresh(List<Election> elections){
         reset();
-        for (int i = 0; i < elections.size(); i++){
-            Vote matchedVote = null;
-            for (Vote vote: SessionManager.getInstance().getVotes()){
-                System.out.println(vote.getElection().toString());
-                System.out.println(elections.get(i).toString());
-                if(vote.getElection().getUUID().equals(elections.get(i).getUUID())){
-                    matchedVote = vote;
-                    break;
+        if (SessionManager.getInstance().getVotes()!=null){
+            for (int i = 0; i < elections.size(); i++){
+                Vote matchedVote = null;
+                for (Vote vote: SessionManager.getInstance().getVotes()){
+                    System.out.println(vote.getElection().toString());
+                    System.out.println(elections.get(i).toString());
+                    if(vote.getElection().getUUID().equals(elections.get(i).getUUID())){
+                        matchedVote = vote;
+                        break;
+                    }
                 }
+                JPanel electionCard = new ElectionCardPanel(elections.get(i),castVoteHandler,matchedVote);
+                System.out.println("matched ="+matchedVote);
+                gbc.gridy = i;
+                add(electionCard, gbc);
             }
-            JPanel electionCard = new ElectionCardPanel(elections.get(i),castVoteHandler,matchedVote);
-            System.out.println("matched ="+matchedVote);
-            gbc.gridy = i;
-            add(electionCard, gbc);
         }
+
         gbc.gridy = elections.size();
         gbc.weighty = 0.0;
         gbc.fill = GridBagConstraints.BOTH;
