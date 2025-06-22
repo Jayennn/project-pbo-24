@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Objects;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,18 +22,14 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import io.github.jayennn.BlockchainVoting.controller.login.LoginHandler;
+import io.github.jayennn.BlockchainVoting.view.common.BasePanel;
 
-public class LoginPanel extends JPanel implements LoginView {
+public class LoginPanel extends BasePanel implements LoginView {
   private JTextField usernameField;
   private JPasswordField passwordField;
-  private JButton loginButton;
   private LoginHandler loginHandler;
 
-
-  public LoginPanel() {
-    initUI();
-    System.out.println("Login GUI");
-  }
+  public LoginPanel() {}
 
   @Override
   public String getUsername() {
@@ -60,11 +57,12 @@ public class LoginPanel extends JPanel implements LoginView {
     this.loginHandler = loginHandler;
   }
 
-  private void initUI() {
+  @Override
+  protected void initComponent() {
     setLayout(new BorderLayout());
 
     // Background image
-    ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/login-background.png"));
+    ImageIcon bgIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/assets/login-background.png")));
     JLabel background = new JLabel(bgIcon);
     background.setLayout(new GridBagLayout());
     add(background, BorderLayout.CENTER);

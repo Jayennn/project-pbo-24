@@ -13,13 +13,14 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 
 public class LoginController {
-  private LoginView view;
-  private Navigator navigator;
-  private DashboardUserController dashboardUserController;
+  private final LoginView view;
+  private final Navigator navigator;
+  private final DashboardUserController dashboardUserController;
 
   public LoginController(LoginView view, Navigator navigator,DashboardUserController dashboardUserController) {
     this.view = view;
     this.navigator = navigator;
+
     this.view.setLoginHandler(this::authenticate);
     this.dashboardUserController = dashboardUserController;
   }
